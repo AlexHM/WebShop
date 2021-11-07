@@ -1,0 +1,55 @@
+/*General style*/
+input{
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 0.3vh solid black;
+    background-color: rgb(127, 191, 212);
+    height: 3vh;
+    border-color: none;
+    
+}
+input:focus{
+    outline: none;
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+    border-bottom: solid;
+    border-width: 0.5vh;
+    
+}
+input::placeholder{
+    font-size: 1.5vh;
+    font-weight: bold;
+    color: black;
+    opacity: 0.7;
+}
+
+
+
+/*central Div*/
+
+#general {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    margin-top: 35vh;
+}
+
+form{
+    text-align: center;
+    
+}
+#inputEmail{
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+}
+#inputRemember{
+    text-align: end;
+    margin-left: 6vh;
+    margin-top: 2vh;
+}
+#divButton{
+    margin-top: 2vh;
+}
