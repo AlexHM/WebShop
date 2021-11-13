@@ -33,6 +33,7 @@ try {
             echo "No es valido";
         }
 
+
         $query = "insert into users (email,name,lastname,username,password) values (:email,:name,:lastname,:username,:password)";
         $result = $db->prepare($query);
 
