@@ -49,7 +49,7 @@ try {
         $result->bindValue(":password", $pass);
         $result->execute();
         
-        header("location:home.html");
+        header("location: ../html/signup/signUp.html");
 
 
     }
