@@ -1,13 +1,11 @@
 <?php
-
 require("../../cookies/checkSession.php");
 
-if ($flagUser) {
-header("location:homeUser.php");
+if ($flagUser==false) {
+header("location:home.php");
 
-}  
+}
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,8 +15,10 @@ header("location:homeUser.php");
     <title>Home</title>
 </head>
 <body>
-    <h1>Hola Desconocido</h1>
-    <a href="/cookies/destroySession.php"></a>
+    <h1>Hola Usuario</h1>
+    <a href="../../cookies/destroySession.php">Close session</a>
     
 </body>
 </html>
+
+

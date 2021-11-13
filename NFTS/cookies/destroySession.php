@@ -1,4 +1,8 @@
 <?php
+session_start();
 session_destroy();
-header("location: ../login/login.html");
+
+//echo $_SESSION["user"];
+header("location: ../html/login/login.html");
+
 ?>
