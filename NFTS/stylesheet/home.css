@@ -53,6 +53,7 @@ body {
     display: grid;
     grid-template-rows: 33.3% 33.3% 33.3%;
     grid-template-columns: auto auto auto;
+    justify-content: space-around;
 }
 
 .pr {
