@@ -191,6 +191,7 @@ if ($flagUser) {
         <?php
         require("../../connection/nameProduct.php");
         require("../../connection/imageProduct.php");
+        require("../../connection/descriptionProduct.php");
 
         ?>
 
@@ -198,32 +199,42 @@ if ($flagUser) {
             <div id="divProducts">
                 <div class="pr">
                     <?php echo "<h2>$names[0]</h2>"; ?>
-                    <img src="<?php echo "data:image/png; base64," . base64_encode($images[1]); ?>" alt="imageTest" id="imgBlob">
+                    <img src="<?php echo "data:image/png; base64," . base64_encode($images[0]); ?>" alt="imageTest" id="imgBlob">
+                    <?php echo "<p>$descriptions[0]</p>"; ?>
                 </div>
                 <div class="pr">
                     <?php echo "<h2>$names[1]</h2>" ?>
                     <img src="<?php echo "data:image/png; base64," . base64_encode($images[1]); ?>" alt="imageTest" id="imgBlob">
+                    <?php echo "<p>$descriptions[1]</p>"; ?>
                 </div>
                 <div class="pr"><?php echo "<h2>$names[2]</h2>" ?>
-                    <img src="<?php echo "data:image/png; base64," . base64_encode($images[1]); ?>" alt="imageTest" id="imgBlob">
+                    <img src="<?php echo "data:image/png; base64," . base64_encode($images[2]); ?>" alt="imageTest" id="imgBlob">
+                    <?php echo "<p>$descriptions[2]</p>"; ?>
                 </div>
                 <div class="pr"><?php echo "<h2>$names[3]</h2>" ?>
-                    <img src="<?php echo "data:image/png; base64," . base64_encode($images[1]); ?>" alt="imageTest" id="imgBlob">
+                    <img src="<?php echo "data:image/png; base64," . base64_encode($images[3]); ?>" alt="imageTest" id="imgBlob">
+                    <?php echo "<p>$descriptions[3]</p>"; ?>
                 </div>
-                <div class="pr"><?php echo "<h2>$names[1]</h2>" ?>
-                    <img src="<?php echo "data:image/png; base64," . base64_encode($images[1]); ?>" alt="imageTest" id="imgBlob">
+                <div class="pr"><?php echo "<h2>$names[4]</h2>" ?>
+                    <img src="<?php echo "data:image/png; base64," . base64_encode($images[4]); ?>" alt="imageTest" id="imgBlob">
+                    <?php echo "<p>$descriptions[4]</p>"; ?>
                 </div>
-                <div class="pr"><?php echo "<h2>$names[0]</h2>" ?>
-                    <img src="<?php echo "data:image/png; base64," . base64_encode($images[1]); ?>" alt="imageTest" id="imgBlob">
+                <div class="pr"><?php echo "<h2>$names[5]</h2>" ?>
+                    <img src="<?php echo "data:image/png; base64," . base64_encode($images[5]); ?>" alt="imageTest" id="imgBlob">
+                    <?php echo "<p>$descriptions[5]</p>"; ?>
                 </div>
-                <div class="pr"><?php echo "<h2>$names[2]</h2>" ?>
-                    <img src="<?php echo "data:image/png; base64," . base64_encode($images[1]); ?>" alt="imageTest" id="imgBlob">
+                <div class="pr"><?php echo "<h2>$names[6]</h2>" ?>
+                    <img src="<?php echo "data:image/png; base64," . base64_encode($images[6]); ?>" alt="imageTest" id="imgBlob">
+                    <?php echo "<p>$descriptions[6]</p>"; ?>
                 </div>
-                <div class="pr"><?php echo "<h2>$names[3]</h2>" ?>
-                    <img src="<?php echo "data:image/png; base64," . base64_encode($images[1]); ?>" alt="imageTest" id="imgBlob">
+                <div class="pr"><?php echo "<h2>$names[7]</h2>" ?>
+                    <img src="<?php echo "data:image/png; base64," . base64_encode($images[7]); ?>" alt="imageTest" id="imgBlob">
+                    <?php echo "<p>$descriptions[7]</p>"; ?>
                 </div>
-                <div class="pr"><?php echo "<h2>$names[1]</h2>" ?>
-                    <img src="<?php echo "data:image/png; base64," . base64_encode($images[1]); ?>" alt="imageTest" id="imgBlob">
+                <div class="pr"><?php echo "<h2>$names[8]</h2>" ?>
+                    <img src="<?php echo "data:image/png; base64," . base64_encode($images[8]); ?>" alt="imageTest" id="imgBlob">
+                    <?php echo "<p>$descriptions[8]</p>"; ?>
+
                 </div>
             </div>
         </div>
