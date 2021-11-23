@@ -53,10 +53,16 @@ body {
     display: grid;
     grid-template-rows: 33.3% 33.3% 33.3%;
     grid-template-columns: auto auto auto;
+    justify-content: space-around;
 }
 
 .pr {
     width: 30vh;
     height: 30vh;
     border: 1px solid black;
+}
+
+#imgBlob{
+    width: 20vh;
+    height: 20vh;
 }

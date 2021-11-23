@@ -54,37 +54,37 @@ if ($flagUser) {
                 </div>
                 <div id="mostLikes">
                     <form action="">
-                        <input type="submit" value="">
+                        <input type="checkbox" value="">
                         <label>Most Likes</label>
                     </form>
                 </div>
                 <div id="mostViews">
                     <form action="">
-                        <input type="submit" value="">
+                        <input type="checkbox" value="">
                         <label>Most Views</label>
                     </form>
                 </div>
                 <div id="newest">
                     <form action="">
-                        <input type="submit" value="">
+                        <input type="checkbox" value="">
                         <label>Newest</label>
                     </form>
                 </div>
                 <div id="recentListed">
                     <form action="">
-                        <input type="submit" value="">
+                        <input type="checkbox" value="">
                         <label>Recent listed</label>
                     </form>
                 </div>
                 <div id="highestPrice">
                     <form action="">
-                        <input type="submit" value="">
+                        <input type="checkbox" value="">
                         <label>Highest Price</label>
                     </form>
                 </div>
                 <div id="lowestPrice">
                     <form action="">
-                        <input type="submit" value="">
+                        <input type="checkbox" value="">
                         <label>Lowest Price</label>
                     </form>
                 </div>
@@ -96,19 +96,19 @@ if ($flagUser) {
                 </div>
                 <div id="divGif">
                     <form action="">
-                        <input type="submit" value="">
+                        <input type="checkbox" value="">
                         <label>GIF</label>
                     </form>
                 </div>
                 <div id="divPng">
                     <form action="">
-                        <input type="submit" value="">
+                        <input type="checkbox" value="">
                         <label>PNG</label>
                     </form>
                 </div>
                 <div id="divJpg">
                     <form action="">
-                        <input type="submit" value="">
+                        <input type="checkbox" value="">
                         <label>JPG</label>
                     </form>
                 </div>
@@ -131,19 +131,19 @@ if ($flagUser) {
                     <div id="cryptoLeft">
                         <div id="divGif2">
                             <form action="">
-                                <input type="submit" value="">
+                                <input type="checkbox" value="">
                                 <label>GIF</label>
                             </form>
                         </div>
                         <div id="divPng2">
                             <form action="">
-                                <input type="submit" value="">
+                                <input type="checkbox" value="">
                                 <label>PNG</label>
                             </form>
                         </div>
                         <div id="divJpg2">
                             <form action="">
-                                <input type="submit" value="">
+                                <input type="checkbox" value="">
                                 <label>JPG</label>
                             </form>
                         </div>
@@ -151,19 +151,19 @@ if ($flagUser) {
                     <div id="cryptoRight">
                         <div id="divGif2">
                             <form action="">
-                                <input type="submit" value="">
+                                <input type="checkbox" value="">
                                 <label>GIF</label>
                             </form>
                         </div>
                         <div id="divPng2">
                             <form action="">
-                                <input type="submit" value="">
+                                <input type="checkbox" value="">
                                 <label>PNG</label>
                             </form>
                         </div>
                         <div id="divJpg2">
                             <form action="">
-                                <input type="submit" value="">
+                                <input type="checkbox" value="">
                                 <label>JPG</label>
                             </form>
                         </div>
@@ -188,22 +188,58 @@ if ($flagUser) {
             </div>
 
         </div>
+        <?php
+        require("../../connection/nameProduct.php");
+        require("../../connection/imageProduct.php");
+        require("../../connection/descriptionProduct.php");
+
+        ?>
+
         <div id="products">
             <div id="divProducts">
-                <div class="pr">1</div>
-                <div class="pr">2</div>
-                <div class="pr">3</div>
-                <div class="pr">4</div>
-                <div class="pr">5</div>
-                <div class="pr">6</div>
-                <div class="pr">7</div>
-                <div class="pr">8</div>
-                <div class="pr">9</div>
+                <div class="pr">
+                    <?php echo "<h2>$names[0]</h2>"; ?>
+                    <img src="<?php echo "data:image/png; base64," . base64_encode($images[0]); ?>" alt="imageTest" id="imgBlob">
+                    <?php echo "<p>$descriptions[0]</p>"; ?>
+                </div>
+                <div class="pr">
+                    <?php echo "<h2>$names[1]</h2>" ?>
+                    <img src="<?php echo "data:image/png; base64," . base64_encode($images[1]); ?>" alt="imageTest" id="imgBlob">
+                    <?php echo "<p>$descriptions[1]</p>"; ?>
+                </div>
+                <div class="pr"><?php echo "<h2>$names[2]</h2>" ?>
+                    <img src="<?php echo "data:image/png; base64," . base64_encode($images[2]); ?>" alt="imageTest" id="imgBlob">
+                    <?php echo "<p>$descriptions[2]</p>"; ?>
+                </div>
+                <div class="pr"><?php echo "<h2>$names[3]</h2>" ?>
+                    <img src="<?php echo "data:image/png; base64," . base64_encode($images[3]); ?>" alt="imageTest" id="imgBlob">
+                    <?php echo "<p>$descriptions[3]</p>"; ?>
+                </div>
+                <div class="pr"><?php echo "<h2>$names[4]</h2>" ?>
+                    <img src="<?php echo "data:image/png; base64," . base64_encode($images[4]); ?>" alt="imageTest" id="imgBlob">
+                    <?php echo "<p>$descriptions[4]</p>"; ?>
+                </div>
+                <div class="pr"><?php echo "<h2>$names[5]</h2>" ?>
+                    <img src="<?php echo "data:image/png; base64," . base64_encode($images[5]); ?>" alt="imageTest" id="imgBlob">
+                    <?php echo "<p>$descriptions[5]</p>"; ?>
+                </div>
+                <div class="pr"><?php echo "<h2>$names[6]</h2>" ?>
+                    <img src="<?php echo "data:image/png; base64," . base64_encode($images[6]); ?>" alt="imageTest" id="imgBlob">
+                    <?php echo "<p>$descriptions[6]</p>"; ?>
+                </div>
+                <div class="pr"><?php echo "<h2>$names[7]</h2>" ?>
+                    <img src="<?php echo "data:image/png; base64," . base64_encode($images[7]); ?>" alt="imageTest" id="imgBlob">
+                    <?php echo "<p>$descriptions[7]</p>"; ?>
+                </div>
+                <div class="pr"><?php echo "<h2>$names[8]</h2>" ?>
+                    <img src="<?php echo "data:image/png; base64," . base64_encode($images[8]); ?>" alt="imageTest" id="imgBlob">
+                    <?php echo "<p>$descriptions[8]</p>"; ?>
+                </div>
             </div>
         </div>
     </div>
 
-
+    <!-- "<img src='data:image/png; base64," . base64_encode($images[1]) . "' id='imgBlob' alt='image1'>"-->
 </body>
 
 </html>
