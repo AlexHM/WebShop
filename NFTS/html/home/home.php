@@ -203,6 +203,153 @@ if ($flagUser) {
         </div>
     </div>
 
+<<<<<<< Updated upstream
+=======
+       
+
+
+        <main class="col-9" >
+            <?php
+            require("../../connection/nameProduct.php");
+            require("../../connection/imageProduct.php");
+            require("../../connection/descriptionProduct.php");
+            require("../../connection/priceProduct.php");
+
+
+            ?>
+            <div id="products" class="container-fluid">
+                <div class="row row-cols-4">
+                    <div class="card" style="width: 22vh">
+                        <img class="card-img-top" src="<?php echo 'data:image/png; base64,' . base64_encode($images[0]); ?>" alt="imageTest" id="imgBlob">
+                        <div class="card-body">
+                            <?php echo "<h5 class='card-title'>$names[0]</h5>"; ?>
+                            <?php echo "<p class='card-text'>$descriptions[0]</p>"; ?>
+                            <?php echo "<h3 class='blockquote-footer'>$prices[0]</h3>";?>
+                        </div>
+                        <div class="card-footer">
+                            <a href="#" class="btn btn-warning">Add to card</a>
+                        </div>
+                    </div>
+                    <div class="card" style="width: 22vh">
+                        <img class="card-img-top" src="<?php echo 'data:image/png; base64,' . base64_encode($images[1]); ?>" alt="imageTest" id="imgBlob">
+                        <div class="card-body">
+                            <?php echo "<h5 class='card-title'>$names[1]</h5>"; ?>
+                            <?php echo "<p class='card-text'>$descriptions[1]</p>"; ?>
+                            <?php echo "<h3 class='blockquote-footer'>$prices[1]</h3>";?>
+                        </div>
+                        <div class="card-footer">
+                            <a href="#" class="btn btn-warning">Add to card</a>
+                        </div>
+                    </div>
+                    <div class="card" style="width: 22vh">
+                        <img class="card-img-top" src="<?php echo 'data:image/png; base64,' . base64_encode($images[2]); ?>" alt="imageTest" id="imgBlob">
+                        <div class="card-body">
+                            <?php echo "<h5 class='card-title'>$names[2]</h5>"; ?>
+                            <?php echo "<p class='card-text'>$descriptions[2]</p>"; ?>
+                            <?php echo "<h3 class='blockquote-footer'>$prices[2]</h3>";?>
+                        </div>
+                        <div class="card-footer">
+                            <a href="#" class="btn btn-warning">Add to card</a>
+                        </div>
+                    </div>
+                    <div class="card" style="width: 22vh">
+                        <img class="card-img-top" src="<?php echo 'data:image/png; base64,' . base64_encode($images[3]); ?>" alt="imageTest" id="imgBlob">
+                        <div class="card-body">
+                            <?php echo "<h5 class='card-title'>$names[3]</h5>"; ?>
+                            <?php echo "<p class='card-text'>$descriptions[3]</p>"; ?>
+                            <?php echo "<h3 class='blockquote-footer'>$prices[3]</h3>";?>
+                        </div>
+                        <div class="card-footer">
+                            <a href="#" class="btn btn-warning card-footer">Add to card</a>
+                        </div>
+                    </div>
+                    <div class="card" style="width: 22vh">
+                        <img class="card-img-top" src="<?php echo 'data:image/png; base64,' . base64_encode($images[4]); ?>" alt="imageTest" id="imgBlob">
+                        <div class="card-body">
+                            <?php echo "<h5 class='card-title'>$names[4]</h5>"; ?>
+                            <?php echo "<p class='card-text'>$descriptions[4]</p>"; ?>
+                            <?php echo "<h3 class='blockquote-footer'>$prices[4]</h3>";?>
+                        </div>
+                        <div class="card-footer">
+                            <a href="#" class="btn btn-warning card-footer">Add to card</a>
+                        </div>
+                    </div>
+                    <div class="card" style="width: 22vh">
+                        <img class="card-img-top" src="<?php echo 'data:image/png; base64,' . base64_encode($images[5]); ?>" alt="imageTest" id="imgBlob">
+                        <div class="card-body">
+                            <?php echo "<h5 class='card-title'>$names[5]</h5>"; ?>
+                            <?php echo "<p class='card-text'>$descriptions[5]</p>"; ?>
+                        </div>
+                    </div>
+                    <div class="card" style="width: 22vh">
+                        <img class="card-img-top" src="<?php echo 'data:image/png; base64,' . base64_encode($images[6]); ?>" alt="imageTest" id="imgBlob">
+                        <div class="card-body">
+                            <?php echo "<h5 class='card-title'>$names[6]</h5>"; ?>
+                            <?php echo "<p class='card-text'>$descriptions[6]</p>"; ?>
+                        </div>
+                    </div>
+                    <div class="card" style="width: 22vh">
+                        <img class="card-img-top" src="<?php echo 'data:image/png; base64,' . base64_encode($images[7]); ?>" alt="imageTest" id="imgBlob">
+                        <div class="card-body">
+                            <?php echo "<h5 class='card-title'>$names[7]</h5>"; ?>
+                            <?php echo "<p class='card-text'>$descriptions[7]</p>"; ?>
+                        </div>
+                    </div>
+                    <div class="card" style="width: 22vh">
+                        <img class="card-img-top" src="<?php echo 'data:image/png; base64,' . base64_encode($images[8]); ?>" alt="imageTest" id="imgBlob">
+                        <div class="card-body">
+                            <?php echo "<h5 class='card-title'>$names[8]</h5>"; ?>
+                            <?php echo "<p class='card-text'>$descriptions[8]</p>"; ?>
+                        </div>
+                    </div>
+                    <div class="card" style="width: 22vh">
+                        <img class="card-img-top" src="<?php echo 'data:image/png; base64,' . base64_encode($images[9]); ?>" alt="imageTest" id="imgBlob">
+                        <div class="card-body">
+                            <?php echo "<h5 class='card-title'>$names[9]</h5>"; ?>
+                            <?php echo "<p class='card-text'>$descriptions[9]</p>"; ?>
+                        </div>
+                    </div>
+                    <div class="card" style="width: 22vh">
+                        <img class="card-img-top" src="<?php echo 'data:image/png; base64,' . base64_encode($images[10]); ?>" alt="imageTest" id="imgBlob">
+                        <div class="card-body">
+                            <?php echo "<h5 class='card-title'>$names[10]</h5>"; ?>
+                            <?php echo "<p class='card-text'>$descriptions[10]</p>"; ?>
+                        </div>
+                    </div>
+                    <div class="card" style="width: 22vh">
+                        <img class="card-img-top" src="<?php echo 'data:image/png; base64,' . base64_encode($images[11]); ?>" alt="imageTest" id="imgBlob">
+                        <div class="card-body">
+                            <?php echo "<h5 class='card-title'>$names[11]</h5>"; ?>
+                            <?php echo "<p class='card-text'>$descriptions[11]</p>"; ?>
+                        </div>
+                    </div>
+                    <div class="card" style="width: 22vh">
+                        <img class="card-img-top" src="<?php echo 'data:image/png; base64,' . base64_encode($images[12]); ?>" alt="imageTest" id="imgBlob">
+                        <div class="card-body">
+                            <?php echo "<h5 class='card-title'>$names[12]</h5>"; ?>
+                            <?php echo "<p class='card-text'>$descriptions[12]</p>"; ?>
+                        </div>
+                    </div>
+                    <div class="card" style="width: 22vh">
+                        <img class="card-img-top" src="<?php echo 'data:image/png; base64,' . base64_encode($images[13]); ?>" alt="imageTest" id="imgBlob">
+                        <div class="card-body">
+                            <?php echo "<h5 class='card-title'>$names[13]</h5>"; ?>
+                            <?php echo "<p class='card-text'>$descriptions[13]</p>"; ?>
+                        </div>
+                    </div>
+                    <div class="card" style="width: 22vh">
+                        <img class="card-img-top" src="<?php echo 'data:image/png; base64,' . base64_encode($images[14]); ?>" alt="imageTest" id="imgBlob">
+                        <div class="card-body">
+                            <?php echo "<h5 class='card-title'>$names[14]</h5>"; ?>
+                            <?php echo "<p class='card-text'>$descriptions[14]</p>"; ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </d>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+>>>>>>> Stashed changes
 
 </body>
 
