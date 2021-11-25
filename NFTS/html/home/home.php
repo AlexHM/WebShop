@@ -194,7 +194,7 @@ if ($flagUser) {
 
     </div>
 
-       
+
 
 
         <main class="col-9" >
@@ -202,6 +202,7 @@ if ($flagUser) {
             require("../../connection/nameProduct.php");
             require("../../connection/imageProduct.php");
             require("../../connection/descriptionProduct.php");
+            require("../../connection/priceProduct.php");
 
 
             ?>
@@ -212,6 +213,10 @@ if ($flagUser) {
                         <div class="card-body">
                             <?php echo "<h5 class='card-title'>$names[0]</h5>"; ?>
                             <?php echo "<p class='card-text'>$descriptions[0]</p>"; ?>
+                            <?php echo "<h3 class='blockquote-footer'>$prices[0]</h3>";?>
+                        </div>
+                        <div class="card-footer">
+                            <a href="#" class="btn btn-warning">Add to card</a>
                         </div>
                     </div>
                     <div class="card" style="width: 22vh">
@@ -219,6 +224,10 @@ if ($flagUser) {
                         <div class="card-body">
                             <?php echo "<h5 class='card-title'>$names[1]</h5>"; ?>
                             <?php echo "<p class='card-text'>$descriptions[1]</p>"; ?>
+                            <?php echo "<h3 class='blockquote-footer'>$prices[1]</h3>";?>
+                        </div>
+                        <div class="card-footer">
+                            <a href="#" class="btn btn-warning">Add to card</a>
                         </div>
                     </div>
                     <div class="card" style="width: 22vh">
@@ -226,6 +235,10 @@ if ($flagUser) {
                         <div class="card-body">
                             <?php echo "<h5 class='card-title'>$names[2]</h5>"; ?>
                             <?php echo "<p class='card-text'>$descriptions[2]</p>"; ?>
+                            <?php echo "<h3 class='blockquote-footer'>$prices[2]</h3>";?>
+                        </div>
+                        <div class="card-footer">
+                            <a href="#" class="btn btn-warning">Add to card</a>
                         </div>
                     </div>
                     <div class="card" style="width: 22vh">
@@ -233,6 +246,10 @@ if ($flagUser) {
                         <div class="card-body">
                             <?php echo "<h5 class='card-title'>$names[3]</h5>"; ?>
                             <?php echo "<p class='card-text'>$descriptions[3]</p>"; ?>
+                            <?php echo "<h3 class='blockquote-footer'>$prices[3]</h3>";?>
+                        </div>
+                        <div class="card-footer">
+                            <a href="#" class="btn btn-warning card-footer">Add to card</a>
                         </div>
                     </div>
                     <div class="card" style="width: 22vh">
@@ -240,6 +257,10 @@ if ($flagUser) {
                         <div class="card-body">
                             <?php echo "<h5 class='card-title'>$names[4]</h5>"; ?>
                             <?php echo "<p class='card-text'>$descriptions[4]</p>"; ?>
+                            <?php echo "<h3 class='blockquote-footer'>$prices[4]</h3>";?>
+                        </div>
+                        <div class="card-footer">
+                            <a href="#" class="btn btn-warning card-footer">Add to card</a>
                         </div>
                     </div>
                     <div class="card" style="width: 22vh">
@@ -317,7 +338,6 @@ if ($flagUser) {
         </main>
     </d>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-
     <!-- "<img src='data:image/png; base64," . base64_encode($images[1]) . "' id='imgBlob' alt='image1'>"-->
 </body>
 
