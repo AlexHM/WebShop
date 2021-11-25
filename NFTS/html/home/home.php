@@ -191,13 +191,18 @@ if ($flagUser) {
             </div>
 
         </div>
+
     </div>
+
+       
+
 
         <main class="col-9" >
             <?php
             require("../../connection/nameProduct.php");
             require("../../connection/imageProduct.php");
             require("../../connection/descriptionProduct.php");
+
 
             ?>
             <div id="products" class="container-fluid">
