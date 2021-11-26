@@ -7,6 +7,8 @@ if ($flagUser) {
 }
 ?>
 
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -31,7 +33,7 @@ if ($flagUser) {
                 <img src="/docs/5.1/assets/brand/bootstrap-logo.svg" alt="" width="30" height="24">
             </a>
             <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0>
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
                         <a class="nav-link" href="#"><img src="#" alt="login">Login</a>
                     </li>
@@ -42,8 +44,11 @@ if ($flagUser) {
                         <a class="nav-link" href="#"><img src="#" alt="shoppingCardImg">Shop Card</a>
                     </li>
                 </ul>
-                <form class="d-flex">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <?php
+                require("../../connection/querySearch.php");
+                ?>
+                <form class="d-flex" action="querySearch.php" method="post">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="searchInp">
                     <button class="btn btn-outline-warning" type="submit">Search</button>
                 </form>
             </div>
@@ -54,150 +59,150 @@ if ($flagUser) {
 
     <div class="container-fluid row sidebar" id="sidebar">
         <div class="col-3">
-        <div id="horizontalNav">
-            <div id="shortBy">
-                <div>
-                    <h3>Short By</h3>
-                </div>
-                <div id="mostLikes">
-                    <form action="">
-                        <input type="checkbox" value="">
-                        <label>Most Likes</label>
-                    </form>
-                </div>
-                <div id="mostViews">
-                    <form action="">
-                        <input type="checkbox" value="">
-                        <label>Most Views</label>
-                    </form>
-                </div>
-                <div id="newest">
-                    <form action="">
-                        <input type="checkbox" value="">
-                        <label>Newest</label>
-                    </form>
-                </div>
-                <div id="recentListed">
-                    <form action="">
-                        <input type="checkbox" value="">
-                        <label>Recent listed</label>
-                    </form>
-                </div>
-                <div id="highestPrice">
-                    <form action="">
-                        <input type="checkbox" value="">
-                        <label>Highest Price</label>
-                    </form>
-                </div>
-                <div id="lowestPrice">
-                    <form action="">
-                        <input type="checkbox" value="">
-                        <label>Lowest Price</label>
-                    </form>
-                </div>
-            </div>
-            <div id="type">
-                <div>
-                    <h3>Type</h3>
-                </div>
-                <div id="divGif">
-                    <form action="">
-                        <input type="checkbox" value="">
-                        <label>GIF</label>
-                    </form>
-                </div>
-                <div id="divPng">
-                    <form action="">
-                        <input type="checkbox" value="">
-                        <label>PNG</label>
-                    </form>
-                </div>
-                <div id="divJpg">
-                    <form action="">
-                        <input type="checkbox" value="">
-                        <label>JPG</label>
-                    </form>
-                </div>
-            </div>
-            <div id="author">
-                <div>
-                    <h3>Author</h3>
-                </div>
-                <div>
-                    <form action="">
-                        <input type="text" placeholder="Author">
-                    </form>
-                </div>
-            </div>
-            <div id="crypto">
-                <div>
-                    <h3>Crypto</h3>
-                </div>
-                <div id="cryptoContainer">
-                    <div id="cryptoLeft">
-                        <div id="divGif2">
-                            <form action="">
-                                <input type="checkbox" value="">
-                                <label>GIF</label>
-                            </form>
-                        </div>
-                        <div id="divPng2">
-                            <form action="">
-                                <input type="checkbox" value="">
-                                <label>PNG</label>
-                            </form>
-                        </div>
-                        <div id="divJpg2">
-                            <form action="">
-                                <input type="checkbox" value="">
-                                <label>JPG</label>
-                            </form>
-                        </div>
+            <div id="horizontalNav">
+                <div id="shortBy">
+                    <div>
+                        <h3>Short By</h3>
                     </div>
-                    <div id="cryptoRight">
-                        <div id="divGif2">
-                            <form action="">
-                                <input type="checkbox" value="">
-                                <label>GIF</label>
-                            </form>
-                        </div>
-                        <div id="divPng2">
-                            <form action="">
-                                <input type="checkbox" value="">
-                                <label>PNG</label>
-                            </form>
-                        </div>
-                        <div id="divJpg2">
-                            <form action="">
-                                <input type="checkbox" value="">
-                                <label>JPG</label>
-                            </form>
-                        </div>
+                    <div id="mostLikes">
+                        <form action="">
+                            <input type="checkbox" value="">
+                            <label>Most Likes</label>
+                        </form>
+                    </div>
+                    <div id="mostViews">
+                        <form action="">
+                            <input type="checkbox" value="">
+                            <label>Most Views</label>
+                        </form>
+                    </div>
+                    <div id="newest">
+                        <form action="">
+                            <input type="checkbox" value="">
+                            <label>Newest</label>
+                        </form>
+                    </div>
+                    <div id="recentListed">
+                        <form action="">
+                            <input type="checkbox" value="">
+                            <label>Recent listed</label>
+                        </form>
+                    </div>
+                    <div id="highestPrice">
+                        <form action="">
+                            <input type="checkbox" value="">
+                            <label>Highest Price</label>
+                        </form>
+                    </div>
+                    <div id="lowestPrice">
+                        <form action="">
+                            <input type="checkbox" value="">
+                            <label>Lowest Price</label>
+                        </form>
                     </div>
                 </div>
-            </div>
-            <div id="price">
-                <div>
-                    <h3>Price</h3>
+                <div id="type">
+                    <div>
+                        <h3>Type</h3>
+                    </div>
+                    <div id="divGif">
+                        <form action="">
+                            <input type="checkbox" value="">
+                            <label>GIF</label>
+                        </form>
+                    </div>
+                    <div id="divPng">
+                        <form action="">
+                            <input type="checkbox" value="">
+                            <label>PNG</label>
+                        </form>
+                    </div>
+                    <div id="divJpg">
+                        <form action="">
+                            <input type="checkbox" value="">
+                            <label>JPG</label>
+                        </form>
+                    </div>
                 </div>
-                <div>
-                    <input type="text">
-                    <label>Max price</label>
+                <div id="author">
+                    <div>
+                        <h3>Author</h3>
+                    </div>
+                    <div>
+                        <form action="">
+                            <input type="text" placeholder="Author">
+                        </form>
+                    </div>
                 </div>
-                <div>
-                    <input type="text">
-                    <label>Min price</label>
+                <div id="crypto">
+                    <div>
+                        <h3>Crypto</h3>
+                    </div>
+                    <div id="cryptoContainer">
+                        <div id="cryptoLeft">
+                            <div id="divGif2">
+                                <form action="">
+                                    <input type="checkbox" value="">
+                                    <label>GIF</label>
+                                </form>
+                            </div>
+                            <div id="divPng2">
+                                <form action="">
+                                    <input type="checkbox" value="">
+                                    <label>PNG</label>
+                                </form>
+                            </div>
+                            <div id="divJpg2">
+                                <form action="">
+                                    <input type="checkbox" value="">
+                                    <label>JPG</label>
+                                </form>
+                            </div>
+                        </div>
+                        <div id="cryptoRight">
+                            <div id="divGif2">
+                                <form action="">
+                                    <input type="checkbox" value="">
+                                    <label>GIF</label>
+                                </form>
+                            </div>
+                            <div id="divPng2">
+                                <form action="">
+                                    <input type="checkbox" value="">
+                                    <label>PNG</label>
+                                </form>
+                            </div>
+                            <div id="divJpg2">
+                                <form action="">
+                                    <input type="checkbox" value="">
+                                    <label>JPG</label>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+                <div id="price">
+                    <div>
+                        <h3>Price</h3>
+                    </div>
+                    <div>
+                        <input type="text">
+                        <label>Max price</label>
+                    </div>
+                    <div>
+                        <input type="text">
+                        <label>Min price</label>
+                    </div>
+                </div>
+
             </div>
 
         </div>
 
-    </div>
 
 
 
-
-        <main class="col-9" >
+        <main class="col-9">
             <?php
             require("../../connection/nameProduct.php");
             require("../../connection/imageProduct.php");
@@ -213,7 +218,7 @@ if ($flagUser) {
                         <div class="card-body">
                             <?php echo "<h5 class='card-title'>$names[0]</h5>"; ?>
                             <?php echo "<p class='card-text'>$descriptions[0]</p>"; ?>
-                            <?php echo "<h3 class='blockquote-footer'>$prices[0]</h3>";?>
+                            <?php echo "<h3 class='blockquote-footer'>$prices[0]</h3>"; ?>
                         </div>
                         <div class="card-footer">
                             <a href="#" class="btn btn-warning">Add to card</a>
@@ -224,7 +229,7 @@ if ($flagUser) {
                         <div class="card-body">
                             <?php echo "<h5 class='card-title'>$names[1]</h5>"; ?>
                             <?php echo "<p class='card-text'>$descriptions[1]</p>"; ?>
-                            <?php echo "<h3 class='blockquote-footer'>$prices[1]</h3>";?>
+                            <?php echo "<h3 class='blockquote-footer'>$prices[1]</h3>"; ?>
                         </div>
                         <div class="card-footer">
                             <a href="#" class="btn btn-warning">Add to card</a>
@@ -235,7 +240,7 @@ if ($flagUser) {
                         <div class="card-body">
                             <?php echo "<h5 class='card-title'>$names[2]</h5>"; ?>
                             <?php echo "<p class='card-text'>$descriptions[2]</p>"; ?>
-                            <?php echo "<h3 class='blockquote-footer'>$prices[2]</h3>";?>
+                            <?php echo "<h3 class='blockquote-footer'>$prices[2]</h3>"; ?>
                         </div>
                         <div class="card-footer">
                             <a href="#" class="btn btn-warning">Add to card</a>
@@ -246,7 +251,7 @@ if ($flagUser) {
                         <div class="card-body">
                             <?php echo "<h5 class='card-title'>$names[3]</h5>"; ?>
                             <?php echo "<p class='card-text'>$descriptions[3]</p>"; ?>
-                            <?php echo "<h3 class='blockquote-footer'>$prices[3]</h3>";?>
+                            <?php echo "<h3 class='blockquote-footer'>$prices[3]</h3>"; ?>
                         </div>
                         <div class="card-footer">
                             <a href="#" class="btn btn-warning card-footer">Add to card</a>
@@ -257,7 +262,7 @@ if ($flagUser) {
                         <div class="card-body">
                             <?php echo "<h5 class='card-title'>$names[4]</h5>"; ?>
                             <?php echo "<p class='card-text'>$descriptions[4]</p>"; ?>
-                            <?php echo "<h3 class='blockquote-footer'>$prices[4]</h3>";?>
+                            <?php echo "<h3 class='blockquote-footer'>$prices[4]</h3>"; ?>
                         </div>
                         <div class="card-footer">
                             <a href="#" class="btn btn-warning card-footer">Add to card</a>
@@ -336,9 +341,9 @@ if ($flagUser) {
                 </div>
             </div>
         </main>
-    </d>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-    <!-- "<img src='data:image/png; base64," . base64_encode($images[1]) . "' id='imgBlob' alt='image1'>"-->
+        </d>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+        <!-- "<img src='data:image/png; base64," . base64_encode($images[1]) . "' id='imgBlob' alt='image1'>"-->
 </body>
 
 </html>
