@@ -1,0 +1,101 @@
+*{
+    background: #FFFFFF;
+}
+
+header{
+    height: 10%;
+}
+
+body{
+    height: 80%;
+}
+
+footer{
+    margin-top: 7px;
+    height: 10%;
+}
+
+/*
+#general{
+    border: 3px solid rgba(255, 121, 24, 0.6);
+}
+*/
+
+#divTitle{
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 72px;
+    line-height: 84px;
+    letter-spacing: -0.015em;
+    font-variant: small-caps;
+    margin-bottom: 40px;
+    margin-left: 40px;
+    color: #FF6B00;
+
+}
+
+
+
+#inputUser{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 324px;
+    height: 50px;
+    background: rgba(255, 121, 24, 0.6);
+    border-radius: 10px;
+}
+
+
+#inputName{
+    margin-bottom: 20px;
+    width: 324px;
+    height: 50px;
+    background: rgba(255, 121, 24, 0.6);
+    border-radius: 10px;
+}
+
+#inputLastName{
+    margin-bottom: 20px;
+    width: 324px;
+    height: 50px;
+    background: rgba(255, 121, 24, 0.6);
+    border-radius: 10px;
+}
+
+#inputEmail{
+    margin-bottom: 20px;
+    width: 323px;
+    height: 50px;
+    background: rgba(255, 121, 24, 0.6);
+    border-radius: 10px;
+}
+
+#inputPassword{
+    margin-bottom: 20px;
+    width: 323px;
+    height: 50px;
+    background: rgba(255, 121, 24, 0.6);
+    border-radius: 10px;
+}
+
+#inputConfPwd{
+    margin-bottom: 20px;
+    width: 323px;
+    height: 50px;
+    background: rgba(255, 121, 24, 0.6);
+    border-radius: 10px;
+}
+
+#userTerms{
+    margin-top: 30px;
+    margin-bottom: 20px;
+    font-size: 15px;
+}
+
+#btnSignUp{
+    width: 320px;
+    height: 50px;
+    background: #FF7918;
+    border-radius: 20px;
+}

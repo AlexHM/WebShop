@@ -43,14 +43,16 @@ try {
         $username = htmlentities(addslashes($_POST["user"]));
         $pass = htmlentities(addslashes($_POST["password"]));
 
+        $cryptPass= password_hash($pass,PASSWORD_DEFAULT);
+
         $result->bindValue(":email", $email2);
         $result->bindValue(":name", $name);
         $result->bindValue(":lastname", $lastname);
         $result->bindValue(":username", $username);
-        $result->bindValue(":password", $pass);
+        $result->bindValue(":password", $cryptPass);
         $result->execute();
         
-        header("location: ../html/signup/signUp.html");
+       
 
 
     }
