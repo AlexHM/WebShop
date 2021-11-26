@@ -15,6 +15,12 @@ footer{
     height: 10%;
 }
 
+/*
+#general{
+    border: 3px solid rgba(255, 121, 24, 0.6);
+}
+*/
+
 #divTitle{
     font-family: Roboto;
     font-style: normal;
