@@ -59,4 +59,26 @@ body {
     width: 30vh;
     height: 30vh;
     border: 1px solid black;
+<<<<<<< Updated upstream
+=======
+}
+
+#imgBlob{
+    width: 20vh;
+    height: 20vh;
+}
+
+#card{
+    border-radius: 50px;
+    background: #e0e0e0;    
+    box-shadow:  20px 20px 60px #bebebe,
+                -20px -20px 60px #ffffff;  
+}
+
+.card{
+    border-radius: 50px;
+    background: #e0e0e0;    
+    box-shadow:  20px 20px 60px #bebebe,
+                -20px -20px 60px #ffffff;  
+>>>>>>> Stashed changes
 }
