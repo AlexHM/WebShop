@@ -2,6 +2,7 @@ body {
     background-color: blanchedalmond;
 }
 
+<<<<<<< Updated upstream
 /*Nav Top*/
 
 #navTop {
@@ -11,62 +12,9 @@ body {
     height: auto;
     align-items: center;
     border-bottom: 4px solid rgb(255, 107, 0);
-
-}
-
-#titleApp {
-    display: flex;
-    flex-direction: row;
-}
-
-
-
-
-
-
-/*Horizontal bar*/
-#general {
-    display: flex;
-    flex-direction: row;
-    border: 1px solid black;
-}
-
-#crypto {
-    display: flex;
-    flex-direction: column;
-}
-
-#cryptoContainer {
-    display: flex;
-    flex-direction: row;
-}
-
-
-/*PRODUCTS*/
-#products {
-    width: 100%;
-    height: auto;
-}
-
-#divProducts {
-    border-left: 2px solid rgb(255, 107, 0);
-    display: grid;
-    grid-template-rows: 33.3% 33.3% 33.3%;
-    grid-template-columns: auto auto auto;
-}
-
-.pr {
-    width: 30vh;
-    height: 30vh;
-    border: 1px solid black;
-<<<<<<< Updated upstream
 =======
-}
 
-#imgBlob{
-    width: 20vh;
-    height: 20vh;
-}
+>>>>>>> Stashed changes
 
 #card{
     border-radius: 50px;
@@ -80,5 +28,71 @@ body {
     background: #e0e0e0;    
     box-shadow:  20px 20px 60px #bebebe,
                 -20px -20px 60px #ffffff;  
+}
+
+.card:hover {
+    box-shadow: 0 0 25px 0 	rgb(240, 173, 78);
+    cursor: pointer;
+}
+
+#fieldset {
+    all: unset;
+}
+
+<<<<<<< Updated upstream
+#divProducts {
+    border-left: 2px solid rgb(255, 107, 0);
+    display: grid;
+    grid-template-rows: 33.3% 33.3% 33.3%;
+    grid-template-columns: auto auto auto;
+}
+
+.pr {
+    width: 30vh;
+    height: 30vh;
+    border: 1px solid black;
+<<<<<<< Updated upstream
+=======
+=======
+#legend {
+    all: unset;
+}
+
+#fieldset{ 
+    display: block;
+    border-width: 2px;
+    border-style: groove;
+    border-color: threedface;
+    border-image: initial;
+    border: 1px solid rgb(240, 173, 78);
+    padding: 20px;
+    margin: 0 0 1.5em 0;
+    border-radius: 10px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+>>>>>>> Stashed changes
+}
+
+#legend{
+    color: rgb(240, 173, 78);
+}
+
+<<<<<<< Updated upstream
+#card{
+    border-radius: 50px;
+    background: #e0e0e0;    
+    box-shadow:  20px 20px 60px #bebebe,
+                -20px -20px 60px #ffffff;  
+}
+
+.card{
+    border-radius: 50px;
+    background: #e0e0e0;    
+    box-shadow:  20px 20px 60px #bebebe,
+                -20px -20px 60px #ffffff;  
+>>>>>>> Stashed changes
+=======
+.customRange3{
+align-self: start;
 >>>>>>> Stashed changes
 }
