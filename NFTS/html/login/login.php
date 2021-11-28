@@ -12,7 +12,7 @@ try {
             if (isset($_POST["remember"])) {
                 session_start();
                 $_SESSION["user"] = $_POST["email"];
-                setcookie("user", $_POST["email"], time() + 60);
+                setcookie("user", $_POST["email"], time() + 86400); // Un día de duración 
                 header("location: ../home/home.php");
             } else {
                 session_start();
