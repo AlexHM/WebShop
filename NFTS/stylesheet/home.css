@@ -3,68 +3,52 @@ body {
 }
 
 
-/*Nav Top*/
 
-#navTop {
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    height: auto;
-    align-items: center;
-    border-bottom: 4px solid rgb(255, 107, 0);
-
+#card{
+    border-radius: 50px;
+    background: #e0e0e0;
+    box-shadow:  20px 20px 60px #bebebe,
+                -20px -20px 60px #ffffff;
 }
 
-#titleApp {
-    display: flex;
-    flex-direction: row;
+.card{
+    border-radius: 50px;
+    background: #e0e0e0;
+    box-shadow:  20px 20px 60px #bebebe,
+                -20px -20px 60px #ffffff;
 }
 
-
-
-
-
-
-/*Horizontal bar*/
-#general {
-    display: flex;
-    flex-direction: row;
-    border: 1px solid black;
+.card:hover {
+    box-shadow: 0 0 25px 0     rgb(240, 173, 78);
+    cursor: pointer;
 }
 
-#crypto {
-    display: flex;
-    flex-direction: column;
+#fieldset {
+    all: unset;
 }
 
-#cryptoContainer {
-    display: flex;
-    flex-direction: row;
+#legend {
+    all: unset;
 }
 
-
-/*PRODUCTS*/
-#products {
-    width: 100%;
-    height: auto;
+#fieldset{ 
+    display: block;
+    border-width: 2px;
+    border-style: groove;
+    border-color: threedface;
+    border-image: initial;
+    border: 1px solid rgb(240, 173, 78);
+    padding: 20px;
+    margin: 0 0 1.5em 0;
+    border-radius: 10px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
 }
 
-#divProducts {
-    border-left: 2px solid rgb(255, 107, 0);
-    display: grid;
-    grid-template-rows: 33.3% 33.3% 33.3%;
-    grid-template-columns: auto auto auto;
-    justify-content: space-around;
+#legend{
+    color: rgb(240, 173, 78);
 }
 
-.pr {
-    width: 30vh;
-    height: 30vh;
-    border: 1px solid black;
+.customRange3{
+align-self: start;
 }
-
-#imgBlob{
-    width: 20vh;
-    height: 20vh;
-}
-
