@@ -1,10 +1,9 @@
 <?php
-
 require("../../cookies/checkSession.php");
-
-if ($flagUser) {
-    header("location:homeUser.php");
-}
+require("../../connection/nameProduct.php");
+require("../../connection/imageProduct.php");
+require("../../connection/descriptionProduct.php");
+require("../../connection/priceProduct.php");
 ?>
 
 <!DOCTYPE html>
@@ -33,14 +32,29 @@ if ($flagUser) {
             <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Login</a>
+                        <?php
+                        if ($flagUser) {
+                            echo "<a class='nav-link' href='#'>" . $_SESSION["user"] . "</a>";
+                        } else {
+                            echo "<a class='nav-link' href='../login/login.html'>Login</a>";
+                        }
+                        ?>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Sign up</a>
+                        <a class="nav-link" href="../signup/signUp.html">Sign up</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Shop Card</a>
                     </li>
+                    <?php
+                    if ($flagUser) {
+                        echo " <li class='nav-item'>
+                            <a class='nav-link' href='../../cookies/destroySession.php'>Sign out</a>
+                        </li>";
+                    }
+
+                    ?>
+
                 </ul>
                 <form class="d-flex">
                     <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
@@ -49,7 +63,7 @@ if ($flagUser) {
             </div>
         </div>
     </nav>
-    
+
     <!--spacing-->
     <div style="height:35px;"></div>
 
@@ -92,7 +106,7 @@ if ($flagUser) {
                             <label class="form-check-label " for="flexSwitchCheckChecked">PNG</label>
                         </div>
                         <div class="form-check form-switch ">
-                            <input class="form-check-input bg-warning border-warning" type="checkbox" role="switch" id="flexSwitchCheckChecked" >
+                            <input class="form-check-input bg-warning border-warning" type="checkbox" role="switch" id="flexSwitchCheckChecked">
                             <label class="form-check-label" for="flexSwitchCheckChecked">JPG</label>
                         </div>
                     </div>
@@ -114,18 +128,13 @@ if ($flagUser) {
                 </div>
             </fieldset>
             <div class="display-8 border-bottom text-white">.</div>
-        </div>  
+        </div>
     </div>
     <div style="height:50px;"></div>
     <div>
-        <main class="col-12 " >
-            <?php
-            require("../../connection/nameProduct.php");
-            require("../../connection/imageProduct.php");
-            require("../../connection/descriptionProduct.php");
-            require("../../connection/priceProduct.php");
-            ?>
-            
+        <main class="col-12 ">
+
+
             <div id="products" class="container">
                 <div class="display-4 border-bottom ">Products</div>
                 <div style="height:30px;"></div>
@@ -136,10 +145,10 @@ if ($flagUser) {
                             <div class="card-body">
                                 <?php echo "<h5 class='card-title'>$names[0]</h5>"; ?>
                                 <?php echo "<p class='card-text'>$descriptions[0]</p>"; ?>
-                                <?php echo "<h3 class='card-text text-end'><i>$prices[0] €</i></h3>";?>
+                                <?php echo "<h3 class='card-text text-end'><i>$prices[0] €</i></h3>"; ?>
                             </div>
                             <div class="card-footer text-center">
-                            <a href="#" class="btn btn-warning">Add to card</a>
+                                <a href="#" class="btn btn-warning">Add to card</a>
                             </div>
                         </div>
                     </div>
@@ -149,10 +158,10 @@ if ($flagUser) {
                             <div class="card-body">
                                 <?php echo "<h5 class='card-title'>$names[1]</h5>"; ?>
                                 <?php echo "<p class='card-text'>$descriptions[1]</p>"; ?>
-                                <?php echo "<h3 class='card-text text-end'><i>$prices[1] €</i></h3>";?>
+                                <?php echo "<h3 class='card-text text-end'><i>$prices[1] €</i></h3>"; ?>
                             </div>
                             <div class="card-footer text-center">
-                            <a href="#" class="btn btn-warning">Add to card</a>
+                                <a href="#" class="btn btn-warning">Add to card</a>
                             </div>
                         </div>
                     </div>
@@ -162,10 +171,10 @@ if ($flagUser) {
                             <div class="card-body">
                                 <?php echo "<h5 class='card-title'>$names[2]</h5>"; ?>
                                 <?php echo "<p class='card-text'>$descriptions[2]</p>"; ?>
-                                <?php echo "<h3 class='card-text text-end'><i>$prices[2] €</i></h3>";?>
+                                <?php echo "<h3 class='card-text text-end'><i>$prices[2] €</i></h3>"; ?>
                             </div>
                             <div class="card-footer text-center">
-                            <a href="#" class="btn btn-warning">Add to card</a>
+                                <a href="#" class="btn btn-warning">Add to card</a>
                             </div>
                         </div>
                     </div>
@@ -175,10 +184,10 @@ if ($flagUser) {
                             <div class="card-body">
                                 <?php echo "<h5 class='card-title'>$names[3]</h5>"; ?>
                                 <?php echo "<p class='card-text'>$descriptions[3]</p>"; ?>
-                                <?php echo "<h3 class='card-text text-end'><i>$prices[3] €</i></h3>";?>
+                                <?php echo "<h3 class='card-text text-end'><i>$prices[3] €</i></h3>"; ?>
                             </div>
                             <div class="card-footer text-center">
-                            <a href="#" class="btn btn-warning">Add to card</a>
+                                <a href="#" class="btn btn-warning">Add to card</a>
                             </div>
                         </div>
                     </div>
@@ -188,10 +197,10 @@ if ($flagUser) {
                             <div class="card-body">
                                 <?php echo "<h5 class='card-title'>$names[4]</h5>"; ?>
                                 <?php echo "<p class='card-text'>$descriptions[4]</p>"; ?>
-                                <?php echo "<h3 class='card-text text-end'><i>$prices[4] €</i></h3>";?>
+                                <?php echo "<h3 class='card-text text-end'><i>$prices[4] €</i></h3>"; ?>
                             </div>
                             <div class="card-footer text-center">
-                            <a href="#" class="btn btn-warning">Add to card</a>
+                                <a href="#" class="btn btn-warning">Add to card</a>
                             </div>
                         </div>
                     </div>
@@ -201,10 +210,10 @@ if ($flagUser) {
                             <div class="card-body">
                                 <?php echo "<h5 class='card-title'>$names[5]</h5>"; ?>
                                 <?php echo "<p class='card-text'>$descriptions[5]</p>"; ?>
-                                <?php echo "<h3 class='card-text text-end'><i>$prices[5] €</i></h3>";?>
+                                <?php echo "<h3 class='card-text text-end'><i>$prices[5] €</i></h3>"; ?>
                             </div>
                             <div class="card-footer text-center">
-                            <a href="#" class="btn btn-warning">Add to card</a>
+                                <a href="#" class="btn btn-warning">Add to card</a>
                             </div>
                         </div>
                     </div>
@@ -214,10 +223,10 @@ if ($flagUser) {
                             <div class="card-body">
                                 <?php echo "<h5 class='card-title'>$names[6]</h5>"; ?>
                                 <?php echo "<p class='card-text'>$descriptions[6]</p>"; ?>
-                                <?php echo "<h3 class='card-text text-end'><i>$prices[6] €</i></h3>";?>
+                                <?php echo "<h3 class='card-text text-end'><i>$prices[6] €</i></h3>"; ?>
                             </div>
                             <div class="card-footer text-center">
-                            <a href="#" class="btn btn-warning">Add to card</a>
+                                <a href="#" class="btn btn-warning">Add to card</a>
                             </div>
                         </div>
                     </div>
@@ -227,10 +236,10 @@ if ($flagUser) {
                             <div class="card-body">
                                 <?php echo "<h5 class='card-title'>$names[7]</h5>"; ?>
                                 <?php echo "<p class='card-text'>$descriptions[7]</p>"; ?>
-                                <?php echo "<h3 class='card-text text-end'><i>$prices[8] €</i></h3>";?>
+                                <?php echo "<h3 class='card-text text-end'><i>$prices[8] €</i></h3>"; ?>
                             </div>
                             <div class="card-footer text-center">
-                            <a href="#" class="btn btn-warning">Add to card</a>
+                                <a href="#" class="btn btn-warning">Add to card</a>
                             </div>
                         </div>
                     </div>
@@ -242,7 +251,7 @@ if ($flagUser) {
                                 <?php echo "<p class='card-text'>$descriptions[8]</p>"; ?>
                             </div>
                             <div class="card-footer text-center">
-                            <a href="#" class="btn btn-warning">Add to card</a>
+                                <a href="#" class="btn btn-warning">Add to card</a>
                             </div>
                         </div>
                     </div>
@@ -254,7 +263,7 @@ if ($flagUser) {
                                 <?php echo "<p class='card-text'>$descriptions[9]</p>"; ?>
                             </div>
                             <div class="card-footer text-center">
-                            <a href="#" class="btn btn-warning">Add to card</a>
+                                <a href="#" class="btn btn-warning">Add to card</a>
                             </div>
                         </div>
                     </div>
@@ -266,7 +275,7 @@ if ($flagUser) {
                                 <?php echo "<p class='card-text'>$descriptions[10]</p>"; ?>
                             </div>
                             <div class="card-footer text-center">
-                            <a href="#" class="btn btn-warning">Add to card</a>
+                                <a href="#" class="btn btn-warning">Add to card</a>
                             </div>
                         </div>
                     </div>
@@ -278,7 +287,7 @@ if ($flagUser) {
                                 <?php echo "<p class='card-text'>$descriptions[11]</p>"; ?>
                             </div>
                             <div class="card-footer text-center">
-                            <a href="#" class="btn btn-warning">Add to card</a>
+                                <a href="#" class="btn btn-warning">Add to card</a>
                             </div>
                         </div>
                     </div>
@@ -290,7 +299,7 @@ if ($flagUser) {
                                 <?php echo "<p class='card-text'>$descriptions[12]</p>"; ?>
                             </div>
                             <div class="card-footer text-center">
-                            <a href="#" class="btn btn-warning">Add to card</a>
+                                <a href="#" class="btn btn-warning">Add to card</a>
                             </div>
                         </div>
                     </div>
@@ -302,7 +311,7 @@ if ($flagUser) {
                                 <?php echo "<p class='card-text'>$descriptions[13]</p>"; ?>
                             </div>
                             <div class="card-footer text-center">
-                            <a href="#" class="btn btn-warning">Add to card</a>
+                                <a href="#" class="btn btn-warning">Add to card</a>
                             </div>
                         </div>
                     </div>
@@ -314,7 +323,7 @@ if ($flagUser) {
                                 <?php echo "<p class='card-text'>$descriptions[14]</p>"; ?>
                             </div>
                             <div class="card-footer text-center">
-                            <a href="#" class="btn btn-warning">Add to card</a>
+                                <a href="#" class="btn btn-warning">Add to card</a>
                             </div>
                         </div>
                     </div>
@@ -323,10 +332,10 @@ if ($flagUser) {
         </main>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-    
+
     <!--SCRIPT TO SHOW TOAST TO INFORMATE CLIENT HOW TO ADD PRODUTS-->
     <script>
-        window.onload = (event) =>{
+        window.onload = (event) => {
             let myAlert = document.querySelector('.toast');
             let bsAlert = new bootstrap.Toast(myAlert);
             bsAlert.show();
@@ -347,4 +356,5 @@ if ($flagUser) {
         </footer>
     </div>
 </footer>
+
 </html>
