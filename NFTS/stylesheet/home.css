@@ -2,40 +2,22 @@ body {
     background-color: blanchedalmond;
 }
 
-<<<<<<< HEAD
-
-=======
-<<<<<<< Updated upstream
->>>>>>> AngelFront
-/*Nav Top*/
-
-#navTop {
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    height: auto;
-    align-items: center;
-    border-bottom: 4px solid rgb(255, 107, 0);
-=======
-
->>>>>>> Stashed changes
-
 #card{
     border-radius: 50px;
-    background: #e0e0e0;    
+    background: #e0e0e0;
     box-shadow:  20px 20px 60px #bebebe,
-                -20px -20px 60px #ffffff;  
+                -20px -20px 60px #ffffff;
 }
 
 .card{
     border-radius: 50px;
-    background: #e0e0e0;    
+    background: #e0e0e0;
     box-shadow:  20px 20px 60px #bebebe,
-                -20px -20px 60px #ffffff;  
+                -20px -20px 60px #ffffff;
 }
 
 .card:hover {
-    box-shadow: 0 0 25px 0 	rgb(240, 173, 78);
+    box-shadow: 0 0 25px 0     rgb(240, 173, 78);
     cursor: pointer;
 }
 
@@ -43,25 +25,6 @@ body {
     all: unset;
 }
 
-<<<<<<< Updated upstream
-#divProducts {
-    border-left: 2px solid rgb(255, 107, 0);
-    display: grid;
-    grid-template-rows: 33.3% 33.3% 33.3%;
-    grid-template-columns: auto auto auto;
-    justify-content: space-around;
-}
-
-.pr {
-    width: 30vh;
-    height: 30vh;
-    border: 1px solid black;
-<<<<<<< HEAD
-
-=======
-<<<<<<< Updated upstream
-=======
-=======
 #legend {
     all: unset;
 }
@@ -78,40 +41,12 @@ body {
     border-radius: 10px;
     -moz-border-radius: 10px;
     -webkit-border-radius: 10px;
->>>>>>> Stashed changes
->>>>>>> AngelFront
 }
 
 #legend{
     color: rgb(240, 173, 78);
 }
 
-<<<<<<< HEAD
-
-=======
-<<<<<<< Updated upstream
->>>>>>> AngelFront
-#card{
-    border-radius: 50px;
-    background: #e0e0e0;    
-    box-shadow:  20px 20px 60px #bebebe,
-                -20px -20px 60px #ffffff;  
-}
-
-.card{
-    border-radius: 50px;
-    background: #e0e0e0;    
-    box-shadow:  20px 20px 60px #bebebe,
-                -20px -20px 60px #ffffff;  
-<<<<<<< HEAD
-
-}
-
-=======
->>>>>>> Stashed changes
-=======
 .customRange3{
 align-self: start;
->>>>>>> Stashed changes
 }
->>>>>>> AngelFront
