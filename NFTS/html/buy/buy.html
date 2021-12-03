@@ -31,8 +31,8 @@
                         <h6>LOGIN</h6>
                     </div>
                     <div class="col-4">
-                        <form action="comprar.php" method="post">
-                            <input type="submit" name="btnSignUp" id="btnSignUp" value="Sign Up">
+                        <form action="buy.php" method="post">
+                            <input type="submit" name="btnSignUp" id="btnSignUp" value="LOG IN">
                         </form>
                     </div>
                     <div class="col-4 d-none d-sm-none d-md-block">
@@ -46,41 +46,43 @@
     <div class="container">
         <div class="row">
             <div class="col-12" id="buy">
-                <div class="row">
-                    <div class="col-12 col-md-7 h-100 d-inline-block" id="prodList">
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="row">
-                                    <div class="col-12 col-md-4" id="item1">
-                                        <img src="" alt="imgProd1">
-                                    </div>
-                                    <div class="col-12 col-md-8 offset-md-3">
-                                        <div class="row">
-                                            <div class="col-12">
-                                                <h2 id="titles">Product Name</h2>
-                                                <h6>Price</h6>
-                                            </div>
-                                            <div class="col-12 col-md-12">
-                                                <div class="row">
-                                                    <div class="col-12 col-md-6">
-                                                        <button id="myButton">
-                                                            <img src="../../media/trash.png" alt="trashCan">
-                                                        </button>
-                                                    </div>
-                                                    <div class="col-12 col-md-6">
-                                                        <div class="row">
-                                                            <div class="col-12 col-md-4">
-                                                                <button id="myButton">
-                                                                    <img src="../../media/add.png" alt="btnAdd">
-                                                                </button>
-                                                            </div>
-                                                            <div class="col-12 col-md-4">
-                                                                <p id="cantidad">1</p>
-                                                            </div>
-                                                            <div class="col-12 col-md-4">
-                                                                <button id="myButton">
-                                                                    <img src="../../media/remove.png" alt="btnDelete">
-                                                                </button>
+                <form action="buy.php">
+                    <div class="row">
+                        <div class="col-12 col-md-7 h-100 d-inline-block" id="prodList">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="row">
+                                        <div class="col-12 col-md-4" id="item1">
+                                            <img src="" alt="imgProd1">
+                                        </div>
+                                        <div class="col-12 col-md-8 offset-md-3">
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <h2 id="titles">Product Name</h2>
+                                                    <h6>Price</h6>
+                                                </div>
+                                                <div class="col-12 col-md-12">
+                                                    <div class="row">
+                                                        <div class="col-12 col-md-6">
+                                                            <button id="myButton">
+                                                                <img src="../../media/trash.png" alt="trashCan">
+                                                            </button>
+                                                        </div>
+                                                        <div class="col-12 col-md-6">
+                                                            <div class="row">
+                                                                <div class="col-12 col-md-4">
+                                                                    <button id="myButton">
+                                                                        <img src="../../media/add.png" alt="btnAdd">
+                                                                    </button>
+                                                                </div>
+                                                                <div class="col-12 col-md-4">
+                                                                    <p id="cantidad">1</p>
+                                                                </div>
+                                                                <div class="col-12 col-md-4">
+                                                                    <button id="myButton">
+                                                                        <img src="../../media/remove.png" alt="btnDelete">
+                                                                    </button>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -91,41 +93,27 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-12 col-md-4 offset-md-1 h-100 d-inline-block" id="paymentData">
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="row">
-                                    <div class="col -12">
-                                        <h1 id="titles">Promo codes</h1>
-                                    </div>
-                                    <div class="col-12">
-                                        <form action="comprar.php" method="post">
-                                            <input id="promoCode" type="text" name="promCod" placeholder="Code...">
-                                            <input type="submit" name="btnAddCodep" id="btnAddCodep" value="Add Code">
-                                        </form>
-                                    </div>
+                        <div class="col-12 col-md-4 offset-md-1 h-100 d-inline-block" id="paymentData">
+                            <div class="row">
+                                <div class="col-12">
+                                    <h1 id="titles">Products</h1>
+                                    <p>prize</p>
+                                    <h1 id="titles">Shipping</h1>
+                                    <p>prize</p>
+                                </div>
+                                
+                                <div class="col-12">
+                                    <h1 id="titles">Shipping info</h1>
                                 </div>
                             </div>
-                            <div class="col-12">
-                                <h1 id="titles">Products</h1>
-                                <p>prize</p>
-                                <h1 id="titles">Shipping</h1>
-                                <p>prize</p>
-                            </div>
-                            <div class="col-12" id="separador">
-                            </div>
-                            <div class="col-12">
-                                <h1 id="titles">Shipping info</h1>
-                            </div>
+                        </div>
+                        <div class="col-12 col-md-4 offset-md-8">
+                            <form action="comprar.php" method="post">
+                                <input type="submit" name="btnAddCodep" id="btnPay" value="BUY">
+                            </form>
                         </div>
                     </div>
-                    <div class="col-12 col-md-4 offset-md-8">
-                        <form action="comprar.php" method="post">
-                            <input type="submit" name="btnAddCodep" id="btnPay" value="Buy">
-                        </form>
-                    </div>
-                </div>
+                </form>
             </div>
         </div>
     </div>
