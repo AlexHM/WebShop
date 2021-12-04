@@ -7,7 +7,7 @@
 h1 {
     font-family: 'Roboto', sans-serif;
     font-weight: bold;
-    color: rgb(255, 107, 0);
+    color: #FFB740;
 }
 
 p {
@@ -25,7 +25,7 @@ label {
 
 a {
     font-family: 'Roboto', sans-serif;
-    text-decoration: rgb(255, 107, 0);
+    text-decoration: rgb(255, 164, 64);
     color: black;
     font-weight: bold;
 }
@@ -58,33 +58,38 @@ a:hover {
 
 #title1 {
     font-size: 6.5vh;
+    color: rgb(255, 164, 64);
 }
 
 /*inputs*/
 
 #inputEmail {
     margin-bottom: 3vh;
+    width: 323px;
+    height: 50px;
+    background: rgba(255, 183, 64, 0.6);
+    border-radius: 10px;
 }
 
 .inpLog {
     height: 3vh;
     width: 34vh;
-    text-decoration: white;
-    background-color: rgb(255, 107, 0);
+    
+    background-color: rgba(255, 183, 64, 0.6);
     border: none;
     opacity: 0.7;
     border-radius: 1.2vh;
 }
 
 .inpLog::placeholder {
-    color: white;
+    
     font-weight: lighter;
 }
 
 .inpLog:focus {
     outline: none;
     opacity: 1;
-    color: white;
+    
     border-top: 0;
     border-left: 0;
     border-right: 0;
@@ -92,6 +97,10 @@ a:hover {
 
 #inputPassword {
     margin-bottom: 3vh;
+    width: 323px;
+    height: 50px;
+    background: rgba(255, 183, 64, 0.6);
+    border-radius: 10px;
 }
 
 #remember {
@@ -103,10 +112,9 @@ a:hover {
 
 #btnSubmit {
     text-decoration: none;
-    color: white;
     border: none;
-    background-color: rgb(255, 107, 0);
-    width: 25vh;
-    height: 3vh;
-    border-radius: 1.2vh;
+    width: 323px;
+    height: 50px;
+    background: rgba(255, 183, 64, 0.6);
+    border-radius: 10px;
 }
