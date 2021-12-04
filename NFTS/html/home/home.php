@@ -3,9 +3,40 @@ require("../../cookies/checkSession.php");
 require("../../cookies/checkCookie.php");
 require("../../connection/imageProduct.php");
 require("../../connection/querySearch.php");
+require("../../connection/querySearchFilter.php");
+/////////
+$queryFilter = "";
+
+if (isset($_POST["searchInp"])) {
+    $queryFilter = $_POST["searchInp"];
+}
+
+try {
+
+    $searchQueryFilter = "select * from products where name like '%$queryFilter%'";
+    $resultQueryFilter = $db->prepare($searchQueryFilter);
+    $resultQueryFilter->execute();
+
+    $nameS = array();
+    $imageS = array();
+    $descriptionS = array();
+    $priceS = array();
+    $countS = 0;
 
 
+    while ($row = $resultQueryFilter->fetch(PDO::FETCH_ASSOC)) {
 
+        $nameS[$countS] = $row['name'];
+        $imageS[$countS] = $row['image'];
+        $descriptionS[$countS] = $row['description'];
+        $priceS[$countS] = $row['price'];
+        $countS = $countS + 1;
+    }
+} catch (\Throwable $th) {
+    echo "Error: " . $th;
+}
+
+/////////
 ?>
 
 <!DOCTYPE html>
@@ -60,7 +91,7 @@ require("../../connection/querySearch.php");
                     }
                     ?>
                 </ul>
-                <form class="d-flex" action="../../connection//querySearchFilter.php" method="GET">
+                <form class="d-flex" action="home.php" method="POST">
                     <input class="form-control me-2" name="searchInp" type="search" placeholder="Search" aria-label="Search">
                     <button class="btn btn-outline-warning" type="submit">Search</button>
                 </form>
@@ -144,16 +175,40 @@ require("../../connection/querySearch.php");
                 <div style="height:30px;"></div>
                 <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 g-4">
                     <?php
-                    if (!isset($_GET["searchInp"])) {
+                    if (!isset($_POST["searchInp"])) {
                         for ($i = 0; $i < count($nameP); $i++) {
                     ?>
                             <div class="col">
-                                <div class="card h-100"<?php $x= $i+1; echo "id='$x'"?>>
+                                <div class="card h-100" <?php $x = $i + 1;
+                                                        echo "id='$x'" ?>>
                                     <img src="<?php echo 'data:image/png; base64,' . base64_encode($images[$i]); ?>" class="card-img-top" alt="Imagen Producto"><?php
-                                    ?><div class="card-body"><?php
-                                    echo "<h5 class='card-title'>$nameP[$i]</h5>";
-                                    echo "<p class='card-text'>$description[$i]</p>";
-                                    echo "<h3 class='card-text text-end'><i>$price[$i] €</i></h3>"; ?>
+                                                                                                                                                                ?><div class="card-body"><?php
+                                                                echo "<h5 class='card-title'>$nameP[$i]</h5>";
+                                                                echo "<p class='card-text'>$description[$i]</p>";
+                                                                echo "<h3 class='card-text text-end'><i>$price[$i] €</i></h3>"; ?>
+                                    </div>
+                                    <div class="card-footer text-center">
+                                        <a href="#" class="btn btn-warning">See details</a>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php
+                        }
+                    } else if (isset($_POST["searchInp"])) {
+
+                        if (empty($nameS)) {
+                            echo "<p>No data found, please search again</p>";
+                        }
+                        for ($i = 0; $i < count($nameS); $i++) {
+                        ?>
+                            <div class="col">
+                                <div class="card h-100" <?php $x = $i + 1;
+                                                        echo "id='$x'" ?>>
+                                    <img src="<?php echo 'data:image/png; base64,' . base64_encode($imageS[$i]); ?>" class="card-img-top" alt="Imagen Producto"><?php
+                                                                                                                                                                ?><div class="card-body"><?php
+                                                                        echo "<h5 class='card-title'>$nameS[$i]</h5>";
+                                                                        echo "<p class='card-text'>$descriptionS[$i]</p>";
+                                                                        echo "<h3 class='card-text text-end'><i>$priceS[$i] €</i></h3>"; ?>
                                     </div>
                                     <div class="card-footer text-center">
                                         <a href="#" class="btn btn-warning">See details</a>
@@ -162,8 +217,6 @@ require("../../connection/querySearch.php");
                             </div>
                     <?php
                         }
-                    } else {
-                        //aquí irá el filtro de busqueda general
                     }
                     ?>
                 </div>
