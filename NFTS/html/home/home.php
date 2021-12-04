@@ -1,9 +1,13 @@
 <?php
 require("../../cookies/checkSession.php");
+require("../../cookies/checkCookie.php");
 require("../../connection/nameProduct.php");
 require("../../connection/imageProduct.php");
 require("../../connection/descriptionProduct.php");
 require("../../connection/priceProduct.php");
+
+
+
 ?>
 
 <!DOCTYPE html>
@@ -33,10 +37,14 @@ require("../../connection/priceProduct.php");
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
                         <?php
-                        if ($flagUser) {
-                            echo "<a class='nav-link' href='#'>" . $_SESSION["user"] . "</a>";
+                        if ($flagSession) {
+                            echo "<a class='nav-link' href='#'>" . $_SESSION["ses_user"] . "</a>";
                         } else {
-                            echo "<a class='nav-link' href='../login/login.html'>Login</a>";
+                            if ($flagCookie) {
+                                echo "<a class='nav-link' href='#'>" . $_COOKIE["cok_user"] . "</a>";
+                            } else {
+                                echo "<a class='nav-link' href='../login/login.html'>Login</a>";
+                            }
                         }
                         ?>
                     </li>
@@ -47,14 +55,12 @@ require("../../connection/priceProduct.php");
                         <a class="nav-link" href="#">Shop Card</a>
                     </li>
                     <?php
-                    if ($flagUser) {
+                    if ($flagSession || $flagCookie) {
                         echo " <li class='nav-item'>
                             <a class='nav-link' href='../../cookies/destroySession.php'>Sign out</a>
                         </li>";
                     }
-
                     ?>
-
                 </ul>
                 <form class="d-flex">
                     <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
