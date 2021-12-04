@@ -1,10 +1,8 @@
 <?php
 require("../../cookies/checkSession.php");
 require("../../cookies/checkCookie.php");
-require("../../connection/nameProduct.php");
 require("../../connection/imageProduct.php");
-require("../../connection/descriptionProduct.php");
-require("../../connection/priceProduct.php");
+require("../../connection/querySearch.php");
 
 
 
@@ -62,8 +60,8 @@ require("../../connection/priceProduct.php");
                     }
                     ?>
                 </ul>
-                <form class="d-flex">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <form class="d-flex" action="../../connection//querySearchFilter.php" method="GET">
+                    <input class="form-control me-2" name="searchInp" type="search" placeholder="Search" aria-label="Search">
                     <button class="btn btn-outline-warning" type="submit">Search</button>
                 </form>
             </div>
@@ -145,194 +143,29 @@ require("../../connection/priceProduct.php");
                 <div class="display-4 border-bottom ">Products</div>
                 <div style="height:30px;"></div>
                 <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 g-4">
-                    <div class="col">
-                        <div class="card h-100">
-                            <img src="<?php echo 'data:image/png; base64,' . base64_encode($images[0]); ?>" class="card-img-top" alt="Imagen Producto">
-                            <div class="card-body">
-                                <?php echo "<h5 class='card-title'>$names[0]</h5>"; ?>
-                                <?php echo "<p class='card-text'>$descriptions[0]</p>"; ?>
-                                <?php echo "<h3 class='card-text text-end'><i>$prices[0] €</i></h3>"; ?>
+                    <?php
+                    if (!isset($_GET["searchInp"])) {
+                        for ($i = 0; $i < count($nameP); $i++) {
+                    ?>
+                            <div class="col">
+                                <div class="card h-100"<?php $x= $i+1; echo "id='$x'"?>>
+                                    <img src="<?php echo 'data:image/png; base64,' . base64_encode($images[$i]); ?>" class="card-img-top" alt="Imagen Producto"><?php
+                                    ?><div class="card-body"><?php
+                                    echo "<h5 class='card-title'>$nameP[$i]</h5>";
+                                    echo "<p class='card-text'>$description[$i]</p>";
+                                    echo "<h3 class='card-text text-end'><i>$price[$i] €</i></h3>"; ?>
+                                    </div>
+                                    <div class="card-footer text-center">
+                                        <a href="#" class="btn btn-warning">Add to card</a>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="card-footer text-center">
-                                <a href="#" class="btn btn-warning">Add to card</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card h-100">
-                            <img src="<?php echo 'data:image/png; base64,' . base64_encode($images[1]); ?>" class="card-img-top" alt="Imagen Producto">
-                            <div class="card-body">
-                                <?php echo "<h5 class='card-title'>$names[1]</h5>"; ?>
-                                <?php echo "<p class='card-text'>$descriptions[1]</p>"; ?>
-                                <?php echo "<h3 class='card-text text-end'><i>$prices[1] €</i></h3>"; ?>
-                            </div>
-                            <div class="card-footer text-center">
-                                <a href="#" class="btn btn-warning">Add to card</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card h-100">
-                            <img src="<?php echo 'data:image/png; base64,' . base64_encode($images[2]); ?>" class="card-img-top" alt="Imagen Producto">
-                            <div class="card-body">
-                                <?php echo "<h5 class='card-title'>$names[2]</h5>"; ?>
-                                <?php echo "<p class='card-text'>$descriptions[2]</p>"; ?>
-                                <?php echo "<h3 class='card-text text-end'><i>$prices[2] €</i></h3>"; ?>
-                            </div>
-                            <div class="card-footer text-center">
-                                <a href="#" class="btn btn-warning">Add to card</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card h-100">
-                            <img src="<?php echo 'data:image/png; base64,' . base64_encode($images[3]); ?>" class="card-img-top" alt="Imagen Producto">
-                            <div class="card-body">
-                                <?php echo "<h5 class='card-title'>$names[3]</h5>"; ?>
-                                <?php echo "<p class='card-text'>$descriptions[3]</p>"; ?>
-                                <?php echo "<h3 class='card-text text-end'><i>$prices[3] €</i></h3>"; ?>
-                            </div>
-                            <div class="card-footer text-center">
-                                <a href="#" class="btn btn-warning">Add to card</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card h-100">
-                            <img src="<?php echo 'data:image/png; base64,' . base64_encode($images[4]); ?>" class="card-img-top" alt="Imagen Producto">
-                            <div class="card-body">
-                                <?php echo "<h5 class='card-title'>$names[4]</h5>"; ?>
-                                <?php echo "<p class='card-text'>$descriptions[4]</p>"; ?>
-                                <?php echo "<h3 class='card-text text-end'><i>$prices[4] €</i></h3>"; ?>
-                            </div>
-                            <div class="card-footer text-center">
-                                <a href="#" class="btn btn-warning">Add to card</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card h-100">
-                            <img src="<?php echo 'data:image/png; base64,' . base64_encode($images[5]); ?>" class="card-img-top" alt="Imagen Producto">
-                            <div class="card-body">
-                                <?php echo "<h5 class='card-title'>$names[5]</h5>"; ?>
-                                <?php echo "<p class='card-text'>$descriptions[5]</p>"; ?>
-                                <?php echo "<h3 class='card-text text-end'><i>$prices[5] €</i></h3>"; ?>
-                            </div>
-                            <div class="card-footer text-center">
-                                <a href="#" class="btn btn-warning">Add to card</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card h-100">
-                            <img src="<?php echo 'data:image/png; base64,' . base64_encode($images[6]); ?>" class="card-img-top" alt="Imagen Producto">
-                            <div class="card-body">
-                                <?php echo "<h5 class='card-title'>$names[6]</h5>"; ?>
-                                <?php echo "<p class='card-text'>$descriptions[6]</p>"; ?>
-                                <?php echo "<h3 class='card-text text-end'><i>$prices[6] €</i></h3>"; ?>
-                            </div>
-                            <div class="card-footer text-center">
-                                <a href="#" class="btn btn-warning">Add to card</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card h-100">
-                            <img src="<?php echo 'data:image/png; base64,' . base64_encode($images[7]); ?>" class="card-img-top" alt="Imagen Producto">
-                            <div class="card-body">
-                                <?php echo "<h5 class='card-title'>$names[7]</h5>"; ?>
-                                <?php echo "<p class='card-text'>$descriptions[7]</p>"; ?>
-                                <?php echo "<h3 class='card-text text-end'><i>$prices[8] €</i></h3>"; ?>
-                            </div>
-                            <div class="card-footer text-center">
-                                <a href="#" class="btn btn-warning">Add to card</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card h-100">
-                            <img src="<?php echo 'data:image/png; base64,' . base64_encode($images[8]); ?>" class="card-img-top" alt="Imagen Producto">
-                            <div class="card-body">
-                                <?php echo "<h5 class='card-title'>$names[8]</h5>"; ?>
-                                <?php echo "<p class='card-text'>$descriptions[8]</p>"; ?>
-                            </div>
-                            <div class="card-footer text-center">
-                                <a href="#" class="btn btn-warning">Add to card</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card h-100">
-                            <img src="<?php echo 'data:image/png; base64,' . base64_encode($images[9]); ?>" class="card-img-top" alt="Imagen Producto">
-                            <div class="card-body">
-                                <?php echo "<h5 class='card-title'>$names[9]</h5>"; ?>
-                                <?php echo "<p class='card-text'>$descriptions[9]</p>"; ?>
-                            </div>
-                            <div class="card-footer text-center">
-                                <a href="#" class="btn btn-warning">Add to card</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card h-100">
-                            <img src="<?php echo 'data:image/png; base64,' . base64_encode($images[10]); ?>" class="card-img-top" alt="Imagen Producto">
-                            <div class="card-body">
-                                <?php echo "<h5 class='card-title'>$names[10]</h5>"; ?>
-                                <?php echo "<p class='card-text'>$descriptions[10]</p>"; ?>
-                            </div>
-                            <div class="card-footer text-center">
-                                <a href="#" class="btn btn-warning">Add to card</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card h-100">
-                            <img src="<?php echo 'data:image/png; base64,' . base64_encode($images[11]); ?>" class="card-img-top" alt="Imagen Producto">
-                            <div class="card-body">
-                                <?php echo "<h5 class='card-title'>$names[11]</h5>"; ?>
-                                <?php echo "<p class='card-text'>$descriptions[11]</p>"; ?>
-                            </div>
-                            <div class="card-footer text-center">
-                                <a href="#" class="btn btn-warning">Add to card</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card h-100">
-                            <img src="<?php echo 'data:image/png; base64,' . base64_encode($images[12]); ?>" class="card-img-top" alt="Imagen Producto">
-                            <div class="card-body">
-                                <?php echo "<h5 class='card-title'>$names[12]</h5>"; ?>
-                                <?php echo "<p class='card-text'>$descriptions[12]</p>"; ?>
-                            </div>
-                            <div class="card-footer text-center">
-                                <a href="#" class="btn btn-warning">Add to card</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card h-100">
-                            <img src="<?php echo 'data:image/png; base64,' . base64_encode($images[13]); ?>" class="card-img-top" alt="Imagen Producto">
-                            <div class="card-body">
-                                <?php echo "<h5 class='card-title'>$names[13]</h5>"; ?>
-                                <?php echo "<p class='card-text'>$descriptions[13]</p>"; ?>
-                            </div>
-                            <div class="card-footer text-center">
-                                <a href="#" class="btn btn-warning">Add to card</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card h-100">
-                            <img src="<?php echo 'data:image/png; base64,' . base64_encode($images[14]); ?>" class="card-img-top" alt="Imagen Producto">
-                            <div class="card-body">
-                                <?php echo "<h5 class='card-title'>$names[14]</h5>"; ?>
-                                <?php echo "<p class='card-text'>$descriptions[14]</p>"; ?>
-                            </div>
-                            <div class="card-footer text-center">
-                                <a href="#" class="btn btn-warning">Add to card</a>
-                            </div>
-                        </div>
-                    </div>
+                    <?php
+                        }
+                    } else {
+                        //aquí irá el filtro de busqueda general
+                    }
+                    ?>
                 </div>
             </div>
         </main>
@@ -362,5 +195,6 @@ require("../../connection/priceProduct.php");
         </footer>
     </div>
 </footer>
+
 
 </html>
