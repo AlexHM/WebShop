@@ -11,21 +11,16 @@ body{
 
 
 #prodList{
-    border: 3px solid rgba(255, 121, 24, 0.6);
+    border: 3px solid #FFB740;
     border-radius: 10px;
     margin-bottom: 60px;
 }
 
 #paymentData {
-    border: 3px solid rgba(255, 121, 24, 0.6);
+    border: 3px solid #FFB740;
     border-radius: 10px;
     margin-bottom: 30px;
 }
-
-#separador{
-    background-color: rgba(255, 121, 24, 0.6);
-}
-
 
 
 #container{
@@ -34,7 +29,7 @@ body{
 }
 
 #btnAddCodep{
-    background: #FF6B00;
+    background: #FFB740;
     border-radius: 10px;
     color: #FFF;
     border-color: #FFF;
@@ -46,15 +41,15 @@ body{
 }
 
 #codiguitos{
-    background-color: #FF6B00;
+    background-color: #FFB740;
     border-radius: 10px;
 }
 
-#titulos{
-    color: #FF6B00;
+#titles{
+    color: black;
 }
 
-#botoncito{
+#myButton{
     background: #FFF;
     border-radius: 10px;
     border: #FFF;
@@ -65,26 +60,26 @@ body{
     
 }
 
-#btnPagar{
-    background: #FF6B00;
+#btnPay{
+    background: #FFB740;
     border-radius: 10px;
     border-color: #FFF;
     margin-bottom: 60px;
     width: 100%;
     height: 80px;
-    color: #FFF;
+    font-size: 30px
 }
 
 #searcher{
-    border: 3px solid rgba(255, 121, 24, 0.6);
+    border: 3px solid #FFB740;
     border-radius: 10px;
     width: 100%;
     height: 50px;
 }
 
 #btnSignUp{
-    background: #FF6B00;
+    background: #FFB740;
     border-radius: 10px;
     border-color: #FFF;
-    color: #FFF;
+    color: black;
 }
