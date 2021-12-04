@@ -25,7 +25,7 @@ label {
 
 a {
     font-family: 'Roboto', sans-serif;
-    text-decoration: rgb(255, 107, 0);
+    text-decoration: rgb(255, 164, 64);
     color: black;
     font-weight: bold;
 }
@@ -58,6 +58,7 @@ a:hover {
 
 #title1 {
     font-size: 6.5vh;
+    color: rgb(255, 164, 64);
 }
 
 /*inputs*/
