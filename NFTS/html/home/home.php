@@ -89,34 +89,18 @@ require("../../connection/querySearch.php");
             <div style="height:15px;"></div>
             <fieldset class="row border-top-1">
                 <div class="col-md-4 col-sm-12 d-flex align-items-center justify-content-around">
-                    <div class="input-group d-flex align-items-center">
+                    <form class="input-group d-flex align-items-center">
                         <label class="input-group-text bg-warning border-warning" for="inputGroupSelect01">Options</label>
                         <select class="form-select border-warning" id="inputGroupSelect01">
-                            <option selected>Choose one...</option>
-                            <option value="1">Most likes</option>
-                            <option value="3">Most views</option>
-                            <option value="4">Newest</option>
+                            <option selected>Select category</option>
+                            <option value="1">Memes</option>
+                            <option value="3">Art</option>
+                            <option value="4">Gaming</option>
                         </select>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-12 d-flex align-items-center">
-                    <div class="input-group d-flex justify-content-around">
-                        <div class="form-check form-switch">
-                            <input class="form-check-input bg-warning border-warning" type="checkbox" role="switch" id="flexSwitchCheckChecked">
-                            <label class="form-check-label" for="flexSwitchCheckChecked">GIF</label>
-                        </div>
-                        <div class="form-check form-switch align-items-center">
-                            <input class="form-check-input bg-warning border-warning" type="checkbox" role="switch" id="flexSwitchCheckChecked">
-                            <label class="form-check-label " for="flexSwitchCheckChecked">PNG</label>
-                        </div>
-                        <div class="form-check form-switch ">
-                            <input class="form-check-input bg-warning border-warning" type="checkbox" role="switch" id="flexSwitchCheckChecked">
-                            <label class="form-check-label" for="flexSwitchCheckChecked">JPG</label>
-                        </div>
-                    </div>
+                    </form>
                 </div>
                 <div class="col-md-4  col-sm-12 display-flex align-items-center">
-                    <div class="input-group d-flex align-items-center">
+                    <form class="input-group d-flex align-items-center">
                         <label class="input-group-text bg-warning border-warning" for="inputGroupSelect01">Max Price</label>
                         <select class="form-select border-warning" id="inputGroupSelect01">
                             <option selected>Choose one...</option>
@@ -128,6 +112,12 @@ require("../../connection/querySearch.php");
                             <option value="7">&lt; 10.000€</option>
                             <option value="7">&gt; 10.000€</option>
                         </select>
+                    </form>
+                </div>
+
+                <div class="col-md-4  col-sm-12 display-flex align-items-center">
+                    <div class="input-group d-flex align-items-center">
+                    <button type="button" class="btn btn-warning">Apply filters</button>
                     </div>
                 </div>
             </fieldset>
