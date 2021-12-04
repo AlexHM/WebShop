@@ -80,9 +80,8 @@ try {
                     <li class="nav-item">
                         <a class="nav-link" href="../signup/signUp.html">Sign up</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Shop Card</a>
-                    </li>
+                    
+                    
                     <?php
                     if ($flagSession || $flagCookie) {
                         echo " <li class='nav-item'>
@@ -91,7 +90,18 @@ try {
                     }
                     ?>
                 </ul>
+                <ul class="navbar-nav mb-2 mb-lg-0 text-end pe-3">
+                        <li class="nav-item">
+                            <a class="nav-link position-relative">
+                                    Shop List
+                                    <span class="position-absolute top-1 start-100 translate-middle badge rounded-pill bg-warning">
+                                        5
+                                    </span>
+                            </a>
+                        </li>
+                    </ul>
                 <form class="d-flex" action="home.php" method="POST">
+                    
                     <input class="form-control me-2" name="searchInp" type="search" placeholder="Search" aria-label="Search">
                     <button class="btn btn-outline-warning" type="submit">Search</button>
                 </form>
