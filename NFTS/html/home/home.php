@@ -156,7 +156,7 @@ require("../../connection/querySearch.php");
                                     echo "<h3 class='card-text text-end'><i>$price[$i] €</i></h3>"; ?>
                                     </div>
                                     <div class="card-footer text-center">
-                                        <a href="#" class="btn btn-warning">Add to card</a>
+                                        <a href="#" class="btn btn-warning">See details</a>
                                     </div>
                                 </div>
                             </div>
