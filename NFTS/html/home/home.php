@@ -148,7 +148,7 @@ require("../../connection/querySearch.php");
                         for ($i = 0; $i < count($nameP); $i++) {
                     ?>
                             <div class="col">
-                                <div class="card h-100">
+                                <div class="card h-100"<?php $x= $i+1; echo "id='$x'"?>>
                                     <img src="<?php echo 'data:image/png; base64,' . base64_encode($images[$i]); ?>" class="card-img-top" alt="Imagen Producto"><?php
                                     ?><div class="card-body"><?php
                                     echo "<h5 class='card-title'>$nameP[$i]</h5>";
