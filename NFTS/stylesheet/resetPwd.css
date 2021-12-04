@@ -17,6 +17,7 @@ header{
 }
 
 #input{
+    border: none;
     margin-bottom: 20px;
     width: 323px;
     height: 50px;
@@ -25,6 +26,7 @@ header{
 }
 
 #btnResetPwd{
+    border: none;
     width: 320px;
     height: 50px;
     background: #FFB740;
