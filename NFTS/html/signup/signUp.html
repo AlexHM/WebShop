@@ -22,46 +22,46 @@
     </div>
 
     <div class="container-fluid vh-100 row align-items-center">
-        <div class="container col-5 text-center">
+        <div class="container col-5 text-center divLog border">
             <form action="signUp.php" method="post" class="p-1">
                 <div class="container-fluid">
                     <div>
                         <p class="display-3 pb-4 border-bottom">Create User</p>
                     </div>
-                    <div class="container-fluid border-bottom">
+                    <form class="container-fluid" action="signUp.php" method="post">
                         <div class="row">
                             <div class="mb-3 col-6">
                                 <label class="form-label d-flex">Name</label>
-                                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Enter your name" >
+                                <input type="text" name="name" class="form-control" id="exampleFormControlInput1" placeholder="Enter your name" >
                             </div>
                             <div class="mb-3 col-6">
                                 <label class="form-label d-flex">Subname</label>
-                                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Enter your subname" >
+                                <input type="text" name="lastname" class="form-control" id="exampleFormControlInput1" placeholder="Enter your subname" >
                             </div>
                         </div>
                         <div class="row">
                             <div class="mb-3 col-6">
                                 <label class="form-label d-flex">Username</label>
-                                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Enter your username" >
+                                <input type="text" name="user" class="form-control" id="exampleFormControlInput1" placeholder="Enter your username" >
                             </div>
                             <div class="mb-3 col-6">
                                 <label class="form-label d-flex">Email</label>
-                                <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Enter your email" >
+                                <input name="email" type="email" class="form-control" id="exampleFormControlInput1" placeholder="Enter your email" >
                             </div>
                         </div>
                         <div class="row">
                             <div class="mb-3 col-6">
                                 <label class="form-label d-flex">Password</label>
-                                <input type="password" class="form-control" id="exampleFormControlInput1" placeholder="Enter password" >
+                                <input type="password" name="password" class="form-control" id="exampleFormControlInput1" placeholder="Enter password" >
                             </div>
                             <div class="mb-3 col-6">
-                                <label class="form-label d-flex">Repeat new password</label>
-                                <input type="password" class="form-control" id="exampleFormControlInput1" placeholder="Repeat password" >
+                                <label class="form-label d-flex">Repeat password</label>
+                                <input type="password" class="form-control" name="passwordconfirm" id="exampleFormControlInput1" placeholder="Repeat password" >
                             </div>
                         </div>
                         <div class="row">
                             <div class="align-items-center mb-3 d-flex justify-content-center">
-                                <input class="form-check-input m-1" type="checkbox" value="" id="flexCheckIndeterminate">
+                                <input class="form-check-input m-1" type="checkbox" name="userTerms" value="" id="flexCheckIndeterminate">
                                 <label class="form-check-label m-1" for="flexCheckIndeterminate">
                                     I read and accept to Terms & Conditions
                                 </label>
@@ -69,11 +69,11 @@
                         </div>
                         <div class="row">
                             <div class="mb-3">
-                                <button class="btn btn-warning text-white" id="exampleFormControlInput1">Sign Up</button>
+                                <button class="btn btn-warning text-white" type="submit" id="exampleFormControlInput1">Sign Up</button>
                             </div>
                         </div>
                         
-                    </div>
+                    </form>
                 </div>
             </form>
         </div>
