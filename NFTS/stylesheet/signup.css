@@ -99,3 +99,7 @@ footer{
     background: #FFB740;
     border-radius: 20px;
 }
+
+.divLog{
+    z-index: 9999;
+}
