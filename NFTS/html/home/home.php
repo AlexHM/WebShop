@@ -4,7 +4,8 @@ require("../../cookies/checkCookie.php");
 require("../../connection/imageProduct.php");
 require("../../connection/querySearch.php");
 require("../../connection/querySearchFilter.php");
-/////////
+
+///////// FILTRO DEL BUSCADOR SUPERIOR
 $queryFilter = "";
 
 if (isset($_POST["searchInp"])) {
@@ -36,7 +37,45 @@ try {
     echo "Error: " . $th;
 }
 
-/////////
+?>
+<?php
+
+///////// FILTRO DEL BUSCADOR POR CATEGORIA Y PRECIO
+$categoryFilter = "";
+$priceFilter = "";
+
+if (isset($_POST["selectCategory"])) {
+    $categoryFilter = $_POST["selectCategory"];
+}
+if (isset($_POST["selectPrice"])) {
+    $priceFilter = $_POST["selectPrice"];
+}
+
+try {
+    
+    $searchQueryFilter2 = "select * from products where category = '$categoryFilter' and price $priceFilter";
+    $resultQueryFilter2 = $db->prepare($searchQueryFilter2);
+    $resultQueryFilter2->execute();
+    
+
+
+    $nameF = array();
+    $imageF = array();
+    $descriptionF = array();
+    $priceF = array();
+    $countF = 0;
+
+    while ($row = $resultQueryFilter2->fetch(PDO::FETCH_ASSOC)) {
+
+        $nameF[$countF] = $row['name'];
+        $imageF[$countF] = $row['image'];
+        $descriptionF[$countF] = $row['description'];
+        $priceF[$countF] = $row['price'];
+        $countF = $countF + 1;
+    }
+} catch (\Throwable $th) {
+    echo "Error: " . $th;
+}
 ?>
 
 <!DOCTYPE html>
@@ -80,8 +119,8 @@ try {
                     <li class="nav-item">
                         <a class="nav-link" href="../signup/signUp.html">Sign up</a>
                     </li>
-                    
-                    
+
+
                     <?php
                     if ($flagSession || $flagCookie) {
                         echo " <li class='nav-item'>
@@ -91,17 +130,17 @@ try {
                     ?>
                 </ul>
                 <ul class="navbar-nav mb-2 mb-lg-0 text-end pe-3">
-                        <li class="nav-item">
-                            <a class="nav-link position-relative">
-                                    Shop List
-                                    <span class="position-absolute top-1 start-100 translate-middle badge rounded-pill bg-warning">
-                                        5
-                                    </span>
-                            </a>
-                        </li>
-                    </ul>
+                    <li class="nav-item">
+                        <a class="nav-link position-relative">
+                            Shop List
+                            <span class="position-absolute top-1 start-100 translate-middle badge rounded-pill bg-warning">
+                                5
+                            </span>
+                        </a>
+                    </li>
+                </ul>
                 <form class="d-flex" action="home.php" method="POST">
-                    
+
                     <input class="form-control me-2" name="searchInp" type="search" placeholder="Search" aria-label="Search">
                     <button class="btn btn-outline-warning" type="submit">Search</button>
                 </form>
@@ -129,37 +168,32 @@ try {
             <div class="display-4 border-bottom ">Filters</div>
             <div style="height:15px;"></div>
             <fieldset class="row border-top-1">
-                <div class="col-md-4 col-sm-12 d-flex align-items-center justify-content-around">
-                    <form class="input-group d-flex align-items-center">
+                <div class="col-12 d-flex align-items-center justify-content-around">
+                    <form class="input-group d-flex align-items-center" action="home.php" method="POST">
                         <label class="input-group-text bg-warning border-warning" for="inputGroupSelect01">Options</label>
-                        <select class="form-select border-warning" id="inputGroupSelect01">
+                        <select class="form-select border-warning me-3" id="inputGroupSelect01" name="selectCategory">
                             <option selected>Select category</option>
-                            <option value="1">Memes</option>
-                            <option value="3">Art</option>
-                            <option value="4">Gaming</option>
+                            <option value="Meme">Memes</option>
+                            <option value="Art">Art</option>
+                            <option value="Gaming">Gaming</option>
                         </select>
-                    </form>
-                </div>
-                <div class="col-md-4  col-sm-12 display-flex align-items-center">
-                    <form class="input-group d-flex align-items-center">
                         <label class="input-group-text bg-warning border-warning" for="inputGroupSelect01">Max Price</label>
-                        <select class="form-select border-warning" id="inputGroupSelect01">
+                        <select class="form-select border-warning" id="inputGroupSelect01" name="selectPrice">
                             <option selected>Choose one...</option>
-                            <option value="1">&lt; 100€</option>
-                            <option value="3">&lt; 200€</option>
-                            <option value="4">&lt; 500€</option>
-                            <option value="5">&lt; 1.000€</option>
-                            <option value="6">&lt; 5.000€</option>
-                            <option value="7">&lt; 10.000€</option>
-                            <option value="7">&gt; 10.000€</option>
+                            <option value="< 100">&lt; 100€</option>
+                            <option value="< 200">&lt; 200€</option>
+                            <option value="< 500">&lt; 500€</option>
+                            <option value="< 1000">&lt; 1.000€</option>
+                            <option value="< 5000">&lt; 5.000€</option>
+                            <option value="< 10000">&lt; 10.000€</option>
+                            <option value="> 10000">&gt; 10.000€</option>
                         </select>
+                        <div class="col-md-4  col-sm-12 display-flex align-items-center p-3">
+                            <div class="input-group d-flex align-items-center">
+                                <input type="submit" class="btn btn-warning" value="Apply Filters" name=btnSelect>
+                            </div>
+                        </div>
                     </form>
-                </div>
-
-                <div class="col-md-4  col-sm-12 display-flex align-items-center">
-                    <div class="input-group d-flex align-items-center">
-                    <button type="button" class="btn btn-warning">Apply filters</button>
-                    </div>
                 </div>
             </fieldset>
             <div class="display-8 border-bottom text-white">.</div>
@@ -175,27 +209,27 @@ try {
                 <div style="height:30px;"></div>
                 <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 g-4">
                     <?php
-                    if (!isset($_POST["searchInp"])) {
-                        for ($i = 0; $i < count($nameP); $i++) {
-                    ?>
-                            <div class="col">
-                                <div class="card h-100" <?php $x = $i + 1;
-                                                        echo "id='$x'" ?>>
-                                    <img src="<?php echo 'data:image/png; base64,' . base64_encode($images[$i]); ?>" class="card-img-top" alt="Imagen Producto"><?php
-                                                                                                                                                                ?><div class="card-body"><?php
-                                                                echo "<h5 class='card-title'>$nameP[$i]</h5>";
-                                                                echo "<p class='card-text'>$description[$i]</p>";
-                                                                echo "<h3 class='card-text text-end'><i>$price[$i] €</i></h3>"; ?>
-                                    </div>
-                                    <div class="card-footer text-center">
-                                        <a href="#" class="btn btn-warning">See details</a>
+                    if (isset($_POST["btnSelect"])) {
+                        for ($i = 0; $i < count($nameF); $i++) {
+                            ?>
+                                <div class="col">
+                                    <div class="card h-100" <?php $f = $i + 1;
+                                                            echo "id='$f'" ?>>
+                                        <img src="<?php echo 'data:image/png; base64,' . base64_encode($imageF[$i]); ?>" class="card-img-top" alt="Imagen Producto"><?php
+                                        ?><div class="card-body"><?php
+                                        echo "<h5 class='card-title'>$nameF[$i]</h5>";
+                                        echo "<p class='card-text'>$descriptionF[$i]</p>";
+                                         echo "<h3 class='card-text text-end'><i>$priceF[$i] €</i></h3>"; ?>
+                                        </div>
+                                        <div class="card-footer text-center">
+                                            <a href="#" class="btn btn-warning">See details</a>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
                         <?php
-                        }
+                            }
+                        
                     } else if (isset($_POST["searchInp"])) {
-
                         if (empty($nameS)) {
                             echo "<p>No data found, please search again</p>";
                         }
@@ -205,10 +239,10 @@ try {
                                 <div class="card h-100" <?php $x = $i + 1;
                                                         echo "id='$x'" ?>>
                                     <img src="<?php echo 'data:image/png; base64,' . base64_encode($imageS[$i]); ?>" class="card-img-top" alt="Imagen Producto"><?php
-                                                                                                                                                                ?><div class="card-body"><?php
-                                                                        echo "<h5 class='card-title'>$nameS[$i]</h5>";
-                                                                        echo "<p class='card-text'>$descriptionS[$i]</p>";
-                                                                        echo "<h3 class='card-text text-end'><i>$priceS[$i] €</i></h3>"; ?>
+                                    ?><div class="card-body"><?php
+                                    echo "<h5 class='card-title'>$nameS[$i]</h5>";
+                                    echo "<p class='card-text'>$descriptionS[$i]</p>";
+                                     echo "<h3 class='card-text text-end'><i>$priceS[$i] €</i></h3>"; ?>
                                     </div>
                                     <div class="card-footer text-center">
                                         <a href="#" class="btn btn-warning">See details</a>
@@ -217,7 +251,27 @@ try {
                             </div>
                     <?php
                         }
+                    }else{
+                        for ($i = 0; $i < count($nameP); $i++) {
+                            ?>
+                                <div class="col">
+                                    <div class="card h-100" <?php $r = $i + 1;
+                                                            echo "id='$r'" ?>>
+                                        <img src="<?php echo 'data:image/png; base64,' . base64_encode($images[$i]); ?>" class="card-img-top" alt="Imagen Producto"><?php
+                                        ?><div class="card-body"><?php
+                                        echo "<h5 class='card-title'>$nameP[$i]</h5>";
+                                        echo "<p class='card-text'>$description[$i]</p>";
+                                         echo "<h3 class='card-text text-end'><i>$price[$i] €</i></h3>"; ?>
+                                        </div>
+                                        <div class="card-footer text-center">
+                                            <a href="#" class="btn btn-warning">See details</a>
+                                        </div>
+                                    </div>
+                                </div>
+                        <?php
+                            }
                     }
+                    
                     ?>
                 </div>
             </div>
