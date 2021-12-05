@@ -171,7 +171,7 @@ try {
                 <div class="col-12 d-flex align-items-center justify-content-around">
                     <form class="input-group d-flex align-items-center" action="home.php" method="POST">
                         <label class="input-group-text bg-warning border-warning" for="inputGroupSelect01">Options</label>
-                        <select class="form-select border-warning" id="inputGroupSelect01" name="selectCategory">
+                        <select class="form-select border-warning me-3" id="inputGroupSelect01" name="selectCategory">
                             <option selected>Select category</option>
                             <option value="Meme">Memes</option>
                             <option value="Art">Art</option>
