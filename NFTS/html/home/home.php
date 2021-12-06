@@ -84,6 +84,62 @@ try {
 }
 ?>
 
+<?php
+//////////// AÑADIR AL CARRITO
+
+$productQuantity= 0;
+$idHidden="";
+if (isset($_POST["quantity"])) {
+    $productQuantity = $_POST["quantity"];
+}
+if (isset($_POST["idHidden"])) {
+   $idHidden =$_POST["idHidden"];
+}
+
+
+if ($productQuantity > 0 && ($flagCookie || $flagSession)) {
+
+   $querSearchCard= "select * from bought_products where id_product = $idHidden";
+   $resultCardSelect = $db->prepare($querSearchCard);
+   $resultCardSelect->execute();
+
+   if ($resultCardSelect->rowCount()>0) {
+       $queryUpdateCard = "update bought_products set quantity= :quantity where id_product = :idProduct and email_user = :email_user";
+       $resultUpdateCard = $db->prepare($queryUpdateCard);
+
+        $resultUpdateCard->bindValue(":idProduct",$idHidden);
+        $resultUpdateCard->bindValue(":email_user", $_COOKIE["cok_user"]);
+        $resultUpdateCard->bindValue(":quantity", $productQuantity);
+        $resultUpdateCard->execute();
+   }else{
+    $queryUserCard= "insert into bought_products (id_product,email_user,quantity) values (:idProduct, :email_user, :quantity)";
+    $resultCardUser = $db->prepare($queryUserCard);
+
+    $resultCardUser->bindValue(":idProduct",$idHidden);
+    $resultCardUser->bindValue(":email_user", $_COOKIE["cok_user"]);
+    $resultCardUser->bindValue(":quantity", $productQuantity);
+    $resultCardUser->execute();
+   }
+   
+
+    
+}else{
+    if ($productQuantity > 0 && ($flagCookie == false && $flagSession== false)) {
+       
+        
+        
+    }
+}
+
+
+
+
+
+
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -137,7 +193,7 @@ try {
                 </ul>
                 <ul class="navbar-nav mb-2 mb-lg-0 text-end pe-3">
                     <li class="nav-item">
-                        <a class="nav-link position-relative">
+                        <a class="nav-link position-relative" href="../buy/buy.html" >
                             Shop List
                             <span class="position-absolute top-1 start-100 translate-middle badge rounded-pill bg-warning">
                                 0
@@ -250,7 +306,7 @@ try {
                                         <img src="<?php echo 'data:image/png; base64,' . base64_encode($images[$i]); ?>" class="card-img-top" alt="Imagen Producto"><?php
                                         ?><div class="card-body"><?php
                                         echo "<h5 class='card-title'>$nameP[$i]</h5>";
-                                        echo "<p class='card-text'>$description[$i] Hola</p>";
+                                        echo "<p class='card-text'>$description[$i]</p>";
                                          echo "<h3 class='card-text text-end'><i>$price[$i] €</i></h3>"; ?>
                                         </div>
                                         <div class="card-footer text-center">
@@ -295,17 +351,16 @@ try {
                                                             <p class="fst-italic">Art</p>
                                                             <h4 class="text-end fst-italic"><?php echo $priceF[$i];?> €</h4>
                                                         </div>
-                                                        <div class="row d-flex justify-content-center">
-                                                            <input class="form-control col-6" name="quantity" type="number" placeholder="1" aria-label="Quantity">
-                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="modal-footer d-flex justify-content-center">
-                                                <form>
-                                                    <button type="submit" class="btn btn-warning ">Add to card</button>
-                                                </form>
-                                            </div>
+                                            <div class="modal-footer d-flex justify-content-between">
+                                            <form action="home.php" method="POST">
+                                                <input type="hidden" name="idHidden" value="<?php echo $idF[$i];?>">    
+                                                <input class="form-control col-6" name="quantity" type="number" placeholder="1" aria-label="Quantity">
+                                                <button type="submit" class="btn btn-warning ">Add to card</button>
+                                            </form>
+                                        </div>
                                         </div>
                                     </div>
                                 </div>
@@ -339,17 +394,16 @@ try {
                                                             <p class="fst-italic">Art</p>
                                                             <h4 class="text-end fst-italic"><?php echo $priceS[$i];?> €</h4>
                                                         </div>
-                                                        <div class="row d-flex justify-content-center">
-                                                            <input class="form-control col-6" name="quantity" type="number" placeholder="1" aria-label="Quantity">
-                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="modal-footer d-flex justify-content-center">
-                                                <form >
-                                                    <button type="submit" class="btn btn-warning ">Add to card</button>
-                                                </form>
-                                            </div>
+                                            <div class="modal-footer d-flex justify-content-between">
+                                            <form action="home.php" method="POST">
+                                                <input type="hidden" name="idHidden" value="<?php echo $idS[$i];?>">
+                                                <input class="form-control col-6" name="quantity" type="number" placeholder="1" aria-label="Quantity">
+                                                <button type="submit" class="btn btn-warning ">Add to card</button>
+                                            </form>
+                                        </div>
                                         </div>
                                     </div>
                                 </div>
@@ -357,6 +411,7 @@ try {
                             }
                     }else{
                         for ($i = 0; $i < count($nameP); $i++) {
+                            $idProductModal = $idP[$i];
                             ?>
                             <div class="modal fade" id="staticBackdrop<?php echo $idP[$i];?>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered">
@@ -378,14 +433,14 @@ try {
                                                         <p class="fst-italic">Art</p>
                                                         <h4 class="text-end fst-italic"><?php echo $price[$i];?> €</h4>
                                                     </div>
-                                                    <div class="row d-flex justify-content-center">
-                                                        <input class="form-control col-6" name="quantity" type="number" placeholder="1" aria-label="Quantity">
-                                                    </div>
+                                                    
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="modal-footer d-flex justify-content-center">
-                                            <form>
+                                        <div class="modal-footer d-flex justify-content-between">
+                                            <form action="home.php" method="POST">
+                                                <input type="hidden" name="idHidden" value="<?php echo $idP[$i];?>">
+                                                <input class="form-control col-6" name="quantity" type="number" placeholder="1" aria-label="Quantity">
                                                 <button type="submit" class="btn btn-warning ">Add to card</button>
                                             </form>
                                         </div>
