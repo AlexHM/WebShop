@@ -7,12 +7,13 @@ require("../../connection/searchUser.php");
 
 try {
     if ($result->rowCount() > 0) {
-
+        
         if (password_verify($pass,$cryptPass)) {
-            if (isset($_POST["remember"])) {
            
+            if (isset($_POST["remember"])) {
+               
                 $_SESSION["ses_user"] = $_POST["email"];
-                setcookie("cok_user", $_POST["email"], time() + (86400 * 30), "/"); // Un día de duración 
+                setcookie("cok_user", $_POST["email"], time() + (1800 * 30), "/"); 
                
             } else {
                 $_SESSION["user"] = $_POST["email"];
