@@ -6,6 +6,8 @@ require("../../connection/querySearch.php");
 require("../../connection/querySearchFilter.php");
 require("../../connection/id.php");
 
+
+
 ///////// FILTRO DEL BUSCADOR SUPERIOR
 $queryFilter = "";
 
@@ -92,9 +94,6 @@ try {
     <link rel="stylesheet" href="../../stylesheet/home.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     <title>Home</title>
 </head>
 
@@ -141,7 +140,7 @@ try {
                         <a class="nav-link position-relative">
                             Shop List
                             <span class="position-absolute top-1 start-100 translate-middle badge rounded-pill bg-warning">
-                                5
+                                0
                             </span>
                         </a>
                     </li>
@@ -157,19 +156,9 @@ try {
     <!--spacing-->
     <div style="height:35px;"></div>
 
-    <div role="alert" aria-live="assertive" aria-atomic="true" class="toast position-fixed bottom-0 end-0" data-bs-autohide="false" style="z-index: 9999">
-        <div class="toast-header bg-warning">
-            <strong class="me-auto">ENFFY said: </strong>
-            <small>just now</small>
-            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-        </div>
-        <div class="toast-body">Bienvenido a nuestro catalogo! Puedes seleccionar los productos y meterlos en tu carrito pulsando en el boton<strong>"Add to card"</strong>. Si necesitas ayuda, no dudes en consultar con nosotros.</div>
-    </div>
 
 
-    <!--Div filters in searchs products-->
-
-    <div class="container" style="">
+    <div class="container">
         <div class="col-12">
             <div class="display-4 border-bottom ">Filters</div>
             <div style="height:15px;"></div>
@@ -225,7 +214,7 @@ try {
                                         echo "<h3 class='card-text text-end'><i>$priceF[$i] €</i></h3>"; ?>
                                         </div>
                                         <div class="card-footer text-center">
-                                            <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#staticBackdrop">See Details</button>
+                                            <button type="button" class="btn btn-warning" data-bs-toggle="modal" <?php echo "data-bs-target='#staticBackdrop$idF[$i]'" ?>>See Details</button>
                                         </div>
                                     </div>
                                 </div>
@@ -247,8 +236,8 @@ try {
                                          echo "<h3 class='card-text text-end'><i>$priceS[$i] €</i></h3>"; ?>
                                         </div>
                                         <div class="card-footer text-center">
-                                        <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#staticBackdrop">See Details</button>
-                                        </div>
+                                        <button type="button" class="btn btn-warning" data-bs-toggle="modal" <?php echo "data-bs-target='#staticBackdrop$idS[$i]'" ?>>See Details</button>
+                                         </div>
                                     </div>
                                 </div>
                         <?php
@@ -257,16 +246,15 @@ try {
                         for ($i = 0; $i < count($nameP); $i++) {
                             ?>
                                 <div class="col">
-                                    
                                         <div class='card h-100' data-toggle='modal' data-target='#exampleModal'>
                                         <img src="<?php echo 'data:image/png; base64,' . base64_encode($images[$i]); ?>" class="card-img-top" alt="Imagen Producto"><?php
                                         ?><div class="card-body"><?php
                                         echo "<h5 class='card-title'>$nameP[$i]</h5>";
-                                        echo "<p class='card-text'>$description[$i]</p>";
+                                        echo "<p class='card-text'>$description[$i] Hola</p>";
                                          echo "<h3 class='card-text text-end'><i>$price[$i] €</i></h3>"; ?>
                                         </div>
                                         <div class="card-footer text-center">
-                                        <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#staticBackdrop">See Details</button>
+                                        <button type="button" class="btn btn-warning" data-bs-toggle="modal" <?php echo "data-bs-target='#staticBackdrop$idP[$i]'" ?>>See Details</button>
                                         </div>
                                     </div>
                                 </div>
@@ -280,51 +268,139 @@ try {
         </main>
     </div>
 
-    <!-- MODAL EXAMPLE -->
+    <!-- MODAL EXAMPLE//////////////////////// FOR'S FILL THE MODALS --> 
 
-    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="#exampleModal">Nombre Koala</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-6">
-                            <img src="" alt="default" srcset="" >
-                        </div>
-                        <div class="col-6">
-                            <div class="row">
-                                <h5>Un Koala que quiere ir al espacio y por eso esta super fuerte y tiene un casco</h5>
-                            </div>
-                            <div class="row">
-                                <p class="fst-italic">Art</p>
-                                <h4 class="text-end fst-italic">23.99€</h4>
-                            </div>
-                            <div class="row d-flex justify-content-center">
-                                <input class="form-control col-6" name="quantity" type="number" placeholder="1" aria-label="Quantity">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer d-flex justify-content-center">
-                    <button type="button" class="btn btn-warning ">Add to card</button>
-                </div>
-            </div>
-        </div>
-    </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <?php
+                    if (isset($_POST["btnSelect"])) {
+                        for ($i = 0; $i < count($nameF); $i++) {
+                            ?>
+                                <div class="modal fade" id="staticBackdrop<?php echo $idF[$i];?>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                 <h5 class='modal-title' id='#$idS[$i]'><?php echo $nameF[$i];?></h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="row">
+                                                    <div class="col-6">
+                                                        <img src="<?php echo 'data:image/png; base64,' . base64_encode($imageF[$i]); ?>" alt="default" srcset="" class="img-fluid" >
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <div class="row">
+                                                            <h5><?php echo $descriptionF[$i]; ?></h5>
+                                                        </div>
+                                                        <div class="row">
+                                                            <p class="fst-italic">Art</p>
+                                                            <h4 class="text-end fst-italic"><?php echo $priceF[$i];?> €</h4>
+                                                        </div>
+                                                        <div class="row d-flex justify-content-center">
+                                                            <input class="form-control col-6" name="quantity" type="number" placeholder="1" aria-label="Quantity">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer d-flex justify-content-center">
+                                                <form>
+                                                    <button type="submit" class="btn btn-warning ">Add to card</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                        <?php
+                            }
+                        
+                    } else if (isset($_POST["searchInp"])) {
+                        if (empty($nameS)) {
+                            echo "<p>No data found, please search again</p>";
+                        }
+                       
+                        for ($i = 0; $i < count($nameS); $i++) {
+                            ?>
+                                <div class="modal fade" id="staticBackdrop<?php echo $idS[$i];?>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                 <h5 class='modal-title' id='#$idS[$i]'><?php echo $nameS[$i];?></h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="row">
+                                                    <div class="col-6">
+                                                        <img src="<?php echo 'data:image/png; base64,' . base64_encode($imageS[$i]); ?>" alt="default" srcset="" class="img-fluid" >
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <div class="row">
+                                                            <h5><?php echo $descriptionS[$i]; ?></h5>
+                                                        </div>
+                                                        <div class="row">
+                                                            <p class="fst-italic">Art</p>
+                                                            <h4 class="text-end fst-italic"><?php echo $priceS[$i];?> €</h4>
+                                                        </div>
+                                                        <div class="row d-flex justify-content-center">
+                                                            <input class="form-control col-6" name="quantity" type="number" placeholder="1" aria-label="Quantity">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer d-flex justify-content-center">
+                                                <form >
+                                                    <button type="submit" class="btn btn-warning ">Add to card</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                        <?php
+                            }
+                    }else{
+                        for ($i = 0; $i < count($nameP); $i++) {
+                            ?>
+                            <div class="modal fade" id="staticBackdrop<?php echo $idP[$i];?>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                             <h5 class='modal-title' id='#$idS[$i]'><?php echo $nameP[$i];?></h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <img src="<?php echo 'data:image/png; base64,' . base64_encode($images[$i]); ?>" alt="default" srcset="" class="img-fluid" >
+                                                </div>
+                                                <div class="col-6">
+                                                    <div class="row">
+                                                        <h5><?php echo $description[$i]; ?></h5>
+                                                    </div>
+                                                    <div class="row">
+                                                        <p class="fst-italic">Art</p>
+                                                        <h4 class="text-end fst-italic"><?php echo $price[$i];?> €</h4>
+                                                    </div>
+                                                    <div class="row d-flex justify-content-center">
+                                                        <input class="form-control col-6" name="quantity" type="number" placeholder="1" aria-label="Quantity">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer d-flex justify-content-center">
+                                            <form>
+                                                <button type="submit" class="btn btn-warning ">Add to card</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    <?php      
+                        }
 
-    <!--SCRIPT TO SHOW TOAST TO INFORMATE CLIENT HOW TO ADD PRODUTS-->
-    <script>
-        window.onload = (event) => {
-            let myAlert = document.querySelector('.toast');
-            let bsAlert = new bootstrap.Toast(myAlert);
-            bsAlert.show();
-        }
-    </script>
+                    }
+                    
+                    ?>            
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+    
 
 </body>
 <footer>
