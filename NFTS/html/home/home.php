@@ -288,12 +288,19 @@ if ($productQuantity > 0 && ($flagCookie || $flagSession)) {
                                         <img src="<?php echo 'data:image/png; base64,' . base64_encode($imageS[$i]); ?>" class="card-img-top" alt="Imagen Producto"><?php
                                         ?><div class="card-body"><?php
                                         echo "<h5 class='card-title'>$nameS[$i]</h5>";
-                                        echo "<p class='card-text'>$descriptionS[$i]</p>";
-                                         echo "<h3 class='card-text text-end'><i>$priceS[$i] €</i></h3>"; ?>
+                                        echo "<p class='card-text'>$descriptionS[$i]</p>";?>
                                         </div>
                                         <div class="card-footer text-center">
-                                        <button type="button" class="btn btn-warning" data-bs-toggle="modal" <?php echo "data-bs-target='#staticBackdrop$idS[$i]'" ?>>See Details</button>
-                                         </div>
+                                            <div class="row pb-1">
+                                                <div class="col-6">
+                                                    <h6 class="text-muted">Ref: 123</h6>
+                                                </div>
+                                                <div class="col-6">
+                                                    <?php echo "<h6 class='card-text text-end'><i>$priceS[$i]€</i></h6>";?>
+                                                </div>
+                                            </div>
+                                            <button type="button" class="btn btn-warning" data-bs-toggle="modal" <?php echo "data-bs-target='#staticBackdrop$idS[$i]'" ?>>See Details</button>
+                                        </div>
                                     </div>
                                 </div>
                         <?php
@@ -306,11 +313,18 @@ if ($productQuantity > 0 && ($flagCookie || $flagSession)) {
                                         <img src="<?php echo 'data:image/png; base64,' . base64_encode($images[$i]); ?>" class="card-img-top" alt="Imagen Producto"><?php
                                         ?><div class="card-body"><?php
                                         echo "<h5 class='card-title'>$nameP[$i]</h5>";
-                                        echo "<p class='card-text'>$description[$i]</p>";
-                                         echo "<h3 class='card-text text-end'><i>$price[$i] €</i></h3>"; ?>
+                                        echo "<p class='card-text'>$description[$i]</p>";?>
                                         </div>
-                                        <div class="card-footer text-center">
-                                        <button type="button" class="btn btn-warning" data-bs-toggle="modal" <?php echo "data-bs-target='#staticBackdrop$idP[$i]'" ?>>See Details</button>
+                                        <div class="card-footer text-center" >
+                                            <div class="row pb-1">
+                                                <div class="col-6">
+                                                    <h6 class="text-muted">Ref: 123</h6>
+                                                </div>
+                                                <div class="col-6">
+                                                    <?php echo "<h6 class='card-text text-end'><i>$price[$i]€</i></h6>";?>
+                                                </div>
+                                            </div>
+                                            <button type="button" class="btn btn-warning" data-bs-toggle="modal" <?php echo "data-bs-target='#staticBackdrop$idP[$i]'" ?>>See Details</button>
                                         </div>
                                     </div>
                                 </div>
@@ -335,7 +349,7 @@ if ($productQuantity > 0 && ($flagCookie || $flagSession)) {
                                     <div class="modal-dialog modal-dialog-centered">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                 <h5 class='modal-title' id='#$idS[$i]'><?php echo $nameF[$i];?></h5>
+                                                <h5 class='modal-title' id='#$idS[$i]'><?php echo $nameF[$i];?></h5>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                             </div>
                                             <div class="modal-body">
@@ -346,6 +360,7 @@ if ($productQuantity > 0 && ($flagCookie || $flagSession)) {
                                                     <div class="col-6">
                                                         <div class="row">
                                                             <h5><?php echo $descriptionF[$i]; ?></h5>
+                                                            <h6 class="text-muted">Ref: 123</h6>
                                                         </div>
                                                         <div class="row">
                                                             <p class="fst-italic">Art</p>
@@ -354,11 +369,20 @@ if ($productQuantity > 0 && ($flagCookie || $flagSession)) {
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="modal-footer d-flex justify-content-between">
-                                            <form action="home.php" method="POST">
-                                                <input type="hidden" name="idHidden" value="<?php echo $idF[$i];?>">    
-                                                <input class="form-control col-6" name="quantity" type="number" placeholder="1" aria-label="Quantity">
-                                                <button type="submit" class="btn btn-warning ">Add to card</button>
+                                            <div class="modal-footer d-flex justify-content-center">
+                                            <form action="home.php" method="POST" class="hstack gap-3 d-flex justify-content-center">
+                                                <div class="input-group d-flex justify-content-center">
+                                                    <span class="input-group-text" id="basic-addon1">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bag-plus-fill" viewBox="0 0 16 16">
+                                                        <path fill-rule="evenodd" d="M10.5 3.5a2.5 2.5 0 0 0-5 0V4h5v-.5zm1 0V4H15v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V4h3.5v-.5a3.5 3.5 0 1 1 7 0zM8.5 8a.5.5 0 0 0-1 0v1.5H6a.5.5 0 0 0 0 1h1.5V12a.5.5 0 0 0 1 0v-1.5H10a.5.5 0 0 0 0-1H8.5V8z"/>
+                                                    </svg>
+                                                    </span>
+                                                    <input class="form-control" name="quantity" type="number" placeholder="1" aria-label="Quantity">
+                                                </div>
+                                                <div class="vr"></div>
+                                                <div class="input-group d-flex justify-content-center">
+                                                    <button type="submit" class="btn btn-warning">Add to card</button>
+                                                </div>
                                             </form>
                                         </div>
                                         </div>
@@ -371,14 +395,13 @@ if ($productQuantity > 0 && ($flagCookie || $flagSession)) {
                         if (empty($nameS)) {
                             echo "<p>No data found, please search again</p>";
                         }
-                       
                         for ($i = 0; $i < count($nameS); $i++) {
                             ?>
                                 <div class="modal fade" id="staticBackdrop<?php echo $idS[$i];?>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-centered">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                 <h5 class='modal-title' id='#$idS[$i]'><?php echo $nameS[$i];?></h5>
+                                                <h5 class='modal-title' id='#$idS[$i]'><?php echo $nameS[$i];?></h5>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                             </div>
                                             <div class="modal-body">
@@ -389,6 +412,7 @@ if ($productQuantity > 0 && ($flagCookie || $flagSession)) {
                                                     <div class="col-6">
                                                         <div class="row">
                                                             <h5><?php echo $descriptionS[$i]; ?></h5>
+                                                            <h6 class="text-muted">Ref: 123</h6>
                                                         </div>
                                                         <div class="row">
                                                             <p class="fst-italic">Art</p>
@@ -397,11 +421,20 @@ if ($productQuantity > 0 && ($flagCookie || $flagSession)) {
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="modal-footer d-flex justify-content-between">
-                                            <form action="home.php" method="POST">
-                                                <input type="hidden" name="idHidden" value="<?php echo $idS[$i];?>">
-                                                <input class="form-control col-6" name="quantity" type="number" placeholder="1" aria-label="Quantity">
-                                                <button type="submit" class="btn btn-warning ">Add to card</button>
+                                            <div class="modal-footer d-flex justify-content-center">
+                                            <form action="home.php" method="POST" class="hstack gap-3 d-flex justify-content-center">
+                                                <div class="input-group d-flex justify-content-center">
+                                                    <span class="input-group-text" id="basic-addon1">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bag-plus-fill" viewBox="0 0 16 16">
+                                                        <path fill-rule="evenodd" d="M10.5 3.5a2.5 2.5 0 0 0-5 0V4h5v-.5zm1 0V4H15v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V4h3.5v-.5a3.5 3.5 0 1 1 7 0zM8.5 8a.5.5 0 0 0-1 0v1.5H6a.5.5 0 0 0 0 1h1.5V12a.5.5 0 0 0 1 0v-1.5H10a.5.5 0 0 0 0-1H8.5V8z"/>
+                                                    </svg>
+                                                    </span>
+                                                    <input class="form-control" name="quantity" type="number" placeholder="1" aria-label="Quantity">
+                                                </div>
+                                                <div class="vr"></div>
+                                                <div class="input-group d-flex justify-content-center">
+                                                    <button type="submit" class="btn btn-warning">Add to card</button>
+                                                </div>
                                             </form>
                                         </div>
                                         </div>
@@ -411,13 +444,12 @@ if ($productQuantity > 0 && ($flagCookie || $flagSession)) {
                             }
                     }else{
                         for ($i = 0; $i < count($nameP); $i++) {
-                            $idProductModal = $idP[$i];
                             ?>
                             <div class="modal fade" id="staticBackdrop<?php echo $idP[$i];?>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                             <h5 class='modal-title' id='#$idS[$i]'><?php echo $nameP[$i];?></h5>
+                                            <h5 class='modal-title' id='#$idS[$i]'><?php echo $nameP[$i];?></h5>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
@@ -428,6 +460,7 @@ if ($productQuantity > 0 && ($flagCookie || $flagSession)) {
                                                 <div class="col-6">
                                                     <div class="row">
                                                         <h5><?php echo $description[$i]; ?></h5>
+                                                        <h6 class="text-muted">Ref: 123</h6>
                                                     </div>
                                                     <div class="row">
                                                         <p class="fst-italic">Art</p>
@@ -437,11 +470,20 @@ if ($productQuantity > 0 && ($flagCookie || $flagSession)) {
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="modal-footer d-flex justify-content-between">
-                                            <form action="home.php" method="POST">
-                                                <input type="hidden" name="idHidden" value="<?php echo $idP[$i];?>">
-                                                <input class="form-control col-6" name="quantity" type="number" placeholder="1" aria-label="Quantity">
-                                                <button type="submit" class="btn btn-warning ">Add to card</button>
+                                        <div class="modal-footer d-flex justify-content-center">
+                                            <form action="home.php" method="POST" class="hstack gap-3 d-flex justify-content-center">
+                                                <div class="input-group d-flex justify-content-center">
+                                                    <span class="input-group-text" id="basic-addon1">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bag-plus-fill" viewBox="0 0 16 16">
+                                                        <path fill-rule="evenodd" d="M10.5 3.5a2.5 2.5 0 0 0-5 0V4h5v-.5zm1 0V4H15v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V4h3.5v-.5a3.5 3.5 0 1 1 7 0zM8.5 8a.5.5 0 0 0-1 0v1.5H6a.5.5 0 0 0 0 1h1.5V12a.5.5 0 0 0 1 0v-1.5H10a.5.5 0 0 0 0-1H8.5V8z"/>
+                                                    </svg>
+                                                    </span>
+                                                    <input class="form-control" name="quantity" type="number" placeholder="1" aria-label="Quantity">
+                                                </div>
+                                                <div class="vr"></div>
+                                                <div class="input-group d-flex justify-content-center">
+                                                    <button type="submit" class="btn btn-warning">Add to card</button>
+                                                </div>
                                             </form>
                                         </div>
                                     </div>
