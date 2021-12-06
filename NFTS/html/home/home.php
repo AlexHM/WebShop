@@ -4,6 +4,7 @@ require("../../cookies/checkCookie.php");
 require("../../connection/imageProduct.php");
 require("../../connection/querySearch.php");
 require("../../connection/querySearchFilter.php");
+require("../../connection/id.php");
 
 ///////// FILTRO DEL BUSCADOR SUPERIOR
 $queryFilter = "";
@@ -23,7 +24,7 @@ try {
     $descriptionS = array();
     $priceS = array();
     $countS = 0;
-
+    $idS = array();
 
     while ($row = $resultQueryFilter->fetch(PDO::FETCH_ASSOC)) {
 
@@ -31,6 +32,7 @@ try {
         $imageS[$countS] = $row['image'];
         $descriptionS[$countS] = $row['description'];
         $priceS[$countS] = $row['price'];
+        $idS[$countS] = $row['id'];
         $countS = $countS + 1;
     }
 } catch (\Throwable $th) {
@@ -63,6 +65,7 @@ try {
     $imageF = array();
     $descriptionF = array();
     $priceF = array();
+    $idF = array();
     $countF = 0;
 
     while ($row = $resultQueryFilter2->fetch(PDO::FETCH_ASSOC)) {
@@ -71,6 +74,7 @@ try {
         $imageF[$countF] = $row['image'];
         $descriptionF[$countF] = $row['description'];
         $priceF[$countF] = $row['price'];
+        $idF[$countF] = $row['id'];
         $countF = $countF + 1;
     }
 } catch (\Throwable $th) {
@@ -87,7 +91,10 @@ try {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../stylesheet/home.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     <title>Home</title>
 </head>
 
@@ -140,7 +147,6 @@ try {
                     </li>
                 </ul>
                 <form class="d-flex" action="home.php" method="POST">
-
                     <input class="form-control me-2" name="searchInp" type="search" placeholder="Search" aria-label="Search">
                     <button class="btn btn-outline-warning" type="submit">Search</button>
                 </form>
@@ -163,7 +169,7 @@ try {
 
     <!--Div filters in searchs products-->
 
-    <div class="container">
+    <div class="container" style="">
         <div class="col-12">
             <div class="display-4 border-bottom ">Filters</div>
             <div style="height:15px;"></div>
@@ -202,8 +208,6 @@ try {
     <div style="height:50px;"></div>
     <div>
         <main class="col-12 ">
-
-
             <div id="products" class="container">
                 <div class="display-4 border-bottom ">Products</div>
                 <div style="height:30px;"></div>
@@ -213,16 +217,15 @@ try {
                         for ($i = 0; $i < count($nameF); $i++) {
                             ?>
                                 <div class="col">
-                                    <div class="card h-100" <?php $f = $i + 1;
-                                                            echo "id='$f'" ?>>
+                                        <div class='card h-100' data-toggle='modal' data-target='#exampleModal'>
                                         <img src="<?php echo 'data:image/png; base64,' . base64_encode($imageF[$i]); ?>" class="card-img-top" alt="Imagen Producto"><?php
                                         ?><div class="card-body"><?php
                                         echo "<h5 class='card-title'>$nameF[$i]</h5>";
                                         echo "<p class='card-text'>$descriptionF[$i]</p>";
-                                         echo "<h3 class='card-text text-end'><i>$priceF[$i] €</i></h3>"; ?>
+                                        echo "<h3 class='card-text text-end'><i>$priceF[$i] €</i></h3>"; ?>
                                         </div>
                                         <div class="card-footer text-center">
-                                            <a href="#" class="btn btn-warning">See details</a>
+                                            <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#staticBackdrop">See Details</button>
                                         </div>
                                     </div>
                                 </div>
@@ -234,29 +237,28 @@ try {
                             echo "<p>No data found, please search again</p>";
                         }
                         for ($i = 0; $i < count($nameS); $i++) {
-                        ?>
-                            <div class="col">
-                                <div class="card h-100" <?php $x = $i + 1;
-                                                        echo "id='$x'" ?>>
-                                    <img src="<?php echo 'data:image/png; base64,' . base64_encode($imageS[$i]); ?>" class="card-img-top" alt="Imagen Producto"><?php
-                                    ?><div class="card-body"><?php
-                                    echo "<h5 class='card-title'>$nameS[$i]</h5>";
-                                    echo "<p class='card-text'>$descriptionS[$i]</p>";
-                                     echo "<h3 class='card-text text-end'><i>$priceS[$i] €</i></h3>"; ?>
-                                    </div>
-                                    <div class="card-footer text-center">
-                                        <a href="#" class="btn btn-warning">See details</a>
+                            ?>
+                                <div class="col">
+                                        <div class='card h-100'>
+                                        <img src="<?php echo 'data:image/png; base64,' . base64_encode($imageS[$i]); ?>" class="card-img-top" alt="Imagen Producto"><?php
+                                        ?><div class="card-body"><?php
+                                        echo "<h5 class='card-title'>$nameS[$i]</h5>";
+                                        echo "<p class='card-text'>$descriptionS[$i]</p>";
+                                         echo "<h3 class='card-text text-end'><i>$priceS[$i] €</i></h3>"; ?>
+                                        </div>
+                                        <div class="card-footer text-center">
+                                        <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#staticBackdrop">See Details</button>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                    <?php
-                        }
+                        <?php
+                            }
                     }else{
                         for ($i = 0; $i < count($nameP); $i++) {
                             ?>
                                 <div class="col">
-                                    <div class="card h-100" <?php $r = $i + 1;
-                                                            echo "id='$r'" ?>>
+                                    
+                                        <div class='card h-100' data-toggle='modal' data-target='#exampleModal'>
                                         <img src="<?php echo 'data:image/png; base64,' . base64_encode($images[$i]); ?>" class="card-img-top" alt="Imagen Producto"><?php
                                         ?><div class="card-body"><?php
                                         echo "<h5 class='card-title'>$nameP[$i]</h5>";
@@ -264,7 +266,7 @@ try {
                                          echo "<h3 class='card-text text-end'><i>$price[$i] €</i></h3>"; ?>
                                         </div>
                                         <div class="card-footer text-center">
-                                            <a href="#" class="btn btn-warning">See details</a>
+                                        <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#staticBackdrop">See Details</button>
                                         </div>
                                     </div>
                                 </div>
@@ -277,6 +279,42 @@ try {
             </div>
         </main>
     </div>
+
+    <!-- MODAL EXAMPLE -->
+
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="#exampleModal">Nombre Koala</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-6">
+                            <img src="" alt="default" srcset="" >
+                        </div>
+                        <div class="col-6">
+                            <div class="row">
+                                <h5>Un Koala que quiere ir al espacio y por eso esta super fuerte y tiene un casco</h5>
+                            </div>
+                            <div class="row">
+                                <p class="fst-italic">Art</p>
+                                <h4 class="text-end fst-italic">23.99€</h4>
+                            </div>
+                            <div class="row d-flex justify-content-center">
+                                <input class="form-control col-6" name="quantity" type="number" placeholder="1" aria-label="Quantity">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer d-flex justify-content-center">
+                    <button type="button" class="btn btn-warning ">Add to card</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
     <!--SCRIPT TO SHOW TOAST TO INFORMATE CLIENT HOW TO ADD PRODUTS-->
@@ -287,6 +325,7 @@ try {
             bsAlert.show();
         }
     </script>
+
 </body>
 <footer>
     <div class="container">
