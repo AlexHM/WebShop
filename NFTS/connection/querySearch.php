@@ -1,6 +1,6 @@
 <?php
 require("connection.php");
-
+require("id.php");
 
 
 
@@ -11,7 +11,7 @@ try {
 
     $nameP = array();
     $description = array();
-    
+    $idP = array();
     $price = array();
     $count = 0;
 
@@ -20,6 +20,7 @@ try {
         $nameP[$count] = $row['name'];
         $description[$count] = $row['description'];
         $price[$count] = $row['price'];
+        $idP[$count] = $row['id'];
         $count = $count + 1;
     }
 
