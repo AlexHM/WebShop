@@ -1,3 +1,3 @@
 <?php
-setcookie("user",$_POST["username"],time()-1);
+setcookie("cok_user",$_POST["username"],time()-1);
 ?>
