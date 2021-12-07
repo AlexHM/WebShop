@@ -6,7 +6,16 @@ require("../../connection/querySearch.php");
 require("../../connection/querySearchFilter.php");
 require("../../connection/id.php");
 
+$randomGuest = -1;
+if ($flagCookie==false && $flagSession==false) {
+    if (isset($_COOKIE["cok_guest"])) {
+        $randomGuest = $_COOKIE["cok_guest"];
+        }else{
+            $randomGuest =rand(0,5000);
+            setcookie("cok_guest", $randomGuest, time() + 86400, "/");
+        }
 
+}
 
 ///////// FILTRO DEL BUSCADOR SUPERIOR
 $queryFilter = "";
@@ -103,41 +112,71 @@ if ($productQuantity > 0 && ($flagCookie || $flagSession)) {
    $resultCardSelect = $db->prepare($querSearchCard);
    $resultCardSelect->execute();
 
+   $actualQuantity= 0;
+        while ($rowG = $resultCardSelect->fetch(PDO::FETCH_ASSOC)) {
+            $actualQuantity = $rowG['quantity'];
+        }
+
    if ($resultCardSelect->rowCount()>0) {
        $queryUpdateCard = "update bought_products set quantity= :quantity where id_product = :idProduct and email_user = :email_user";
        $resultUpdateCard = $db->prepare($queryUpdateCard);
 
         $resultUpdateCard->bindValue(":idProduct",$idHidden);
-        $resultUpdateCard->bindValue(":email_user", $_COOKIE["cok_user"]);
-        $resultUpdateCard->bindValue(":quantity", $productQuantity);
+        $resultUpdateCard->bindValue(":email_user", $_SESSION["ses_user"]);
+        $resultUpdateCard->bindValue(":quantity", ($productQuantity+$actualQuantity));
         $resultUpdateCard->execute();
+
+        
    }else{
     $queryUserCard= "insert into bought_products (id_product,email_user,quantity) values (:idProduct, :email_user, :quantity)";
     $resultCardUser = $db->prepare($queryUserCard);
 
+    
     $resultCardUser->bindValue(":idProduct",$idHidden);
-    $resultCardUser->bindValue(":email_user", $_COOKIE["cok_user"]);
+    $resultCardUser->bindValue(":email_user", $_SESSION["ses_user"]);
     $resultCardUser->bindValue(":quantity", $productQuantity);
     $resultCardUser->execute();
    }
    
-
-    
 }else{
     if ($productQuantity > 0 && ($flagCookie == false && $flagSession== false)) {
        
-        
-        
+       
+
+        $queryGuest = "Select id_guest,quantity from bought_products where id_guest = :id_guest";
+        $resultGuest = $db->prepare($queryGuest);
+        $resultGuest->bindValue(":id_guest",$randomGuest);
+        $resultGuest->execute();
+        $actualQuantity= 0;
+        while ($rowG = $resultGuest->fetch(PDO::FETCH_ASSOC)) {
+            $actualQuantity = $rowG['quantity'];
+        }
+       
+        if ($resultGuest->rowCount()>0) {
+            
+            $queryInsertGuest = "update bought_products set quantity= :quantity where id_product = :idProduct and id_guest = :id_guest";
+            $resultGuest = $db->prepare($queryInsertGuest);
+            $resultGuest->bindValue(":idProduct",$idHidden);
+            $resultGuest->bindValue(":quantity",($productQuantity+$actualQuantity));
+            $resultGuest->bindValue(":id_guest",$randomGuest);
+            $resultGuest->execute();
+
+            ////////////////////// FALTA AQUÍ AÑADIR EL INSERT PORQUE SI EL GUEST EXISTE SOLO MODIFICA EL REGISTRO EXISTENTE O AÑADE EL PRIMERO.
+
+
+
+          
+        }else{
+            $queryInsertGuest = "insert into bought_products (id_product,quantity,id_guest) values (:idProduct, :quantity, :id_guest)";
+            $resultGuest = $db->prepare($queryInsertGuest);
+            $resultGuest->bindValue(":idProduct",$idHidden);
+            $resultGuest->bindValue(":quantity",$productQuantity);
+            $resultGuest->bindValue(":id_guest",$randomGuest);
+            $resultGuest->execute();
+
+        } 
     }
 }
-
-
-
-
-
-
-
-
 ?>
 
 <!DOCTYPE html>
@@ -193,7 +232,7 @@ if ($productQuantity > 0 && ($flagCookie || $flagSession)) {
                 </ul>
                 <ul class="navbar-nav mb-2 mb-lg-0 text-end pe-3">
                     <li class="nav-item">
-                        <a class="nav-link position-relative" href="../buy/buy.html" >
+                        <a class="nav-link position-relative" href="../buy/buy.php" >
                             Shop List
                             <span class="position-absolute top-1 start-100 translate-middle badge rounded-pill bg-warning">
                                 0
@@ -493,7 +532,6 @@ if ($productQuantity > 0 && ($flagCookie || $flagSession)) {
                         }
 
                     }
-                    
                     ?>            
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
