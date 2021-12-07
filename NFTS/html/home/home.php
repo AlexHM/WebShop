@@ -7,7 +7,7 @@ require("../../connection/querySearchFilter.php");
 require("../../connection/id.php");
 
 
-
+$randomGuest = rand(0,5000);
 ///////// FILTRO DEL BUSCADOR SUPERIOR
 $queryFilter = "";
 
@@ -108,36 +108,57 @@ if ($productQuantity > 0 && ($flagCookie || $flagSession)) {
        $resultUpdateCard = $db->prepare($queryUpdateCard);
 
         $resultUpdateCard->bindValue(":idProduct",$idHidden);
-        $resultUpdateCard->bindValue(":email_user", $_COOKIE["cok_user"]);
+        $resultUpdateCard->bindValue(":email_user", $_SESSION["ses_user"]);
         $resultUpdateCard->bindValue(":quantity", $productQuantity);
         $resultUpdateCard->execute();
    }else{
     $queryUserCard= "insert into bought_products (id_product,email_user,quantity) values (:idProduct, :email_user, :quantity)";
     $resultCardUser = $db->prepare($queryUserCard);
 
+    
     $resultCardUser->bindValue(":idProduct",$idHidden);
-    $resultCardUser->bindValue(":email_user", $_COOKIE["cok_user"]);
+    $resultCardUser->bindValue(":email_user", $_SESSION["ses_user"]);
     $resultCardUser->bindValue(":quantity", $productQuantity);
     $resultCardUser->execute();
    }
    
-
-    
 }else{
     if ($productQuantity > 0 && ($flagCookie == false && $flagSession== false)) {
        
-        
-        
+       
+
+        $queryGuest = "Select id_guest from bought_products where id_guest = :id_guest";
+        $resultGuest = $db->prepare($queryGuest);
+        $resultGuest->bindValue(":id_guest",$randomGuest);
+        $resultGuest->execute();
+
+        if ($resultGuest->rowCount()>0) {
+            
+
+            do {
+                if ($randomGuest == $rowGuest['id_guest']) {
+                    $randomGuest = rand(0,5000);
+                }
+            } while ($rowGuest = $resultGuest->fetch(PDO::FETCH_ASSOC));
+
+            $queryInsertGuest = "insert into bought_products (id_product,quantity,id_guest) values (:idProduct, :quantity, :id_guest)";
+            $resultGuest = $db->prepare($queryGuest);
+            $resultGuest->bindValue(":idProduct",$idHidden);
+            $resultGuest->bindValue(":quantity",$productQuantity);
+            $resultGuest->bindValue(":id_guest",$randomGuest);
+            $resultGuest->execute();
+
+          
+        }else{
+            $queryInsertGuest = "insert into bought_products (id_product,quantity,id_guest) values (:idProduct, :quantity, :id_guest)";
+            $resultGuest = $db->prepare($queryInsertGuest);
+            $resultGuest->bindValue(":idProduct",$idHidden);
+            $resultGuest->bindValue(":quantity",$productQuantity);
+            $resultGuest->bindValue(":id_guest",$randomGuest);
+            $resultGuest->execute();
+        } 
     }
 }
-
-
-
-
-
-
-
-
 ?>
 
 <!DOCTYPE html>
@@ -451,7 +472,6 @@ if ($productQuantity > 0 && ($flagCookie || $flagSession)) {
                         }
 
                     }
-                    
                     ?>            
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
