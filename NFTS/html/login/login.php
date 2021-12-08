@@ -16,7 +16,7 @@ try {
                 setcookie("cok_user", $_POST["email"], time() + (1800 * 30), "/"); 
                
             } else {
-                $_SESSION["user"] = $_POST["email"];
+                $_SESSION["ses_user"] = $_POST["email"];
             }
             header("location: ../home/home.php");
         } else {
