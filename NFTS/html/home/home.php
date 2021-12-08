@@ -140,28 +140,55 @@ if ($productQuantity > 0 && ($flagCookie || $flagSession)) {
    
 }else{
     if ($productQuantity > 0 && ($flagCookie == false && $flagSession== false)) {
-       
+      
        
 
-        $queryGuest = "Select id_guest,quantity from bought_products where id_guest = :id_guest";
+        $queryGuest = "Select id_guest,quantity,id_product from bought_products where id_guest = :id_guest";
         $resultGuest = $db->prepare($queryGuest);
         $resultGuest->bindValue(":id_guest",$randomGuest);
         $resultGuest->execute();
+
+        $flagIdP= true;
         $actualQuantity= 0;
+        $countG =0;
         while ($rowG = $resultGuest->fetch(PDO::FETCH_ASSOC)) {
             $actualQuantity = $rowG['quantity'];
+            $id_productG = $rowG['id_product'];
+            if ($idHidden == $rowG['id_product']) {
+                $flagIdP = false;
+            }
+            $countG++;
         }
-       
+                
+                
         if ($resultGuest->rowCount()>0) {
             
-            $queryInsertGuest = "update bought_products set quantity= :quantity where id_product = :idProduct and id_guest = :id_guest";
-            $resultGuest = $db->prepare($queryInsertGuest);
-            $resultGuest->bindValue(":idProduct",$idHidden);
-            $resultGuest->bindValue(":quantity",($productQuantity+$actualQuantity));
-            $resultGuest->bindValue(":id_guest",$randomGuest);
-            $resultGuest->execute();
+            if ($flagIdP) {
+        
+                    $queryInsertGuest = "insert into bought_products (id_product,quantity,id_guest) values (:idProduct, :quantity, :id_guest)";
+                    $resultGuest = $db->prepare($queryInsertGuest);
+                    $resultGuest->bindValue(":idProduct",$idHidden);
+                    $resultGuest->bindValue(":quantity",$productQuantity);
+                    $resultGuest->bindValue(":id_guest",$randomGuest);
+                    $resultGuest->execute();
 
-            ////////////////////// FALTA AQUÍ AÑADIR EL INSERT PORQUE SI EL GUEST EXISTE SOLO MODIFICA EL REGISTRO EXISTENTE O AÑADE EL PRIMERO.
+                
+            }else{
+                $queryInsertGuest = "update bought_products set quantity= :quantity where id_product = :idProduct and id_guest = :id_guest";
+                $resultGuest = $db->prepare($queryInsertGuest);
+                $resultGuest->bindValue(":idProduct",$idHidden);
+                $resultGuest->bindValue(":quantity",($productQuantity+$actualQuantity));
+                $resultGuest->bindValue(":id_guest",$randomGuest);
+                $resultGuest->execute();
+               
+            }
+           
+
+            //// PROBLEMA
+            // SI estando sin sesion y sin cookie nos logeamos tenemos que recordar los productos que se hayan añadido.
+            //Posible solucion--> crear en la linea 183 una cookie con un array que almacene el idHidden y quantity.
+            //en el login preguntar si esta cookie existe que solo deberia existir en caso de no estar logeado ni con cookie
+            // y sincronizarla con la cok user de alguna forma.
 
 
 
@@ -169,6 +196,9 @@ if ($productQuantity > 0 && ($flagCookie || $flagSession)) {
         }else{
             $queryInsertGuest = "insert into bought_products (id_product,quantity,id_guest) values (:idProduct, :quantity, :id_guest)";
             $resultGuest = $db->prepare($queryInsertGuest);
+
+           
+
             $resultGuest->bindValue(":idProduct",$idHidden);
             $resultGuest->bindValue(":quantity",$productQuantity);
             $resultGuest->bindValue(":id_guest",$randomGuest);
