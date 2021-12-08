@@ -283,15 +283,15 @@ if ($productQuantity > 0 && ($flagCookie || $flagSession)) {
             <fieldset class="row border-top-1">
                 <div class="col-12 d-flex align-items-center justify-content-around">
                     <form class="input-group d-flex align-items-center" action="home.php" method="POST">
-                        <label class="input-group-text bg-warning border-warning" for="inputGroupSelect01">Options</label>
-                        <select class="form-select border-warning me-3" id="inputGroupSelect01" name="selectCategory">
+                        <label class="input-group-text bg-warning border-warning d-none d-sm-none d-md-block" for="inputGroupSelect01">Options</label>
+                        <select class="col-6 form-select border-warning me-3" id="inputGroupSelect01" name="selectCategory">
                             <option selected>Select category</option>
                             <option value="Meme">Memes</option>
                             <option value="Art">Art</option>
                             <option value="Gaming">Gaming</option>
                         </select>
-                        <label class="input-group-text bg-warning border-warning" for="inputGroupSelect01">Max Price</label>
-                        <select class="form-select border-warning" id="inputGroupSelect01" name="selectPrice">
+                        <label class="input-group-text bg-warning border-warning d-none d-sm-none d-md-block" for="inputGroupSelect01">Max Price</label>
+                        <select class="col-6 form-select border-warning" id="inputGroupSelect01" name="selectPrice">
                             <option selected>Choose one...</option>
                             <option value="< 100">&lt; 100€</option>
                             <option value="< 200">&lt; 200€</option>
@@ -301,9 +301,14 @@ if ($productQuantity > 0 && ($flagCookie || $flagSession)) {
                             <option value="< 10000">&lt; 10.000€</option>
                             <option value="> 10000">&gt; 10.000€</option>
                         </select>
-                        <div class="col-md-4  col-sm-12 display-flex align-items-center p-3">
+                        <div class="col-12 col-md-2 display-flex align-items-center p-3">
                             <div class="input-group d-flex align-items-center">
                                 <input type="submit" class="btn btn-warning" value="Apply Filters" name=btnSelect>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-2 display-flex">
+                            <div class="input-group d-flex align-items-center">
+                                <input type="submit" class="btn btn-warning" value="Dismiss Filters" name=btnDF>
                             </div>
                         </div>
                     </form>
