@@ -1,5 +1,9 @@
 <?php
 require("../../connection/cardGuest.php");
+require("../../cookies/checkSession.php");
+require("../../cookies/checkCookie.php");
+
+
 
 ?>
 
@@ -25,7 +29,31 @@ require("../../connection/cardGuest.php");
             <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" href="../signup/signUp.html">Login</a>
+                        <?php
+                        if ($flagSession) {
+                            echo "<a class='nav-link' href='#'>" . $_SESSION["ses_user"] . "</a>";
+                        } else {
+                            if ($flagCookie) {
+                                echo "<a class='nav-link' href='#'>" . $_COOKIE["cok_user"] . "</a>";
+                            } else {
+                                echo "<a class='nav-link' href='../login/login.html'>Login</a>";
+                            }
+                        }
+                        ?>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="../signup/signUp.html">Sign up</a>
+                    </li>
+                    <?php
+                    if ($flagSession) {
+                        echo " <li class='nav-item'>
+                            <a class='nav-link' href='../../cookies/destroySession.php'>Sign out</a>
+                        </li>";
+                    }
+                    ?>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Shop Card</a>
                     </li>
                 </ul>
             </div>
@@ -60,26 +88,26 @@ require("../../connection/cardGuest.php");
                     <div class="card-body">
                         <!-- AQUI IRIA 1 X 1 LOS PRODUCTOS QUE HAN SIDO SELECCIONADOS-->
                         <?php
-                        for ($i = 0; $i < count($id_productG); $i++) {
+                        for ($i = 0; $i < count($id_productB); $i++) {
                         ?>
                             <div class="row-fluid border-bottom  pt-3">
                                 <div class="row ">
                                     <div class="col-6 col-md-4 container-fluid ">
-                                        <img src="" alt="image">
+                                    <img src="<?php echo 'data:image/png; base64,' . base64_encode($imageB[$i]); ?>" class="img-thumbnail" alt="Imagen Producto">
                                     </div>
                                     <div class="col-6 col-md-3 container-fluid">
                                         <div class="row">
-                                            <h4>Product Name</h4>
+                                            <h4><?php echo $nameB[$i] ?></h4>
                                         </div>
                                         <div class="row">
-                                            <p>Product Description</p>
+                                            <p><?php echo $descriptionB[$i] ?></p>
                                         </div>
                                     </div>
                                     <div class="col-4 col-md-1 container-fluid">
-                                        <p>25.00e x </p>
+                                        <p><?php echo $priceB[$i] ?> €</p>
                                     </div>
                                     <div class="col-6 col-md-1 container-fluid">
-                                        <label> Quantity: <?php echo $quantityG[$i]?></label>
+                                        <label> Quantity: <?php echo $quantityB[$i] ?></label>
                                     </div>
                                     <div class="col-2 col-md-1 container-fluid">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
