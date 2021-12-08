@@ -141,7 +141,7 @@ if ($productQuantity > 0 && ($flagCookie || $flagSession)) {
 }else{
     if ($productQuantity > 0 && ($flagCookie == false && $flagSession== false)) {
       
-       
+      
 
         $queryGuest = "Select id_guest,quantity,id_product from bought_products where id_guest = :id_guest";
         $resultGuest = $db->prepare($queryGuest);
@@ -153,7 +153,6 @@ if ($productQuantity > 0 && ($flagCookie || $flagSession)) {
         $countG =0;
         while ($rowG = $resultGuest->fetch(PDO::FETCH_ASSOC)) {
             $actualQuantity = $rowG['quantity'];
-            $id_productG = $rowG['id_product'];
             if ($idHidden == $rowG['id_product']) {
                 $flagIdP = false;
             }
@@ -189,10 +188,7 @@ if ($productQuantity > 0 && ($flagCookie || $flagSession)) {
             //Posible solucion--> crear en la linea 183 una cookie con un array que almacene el idHidden y quantity.
             //en el login preguntar si esta cookie existe que solo deberia existir en caso de no estar logeado ni con cookie
             // y sincronizarla con la cok user de alguna forma.
-
-
-
-          
+ 
         }else{
             $queryInsertGuest = "insert into bought_products (id_product,quantity,id_guest) values (:idProduct, :quantity, :id_guest)";
             $resultGuest = $db->prepare($queryInsertGuest);
@@ -447,6 +443,7 @@ if ($productQuantity > 0 && ($flagCookie || $flagSession)) {
                                                     </svg>
                                                     </span>
                                                     <input class="form-control" name="quantity" type="number" placeholder="1" aria-label="Quantity">
+                                                    <input class="visually-hidden" name="idHidden" value="<?php echo "$idF[$i]"; ?>">
                                                 </div>
                                                 <div class="vr"></div>
                                                 <div class="input-group d-flex justify-content-center">
@@ -499,6 +496,7 @@ if ($productQuantity > 0 && ($flagCookie || $flagSession)) {
                                                     </svg>
                                                     </span>
                                                     <input class="form-control" name="quantity" type="number" placeholder="1" aria-label="Quantity">
+                                                    <input class="visually-hidden" name="idHidden" value="<?php echo "$idS[$i]"; ?>">
                                                 </div>
                                                 <div class="vr"></div>
                                                 <div class="input-group d-flex justify-content-center">
@@ -548,6 +546,7 @@ if ($productQuantity > 0 && ($flagCookie || $flagSession)) {
                                                     </svg>
                                                     </span>
                                                     <input class="form-control" name="quantity" type="number" placeholder="1" aria-label="Quantity">
+                                                    <input class="visually-hidden" name="idHidden" value="<?php echo "$idP[$i]"; ?>">
                                                 </div>
                                                 <div class="vr"></div>
                                                 <div class="input-group d-flex justify-content-center">

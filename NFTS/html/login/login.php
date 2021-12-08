@@ -5,6 +5,7 @@ require("../../connection/searchUser.php");
 
 
 
+
 try {
     if ($result->rowCount() > 0) {
         
@@ -18,6 +19,7 @@ try {
             } else {
                 $_SESSION["ses_user"] = $_POST["email"];
             }
+            require("../../connection/syncCard.php");
             header("location: ../home/home.php");
         } else {
             header("location: ../login/login.html");
