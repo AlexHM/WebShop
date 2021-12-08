@@ -87,6 +87,53 @@ try {
 <?php
 //////////// AÑADIR AL CARRITO
 
+$productQuantity= 0;
+$idHidden="";
+if (isset($_POST["quantity"])) {
+    $productQuantity = $_POST["quantity"];
+}
+if (isset($_POST["idHidden"])) {
+   $idHidden =$_POST["idHidden"];
+}
+
+
+if ($productQuantity > 0 && ($flagCookie || $flagSession)) {
+
+   $querSearchCard= "select * from bought_products where id_product = $idHidden";
+   $resultCardSelect = $db->prepare($querSearchCard);
+   $resultCardSelect->execute();
+
+   if ($resultCardSelect->rowCount()>0) {
+       $queryUpdateCard = "update bought_products set quantity= :quantity where id_product = :idProduct and email_user = :email_user";
+       $resultUpdateCard = $db->prepare($queryUpdateCard);
+
+        $resultUpdateCard->bindValue(":idProduct",$idHidden);
+        $resultUpdateCard->bindValue(":email_user", $_COOKIE["cok_user"]);
+        $resultUpdateCard->bindValue(":quantity", $productQuantity);
+        $resultUpdateCard->execute();
+   }else{
+    $queryUserCard= "insert into bought_products (id_product,email_user,quantity) values (:idProduct, :email_user, :quantity)";
+    $resultCardUser = $db->prepare($queryUserCard);
+
+    $resultCardUser->bindValue(":idProduct",$idHidden);
+    $resultCardUser->bindValue(":email_user", $_COOKIE["cok_user"]);
+    $resultCardUser->bindValue(":quantity", $productQuantity);
+    $resultCardUser->execute();
+   }
+   
+
+    
+}else{
+    if ($productQuantity > 0 && ($flagCookie == false && $flagSession== false)) {
+       
+        
+        
+    }
+}
+
+
+
+
 
 
 
@@ -219,17 +266,10 @@ try {
                                         <img src="<?php echo 'data:image/png; base64,' . base64_encode($imageF[$i]); ?>" class="card-img-top" alt="Imagen Producto"><?php
                                         ?><div class="card-body"><?php
                                         echo "<h5 class='card-title'>$nameF[$i]</h5>";
-                                        echo "<p class='card-text'>$descriptionF[$i]</p>";?>
+                                        echo "<p class='card-text'>$descriptionF[$i]</p>";
+                                        echo "<h3 class='card-text text-end'><i>$priceF[$i] €</i></h3>"; ?>
                                         </div>
                                         <div class="card-footer text-center">
-                                            <div class="row pb-1">
-                                                <div class="col-6">
-                                                    <h6 class="text-muted">Ref: 123</h6>
-                                                </div>
-                                                <div class="col-6">
-                                                    <?php echo "<h6 class='card-text text-end'><i>$priceF[$i]€</i></h6>";?>
-                                                </div>
-                                            </div>
                                             <button type="button" class="btn btn-warning" data-bs-toggle="modal" <?php echo "data-bs-target='#staticBackdrop$idF[$i]'" ?>>See Details</button>
                                         </div>
                                     </div>
