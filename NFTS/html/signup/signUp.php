@@ -22,16 +22,19 @@ try {
         header("location:signUp.html");
     } else {
 
-        //Comprobamos si algún campo está vacío, si los terminos no han sido marcados, o si las contraseñas son diferentes
+        //Comprobamos si algún campo está vacío , si los terminos no han sido marcados, o si las contraseñas son diferentes
 
-        if ($_POST["email"] == "" || $_POST["name"] == "" || $_POST["lastname"] == "" || $_POST["user"] == "" || $_POST["password"] == "") {
+        if ($_POST["email"] == "" || $_POST["name"] == "" || $_POST["lastname"] == "" || $_POST["user"] == "" || $_POST["password"] == "" ) {
             header("location:signUp.html");
         }
         if (!isset($_POST["userTerms"])) {
             header("location:signUp.html");
         }
         if (strcmp($_POST["password"], $_POST["passConfirm"]) != 0) {
-            header("location:signUp.html");
+            echo "<script>
+                alert('Las contraseñas tienen que ser iguales. Complete el campo correctamente.');
+                window.location= 'url.php'
+            </script>";
         }
 
         //Verificación de email
@@ -40,7 +43,7 @@ try {
         }
 
 
-        $query = "insert into users (email,name,lastname,username,password) values (:email,:name,:lastname,:username,:password)";
+        $query = "insert into users (email,name,lastname,username,password,country,city,address,postal) values (:email,:name,:lastname,:username,:password,:country,:city,:address,:postal)";
         $result = $db->prepare($query);
 
         $email2 = htmlentities(addslashes($_POST["email"]));
@@ -48,6 +51,10 @@ try {
         $lastname = htmlentities(addslashes($_POST["lastname"]));
         $username = htmlentities(addslashes($_POST["user"]));
         $pass = htmlentities(addslashes($_POST["password"]));
+        $country = htmlentities(addslashes($_POST["country"]));
+        $city = htmlentities(addslashes($_POST["city"]));
+        $adress = htmlentities(addslashes($_POST["address"]));
+        $postalcode = htmlentities(addslashes($_POST["postal"]));
 
         //Encriptando la contrasña
         $cryptPass= password_hash($pass,PASSWORD_DEFAULT);
@@ -57,6 +64,10 @@ try {
         $result->bindValue(":lastname", $lastname);
         $result->bindValue(":username", $username);
         $result->bindValue(":password", $cryptPass);
+        $result->bindValue(":country", $country);
+        $result->bindValue(":city", $city);
+        $result->bindValue(":address", $adress);
+        $result->bindValue(":postal", $postalcode);
         $result->execute();
         
         //////////////////////////////
