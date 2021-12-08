@@ -19,7 +19,7 @@ require("../../connection/cardGuest.php");
     <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">
-                ENFFY
+                <a class="font-weight-bold text-dark col-md-1" href="../home/home.php">ENFFY</a>
                 <img src="" alt="" width="30" height="24">
             </a>
             <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
@@ -27,13 +27,12 @@ require("../../connection/cardGuest.php");
                     <li class="nav-item">
                         <a class="nav-link" href="../signup/signUp.html">Login</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="../signup/signUp.html">Sign up</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Shop Card</a>
-                    </li>
                 </ul>
+            </div>
+            <div class="row">
+                <div>
+                    <button type="button" class="btn btn-warning">Log Out</button>
+                </div>
             </div>
         </div>
     </nav>
