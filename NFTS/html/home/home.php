@@ -258,7 +258,7 @@ if ($productQuantity > 0 && ($flagCookie || $flagSession)) {
                 </ul>
                 <ul class="navbar-nav mb-2 mb-lg-0 text-end pe-3">
                     <li class="nav-item">
-                        <a class="nav-link position-relative" href="../buy/buy.php" >
+                        <a class="nav-link position-relative" href="../buy/buy.php">
                             Shop List
                             <span class="position-absolute top-1 start-100 translate-middle badge rounded-pill bg-warning">
                                 0
