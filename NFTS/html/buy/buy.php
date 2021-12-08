@@ -8,6 +8,10 @@ require("../../cookies/checkCookie.php");
 
 $errorPayment = "<a href='../login/login.html'>Please, log In before to complete the payment</a>";
 $totalPayment = 0;
+$flagPayment = false;
+if (isset($_COOKIE["cok_user_card"])) {
+    $flagPayment= true;
+}
 ?>
 
 <!DOCTYPE html>
@@ -44,8 +48,14 @@ $totalPayment = 0;
                         }
                         ?>
                     </li>
+                    
                     <li class="nav-item">
-                        <a class="nav-link" href="../signup/signUp.html">Sign up</a>
+                        <?php
+                            if ($flagCookie==false && $flagSession==false) {
+                                echo " <a class='nav-link' href='../signup/signUp.html'>Sign up</a>";
+                            }
+                        ?>
+                       
                     </li>
                     <?php
                     if ($flagSession) {
@@ -54,9 +64,6 @@ $totalPayment = 0;
                         </li>";
                     }
                     ?>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Shop Card</a>
-                    </li>
                 </ul>
             </div>
         </div>
@@ -127,14 +134,14 @@ $totalPayment = 0;
                             <div class="row d-flex justify-content-end col-12">
                                 <div class="col-md-5 container-fluid offset-md-3">
                                     <form action="buy.php" method="POST">
-                                    <div class="row">
-                                        <div class="col-6 col-md-4 container-fluid">
-                                            <input type="text" class="form-control text-secondary" placeholder="Promo Code..." name="promoCode">
+                                        <div class="row">
+                                            <div class="col-6 col-md-4 container-fluid">
+                                                <input type="text" class="form-control text-secondary" placeholder="Promo Code..." name="promoCode">
+                                            </div>
+                                            <div class="col-6 col-md-5 container-fluid">
+                                                <button type="submit" class="btn btn-outline-secondary">Check</button>
+                                            </div>
                                         </div>
-                                        <div class="col-6 col-md-5 container-fluid">
-                                            <button type="submit" class="btn btn-outline-secondary">Check</button>
-                                        </div>
-                                    </div>
                                     </form>
                                 </div>
                             </div>
@@ -147,18 +154,27 @@ $totalPayment = 0;
                                     <h4>Total: </h4>
                                 </div>
                                 <div class="col-6 col-md-1 d-flex justify-content-end offset-md-9">
-                                    <h5><?php 
+                                    <h5><?php
                                         if ($flagPromo) {
-                                            echo $totalPayment-50;
-                                        }else{
+                                            echo $totalPayment - 50;
+                                        } else {
                                             echo $totalPayment;
                                         }
-                                    ?>€</h5>
+                                        ?>€</h5>
                                 </div>
                             </div>
-                            <div class="col-12 col-md-3 d-flex justify-content-end offset-md-9">
-                                <button type="button" class="btn btn-warning">End Payment</button>
-                            </div>
+                            <form action="buy.php">
+                                <div class="col-12 col-md-3 d-flex justify-content-end offset-md-9">
+                                    <button type="submit" class="btn btn-warning">End Payment</button>
+                                </div>
+                            </form>
+                            <?php
+                            
+                            if ($flagPayment==false) {
+                                echo $errorPayment;
+                            }
+
+                            ?>
                         </div>
                     </div>
                 </div>
