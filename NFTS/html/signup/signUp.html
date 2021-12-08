@@ -22,49 +22,134 @@
     </div>
 
     <div class="container-fluid vh-100 row align-items-center">
-        <div class="container col-5 text-center divLog border">
-            <form action="signUp.php" method="post" class="p-1">
+        <div class="container col-sm-12 col-md-5 text-center divLog border">
+            <form action="signUp.php" method="post" class="p-1 needs-validation" novalidate>
                 <div class="container-fluid">
                     <div>
                         <p class="display-3 pb-4 border-bottom">Create User</p>
                     </div>
                     <form class="container-fluid" action="signUp.php" method="post">
                         <div class="row">
-                            <div class="mb-3 col-6">
+                            <div class="mb-3 col-sm-12 col-md-6 col-12">
                                 <label class="form-label d-flex">Name</label>
-                                <input type="text" name="name" class="form-control" id="exampleFormControlInput1" placeholder="Enter your name" >
+                                <input type="text" name="name" class="form-control" id="exampleFormControlInput1" placeholder="Enter your name" required>
+                                <div class="valid-feedback">
+                                    Looks good!
+                                </div>
+                                <div class="invalid-feedback">
+                                    Please enter your name!
+                                </div>
                             </div>
-                            <div class="mb-3 col-6">
+                            <div class="mb-3 col-md-6 col-sm-12 col-12">
                                 <label class="form-label d-flex">Subname</label>
-                                <input type="text" name="lastname" class="form-control" id="exampleFormControlInput1" placeholder="Enter your subname" >
+                                <input type="text" name="lastname" class="form-control" id="exampleFormControlInput1" placeholder="Enter your subname" required>
+                                <div class="valid-feedback">
+                                    Looks good!
+                                </div>
+                                <div class="invalid-feedback">
+                                    Please enter your subname!
+                                </div>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="mb-3 col-6">
+                            <div class="mb-3 col-md-6 col-sm-12 col-12">
+                                <label class="form-label d-flex">Country</label>
+                                <input type="text" name="country" class="form-control" id="exampleFormControlInput1" placeholder="Enter your country" required >
+                                <div class="valid-feedback">
+                                    Nice place!
+                                </div>
+                                <div class="invalid-feedback">
+                                    Please enter your country!
+                                </div>
+                            </div>
+                            <div class="mb-3 col-md-6 col-sm-12 col-12">
+                                <label class="form-label d-flex">City</label>
+                                <input type="text" class="form-control" name="city" id="exampleFormControlInput1" placeholder="Enter your City" required>
+                                <div class="valid-feedback">
+                                    Looks good!
+                                </div>
+                                <div class="invalid-feedback">
+                                    Please enter your city!
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="mb-3 col-md-6 col-sm-12 col-12">
+                                <label class="form-label d-flex">Adress</label>
+                                <input type="text" name="address" class="form-control" id="exampleFormControlInput1" placeholder="Enter your adress" required>
+                                <div class="valid-feedback">
+                                    Looks good!
+                                </div>
+                                <div class="invalid-feedback">
+                                    Please enter your name!
+                                </div>
+                            </div>
+                            <div class="mb-3 col-md-6 col-sm-12 col-12">
+                                <label class="form-label d-flex">Postal Code</label>
+                                <input type="text" class="form-control" name="postal" id="exampleFormControlInput1" placeholder="Enter your postal code" required>
+                                <div class="valid-feedback">
+                                    Looks good!
+                                </div>
+                                <div class="invalid-feedback">
+                                    Please enter your name!
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="mb-3 col-md-6 col-sm-12 col-12">
                                 <label class="form-label d-flex">Username</label>
-                                <input type="text" name="user" class="form-control" id="exampleFormControlInput1" placeholder="Enter your username" >
+                                <input type="text" name="user" class="form-control" id="exampleFormControlInput1" placeholder="Enter your username" required>
+                                <div class="valid-feedback">
+                                    Nice user!
+                                </div>
+                                <div class="invalid-feedback">
+                                    Please enter your username!
+                                </div>
                             </div>
-                            <div class="mb-3 col-6">
+                            <div class="mb-3 col-md-6 col-sm-12 col-12">
                                 <label class="form-label d-flex">Email</label>
-                                <input name="email" type="email" class="form-control" id="exampleFormControlInput1" placeholder="Enter your email" >
+                                <input name="email" type="email" class="form-control" id="exampleFormControlInput1" placeholder="Enter your email" required>
+                                <div class="valid-feedback">
+                                    Looks good!
+                                </div>
+                                <div class="invalid-feedback">
+                                    Please enter your email!
+                                </div>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="mb-3 col-6">
+                            <div class="mb-3 col-md-6 col-sm-12 col-12">
                                 <label class="form-label d-flex">Password</label>
-                                <input type="password" name="password" class="form-control" id="exampleFormControlInput1" placeholder="Enter password" >
+                                <input type="password" name="password" class="form-control" id="pass1" placeholder="Enter password" required>
+                                <div class="valid-feedback">
+                                    Looks good!
+                                </div>
+                                <div class="invalid-feedback">
+                                    Please enter your email!
+                                </div>
                             </div>
-                            <div class="mb-3 col-6">
+                            <div class="mb-3 col-md-6 col-sm-12 col-12">
                                 <label class="form-label d-flex">Repeat password</label>
-                                <input type="password" class="form-control" name="passwordconfirm" id="exampleFormControlInput1" placeholder="Repeat password" >
+                                <input type="password" class="form-control" name="passwordconfirm" id="pass2" placeholder="Repeat password" required>
+                                <div class="valid-feedback">
+                                    Looks good!
+                                </div>
+                                <div class="invalid-feedback">
+                                    Passwords aren't the same.
+                                </div>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="align-items-center mb-3 d-flex justify-content-center">
-                                <input class="form-check-input m-1" type="checkbox" name="userTerms" value="" id="flexCheckIndeterminate">
-                                <label class="form-check-label m-1" for="flexCheckIndeterminate">
-                                    I read and accept to Terms & Conditions
-                                </label>
+                            <div class="form check mb-2 d-flex justify-content-center">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" name="userTerms" id="invalidCheck" required>
+                                    <label class="form-check-label" for="invalidCheck">
+                                    Agree to terms and conditions
+                                    </label>
+                                    <div class="invalid-feedback">
+                                    You must agree before submitting.
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="row">
@@ -89,7 +174,29 @@
     </div>
     <!-- JavaScript Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+<script>
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+    (function () {
+    'use strict'
 
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    var forms = document.querySelectorAll('.needs-validation')
+
+    console.log(forms)
+    // Loop over them and prevent submission
+    Array.prototype.slice.call(forms)
+        .forEach(function (form) {
+        form.addEventListener('submit', function (event) {
+            console.log(form)
+            if (!form.checkValidity()) {
+            event.preventDefault()
+            event.stopPropagation()
+            }
+            form.classList.add('was-validated')
+        }, false)
+        })
+    })()
+</script>
 </body>
 
 
