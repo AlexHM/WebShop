@@ -1,10 +1,13 @@
 <?php
 require("../../connection/cardGuest.php");
+require("../../connection/promoCode.php");
 require("../../cookies/checkSession.php");
 require("../../cookies/checkCookie.php");
 
 
 
+$errorPayment = "<a href='../login/login.html'>Please, log In before to complete the payment</a>";
+$totalPayment = 0;
 ?>
 
 <!DOCTYPE html>
@@ -59,11 +62,7 @@ require("../../cookies/checkCookie.php");
         </div>
     </nav>
 
-    <?php
-    if (isset($_COOKIE["cok_guest"])) {
-        echo " SOY EL USUARIO: " . $_COOKIE["cok_guest"];
-    }
-    ?>
+
 
 
     <!-- MAIN CONTAINER, PRODUCTOS DEL PEDIDO -->
@@ -82,12 +81,12 @@ require("../../cookies/checkCookie.php");
                     <div class="card-body">
                         <!-- AQUI IRIA 1 X 1 LOS PRODUCTOS QUE HAN SIDO SELECCIONADOS-->
                         <?php
-                        for ($i = 0; $i < count($id_productB); $i++) {
+                        for ($i = 0; $i < count($nameB); $i++) {
                         ?>
                             <div class="row-fluid border-bottom  pt-3">
                                 <div class="row ">
                                     <div class="col-6 col-md-4 container-fluid ">
-                                    <img src="<?php echo 'data:image/png; base64,' . base64_encode($imageB[$i]); ?>" class="img-thumbnail" alt="Imagen Producto">
+                                        <img src="<?php echo 'data:image/png; base64,' . base64_encode($imageB[$i]); ?>" class="img-thumbnail" alt="Imagen Producto">
                                     </div>
                                     <div class="col-6 col-md-3 container-fluid">
                                         <div class="row">
@@ -98,16 +97,22 @@ require("../../cookies/checkCookie.php");
                                         </div>
                                     </div>
                                     <div class="col-4 col-md-1 container-fluid">
-                                        <p><?php echo $priceB[$i] ?> €</p>
+                                        <p><?php echo $priceB[$i];
+                                            $totalPayment += ($priceB[$i] * $quantityB[$i]) ?> €</p>
                                     </div>
                                     <div class="col-6 col-md-1 container-fluid">
                                         <label> Quantity: <?php echo $quantityB[$i] ?></label>
                                     </div>
                                     <div class="col-2 col-md-1 container-fluid">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
-                                            <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
-                                            <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
-                                        </svg>
+                                        <form action="../../connection/deleteProductBuy.php" method="POST">
+                                            <input class="visually-hidden" name="idPHidden" value="<?php echo "$id_productB[$i]"; ?>">
+                                            <button type="submit" class="btn border-warning">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                                                    <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
+                                                    <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
+                                                </svg>
+                                            </button>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
@@ -120,22 +125,17 @@ require("../../cookies/checkCookie.php");
                         <!-- FINAL ZONE ABOUT SHOP LIST -->
                         <div class="container-fluid pt-3">
                             <div class="row d-flex justify-content-end col-12">
-
-                                <div class="col-6 col-md-2  text-start d-flex justify-content-center">
-                                    New items added?
-                                </div>
-                                <div class="col-6 col-md-2">
-                                    <button type="button" class="btn btn-outline-secondary">Update</button>
-                                </div>
                                 <div class="col-md-5 container-fluid offset-md-3">
+                                    <form action="buy.php" method="POST">
                                     <div class="row">
                                         <div class="col-6 col-md-4 container-fluid">
-                                            <input type="text" class="form-control text-secondary" placeholder="Promo Code...">
+                                            <input type="text" class="form-control text-secondary" placeholder="Promo Code..." name="promoCode">
                                         </div>
                                         <div class="col-6 col-md-5 container-fluid">
-                                            <button type="button" class="btn btn-outline-secondary">Check</button>
+                                            <button type="submit" class="btn btn-outline-secondary">Check</button>
                                         </div>
                                     </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -147,7 +147,13 @@ require("../../cookies/checkCookie.php");
                                     <h4>Total: </h4>
                                 </div>
                                 <div class="col-6 col-md-1 d-flex justify-content-end offset-md-9">
-                                    <h5>2500.00€</h5>
+                                    <h5><?php 
+                                        if ($flagPromo) {
+                                            echo $totalPayment-50;
+                                        }else{
+                                            echo $totalPayment;
+                                        }
+                                    ?>€</h5>
                                 </div>
                             </div>
                             <div class="col-12 col-md-3 d-flex justify-content-end offset-md-9">
