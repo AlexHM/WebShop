@@ -5,6 +5,7 @@ require("../../connection/searchUser.php");
 
 
 
+
 try {
     if ($result->rowCount() > 0) {
         
@@ -14,10 +15,13 @@ try {
                
                 $_SESSION["ses_user"] = $_POST["email"];
                 setcookie("cok_user", $_POST["email"], time() + (1800 * 30), "/"); 
+                
                
             } else {
+                setcookie("cok_user_card", $_POST["email"], time() + (1800 * 30), "/"); 
                 $_SESSION["ses_user"] = $_POST["email"];
             }
+            require("../../connection/syncCard.php");
             header("location: ../home/home.php");
         } else {
             header("location: ../login/login.html");

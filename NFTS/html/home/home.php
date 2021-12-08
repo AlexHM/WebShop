@@ -34,6 +34,7 @@ try {
     $imageS = array();
     $descriptionS = array();
     $priceS = array();
+    $refS = array();
     $countS = 0;
     $idS = array();
 
@@ -44,6 +45,7 @@ try {
         $descriptionS[$countS] = $row['description'];
         $priceS[$countS] = $row['price'];
         $idS[$countS] = $row['id'];
+        $refS[$countS] = $row['ref'];
         $countS = $countS + 1;
     }
 } catch (\Throwable $th) {
@@ -77,6 +79,7 @@ try {
     $descriptionF = array();
     $priceF = array();
     $idF = array();
+    $refF = array();
     $countF = 0;
 
     while ($row = $resultQueryFilter2->fetch(PDO::FETCH_ASSOC)) {
@@ -86,6 +89,7 @@ try {
         $descriptionF[$countF] = $row['description'];
         $priceF[$countF] = $row['price'];
         $idF[$countF] = $row['id'];
+        $refF[$countF] = $row['ref'];
         $countF = $countF + 1;
     }
 } catch (\Throwable $th) {
@@ -141,7 +145,7 @@ if ($productQuantity > 0 && ($flagCookie || $flagSession)) {
 }else{
     if ($productQuantity > 0 && ($flagCookie == false && $flagSession== false)) {
       
-       
+      
 
         $queryGuest = "Select id_guest,quantity,id_product from bought_products where id_guest = :id_guest";
         $resultGuest = $db->prepare($queryGuest);
@@ -153,7 +157,6 @@ if ($productQuantity > 0 && ($flagCookie || $flagSession)) {
         $countG =0;
         while ($rowG = $resultGuest->fetch(PDO::FETCH_ASSOC)) {
             $actualQuantity = $rowG['quantity'];
-            $id_productG = $rowG['id_product'];
             if ($idHidden == $rowG['id_product']) {
                 $flagIdP = false;
             }
@@ -182,17 +185,7 @@ if ($productQuantity > 0 && ($flagCookie || $flagSession)) {
                 $resultGuest->execute();
                
             }
-           
-
-            //// PROBLEMA
-            // SI estando sin sesion y sin cookie nos logeamos tenemos que recordar los productos que se hayan añadido.
-            //Posible solucion--> crear en la linea 183 una cookie con un array que almacene el idHidden y quantity.
-            //en el login preguntar si esta cookie existe que solo deberia existir en caso de no estar logeado ni con cookie
-            // y sincronizarla con la cok user de alguna forma.
-
-
-
-          
+ 
         }else{
             $queryInsertGuest = "insert into bought_products (id_product,quantity,id_guest) values (:idProduct, :quantity, :id_guest)";
             $resultGuest = $db->prepare($queryInsertGuest);
@@ -262,7 +255,7 @@ if ($productQuantity > 0 && ($flagCookie || $flagSession)) {
                 </ul>
                 <ul class="navbar-nav mb-2 mb-lg-0 text-end pe-3">
                     <li class="nav-item">
-                        <a class="nav-link position-relative" href="../buy/buy.php" >
+                        <a class="nav-link position-relative" href="../buy/buy.php">
                             Shop List
                             <span class="position-absolute top-1 start-100 translate-middle badge rounded-pill bg-warning">
                                 0
@@ -362,7 +355,7 @@ if ($productQuantity > 0 && ($flagCookie || $flagSession)) {
                                         <div class="card-footer text-center">
                                             <div class="row pb-1">
                                                 <div class="col-6">
-                                                    <h6 class="text-muted">Ref: 123</h6>
+                                                    <h6 class="text-muted">Ref: <?php echo $refS[$i]?></h6>
                                                 </div>
                                                 <div class="col-6">
                                                     <?php echo "<h6 class='card-text text-end'><i>$priceS[$i]€</i></h6>";?>
@@ -387,7 +380,7 @@ if ($productQuantity > 0 && ($flagCookie || $flagSession)) {
                                         <div class="card-footer text-center" >
                                             <div class="row pb-1">
                                                 <div class="col-6">
-                                                    <h6 class="text-muted">Ref: 123</h6>
+                                                    <h6 class="text-muted">Ref: <?php echo $ref[$i]?></h6>
                                                 </div>
                                                 <div class="col-6">
                                                     <?php echo "<h6 class='card-text text-end'><i>$price[$i]€</i></h6>";?>
@@ -429,7 +422,7 @@ if ($productQuantity > 0 && ($flagCookie || $flagSession)) {
                                                     <div class="col-6">
                                                         <div class="row">
                                                             <h5><?php echo $descriptionF[$i]; ?></h5>
-                                                            <h6 class="text-muted">Ref: 123</h6>
+                                                            <h6 class="text-muted">Ref: <?php echo $refF[$i]?></h6>
                                                         </div>
                                                         <div class="row">
                                                             <p class="fst-italic">Art</p>
@@ -447,6 +440,7 @@ if ($productQuantity > 0 && ($flagCookie || $flagSession)) {
                                                     </svg>
                                                     </span>
                                                     <input class="form-control" name="quantity" type="number" placeholder="1" aria-label="Quantity">
+                                                    <input class="visually-hidden" name="idHidden" value="<?php echo "$idF[$i]"; ?>">
                                                 </div>
                                                 <div class="vr"></div>
                                                 <div class="input-group d-flex justify-content-center">
@@ -481,7 +475,7 @@ if ($productQuantity > 0 && ($flagCookie || $flagSession)) {
                                                     <div class="col-6">
                                                         <div class="row">
                                                             <h5><?php echo $descriptionS[$i]; ?></h5>
-                                                            <h6 class="text-muted">Ref: 123</h6>
+                                                            <h6 class="text-muted">Ref: <?php echo $refS[$i]?></h6>
                                                         </div>
                                                         <div class="row">
                                                             <p class="fst-italic">Art</p>
@@ -499,6 +493,7 @@ if ($productQuantity > 0 && ($flagCookie || $flagSession)) {
                                                     </svg>
                                                     </span>
                                                     <input class="form-control" name="quantity" type="number" placeholder="1" aria-label="Quantity">
+                                                    <input class="visually-hidden" name="idHidden" value="<?php echo "$idS[$i]"; ?>">
                                                 </div>
                                                 <div class="vr"></div>
                                                 <div class="input-group d-flex justify-content-center">
@@ -529,7 +524,7 @@ if ($productQuantity > 0 && ($flagCookie || $flagSession)) {
                                                 <div class="col-6">
                                                     <div class="row">
                                                         <h5><?php echo $description[$i]; ?></h5>
-                                                        <h6 class="text-muted">Ref: 123</h6>
+                                                        <h6 class="text-muted">Ref: <?php echo $ref[$i]?></h6>
                                                     </div>
                                                     <div class="row">
                                                         <p class="fst-italic">Art</p>
@@ -548,6 +543,7 @@ if ($productQuantity > 0 && ($flagCookie || $flagSession)) {
                                                     </svg>
                                                     </span>
                                                     <input class="form-control" name="quantity" type="number" placeholder="1" aria-label="Quantity">
+                                                    <input class="visually-hidden" name="idHidden" value="<?php echo "$idP[$i]"; ?>">
                                                 </div>
                                                 <div class="vr"></div>
                                                 <div class="input-group d-flex justify-content-center">

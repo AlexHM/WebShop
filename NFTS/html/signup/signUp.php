@@ -59,39 +59,6 @@ try {
         $result->bindValue(":password", $cryptPass);
         $result->execute();
         
-        //////////////////////////////
-
-
-      
-
-        // $mailer = new PHPMailer(true);
-        // try {
-        //     //Server settings
-        //     $mailer->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
-        //     $mailer->isSMTP();                                            //Send using SMTP
-        //     $mailer->Host       = 'smtp.google.com';                     //Set the SMTP server to send through
-        //     $mailer->SMTPAuth   = true;                                   //Enable SMTP authentication
-        //     $mailer->Username   = 'dinttaskmob@gmail.com';                     //SMTP username
-        //     $mailer->Password   = 'unapajaalacrema';                               //SMTP password
-        //     $mailer->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
-        //     $mailer->Port       = 587;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
-        
-        //     //Recipients
-        //     $mailer->setFrom('dinttaskmob@gmail.com', 'Mailer');
-        //     $mailer->addAddress('alejandrohome94@gmail.com', 'Joe User');     //Add a recipient
-           
-        
-        //     //Content
-        //     $mailer->isHTML(true);                                  //Set email format to HTML
-        //     $mailer->Subject = 'Here is the subject';
-        //     $mailer->Body    = 'This is the HTML message body <b>in bold!</b>';
-        //     $mailer->AltBody = 'This is the body in plain text for non-HTML mail clients';
-        
-        //     $mailer->send();
-        //     echo 'Message has been sent';
-        // } catch (Exception $e) {
-        //     echo "Message could not be sent. Mailer Error: {$mailer->ErrorInfo}";
-        // }
         
        
 
