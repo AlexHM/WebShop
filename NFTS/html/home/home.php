@@ -308,9 +308,14 @@ if ($productQuantity > 0 && ($flagCookie || $flagSession)) {
                             <option value="< 10000">&lt; 10.000€</option>
                             <option value="> 10000">&gt; 10.000€</option>
                         </select>
-                        <div class="col-md-4  col-sm-12 display-flex align-items-center p-3">
+                        <div class="col-6 col-md-2 display-flex align-items-center p-3">
                             <div class="input-group d-flex align-items-center">
                                 <input type="submit" class="btn btn-warning" value="Apply Filters" name=btnSelect>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-2 display-flex">
+                            <div class="input-group d-flex align-items-center">
+                                <input type="submit" class="btn btn-warning" value="Dismiss Filters" name=btnDF>
                             </div>
                         </div>
                     </form>
