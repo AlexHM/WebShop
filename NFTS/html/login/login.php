@@ -12,7 +12,7 @@ try {
         if (password_verify($pass,$cryptPass)) {
            
             if (isset($_POST["remember"])) {
-               
+                setcookie("cok_user_card", $_POST["email"], time() + (1800 * 30), "/"); 
                 $_SESSION["ses_user"] = $_POST["email"];
                 setcookie("cok_user", $_POST["email"], time() + (1800 * 30), "/"); 
                 

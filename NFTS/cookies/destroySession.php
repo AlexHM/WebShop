@@ -2,7 +2,12 @@
 session_start();
 session_destroy();
 
-//echo $_SESSION["user"];
+unset($_COOKIE['cok_card_user']); 
+setcookie("cok_card_user", "", time() + -1, "/");
+
+unset($_COOKIE['cok_user']); 
+setcookie("cok_user", "", time() + -1, "/");
+
 header("location: ../html/login/login.html");
 
 ?>

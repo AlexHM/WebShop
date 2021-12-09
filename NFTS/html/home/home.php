@@ -268,19 +268,26 @@ if ($productQuantity > 0 && ($flagCookie || $flagSession)) {
                             <span class="position-absolute top-1 start-100 translate-middle badge rounded-pill bg-warning">
                                 <script>
                                     function comprobar() {
-                                        
                                             <?php
                                             require("../../connection/item_Card.php"); 
-                                            echo $countItem;
+                                            if (isset($countItem)) {
+                                                echo $countItem;
+                                            }else{
+                                                echo "0";
+                                            }
                                             ?>
-                                       
-                                        
-                                    } 
+                                    }
+                                    
                                 </script>
                         
                                 
                                 <?php
-                                   echo $countItem;
+                                if (isset($countItem)) {
+                                    echo $countItem;
+                                }else{
+                                    echo "0";
+                                }
+                                   
                                 ?>
                             </span>
                         </a>
