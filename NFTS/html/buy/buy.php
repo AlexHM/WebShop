@@ -97,8 +97,8 @@ if (isset($_COOKIE["cok_user_card"])) {
                         ?>
                             <div class="row-fluid border-bottom  pt-3">
                                 <div class="row ">
-                                    <div class="col-6 col-md-4 container-fluid ">
-                                        <img src="<?php echo 'data:image/png; base64,' . base64_encode($imageB[$i]); ?>" class="img-thumbnail" alt="Imagen Producto">
+                                    <div class="col-6 col-md-4 container-fluid h-100">
+                                        <img src="<?php echo 'data:image/png; base64,' . base64_encode($imageB[$i]); ?>" class="img-fluid" alt="Imagen Producto">
                                     </div>
                                     <div class="col-6 col-md-3 container-fluid">
                                         <div class="row">

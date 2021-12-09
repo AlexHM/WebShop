@@ -61,9 +61,12 @@ $priceFilter = "";
 
 if (isset($_POST["selectCategory"])) {
     $categoryFilter = $_POST["selectCategory"];
+   
+
 }
 if (isset($_POST["selectPrice"])) {
     $priceFilter = $_POST["selectPrice"];
+    
 }
 
 try {
@@ -215,7 +218,7 @@ if ($productQuantity > 0 && ($flagCookie || $flagSession)) {
     <title>Home</title>
 </head>
 
-<body>
+<body onload="setTimeout(comprobar(), 1000)">
 
     <!--Navbar top-->
 
@@ -241,7 +244,12 @@ if ($productQuantity > 0 && ($flagCookie || $flagSession)) {
                         ?>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="../signup/signUp.html">Sign up</a>
+                        <?php
+                            if ($flagCookie==false && $flagSession==false) {
+                                echo " <a class='nav-link' href='../signup/signUp.html'>Sign up</a>";
+                            }
+                        ?>
+                    
                     </li>
 
 
@@ -258,7 +266,22 @@ if ($productQuantity > 0 && ($flagCookie || $flagSession)) {
                         <a class="nav-link position-relative" href="../buy/buy.php">
                             Shop List
                             <span class="position-absolute top-1 start-100 translate-middle badge rounded-pill bg-warning">
-                                0
+                                <script>
+                                    function comprobar() {
+                                        
+                                            <?php
+                                            require("../../connection/item_Card.php"); 
+                                            echo $countItem;
+                                            ?>
+                                       
+                                        
+                                    } 
+                                </script>
+                        
+                                
+                                <?php
+                                   echo $countItem;
+                                ?>
                             </span>
                         </a>
                     </li>
@@ -292,7 +315,7 @@ if ($productQuantity > 0 && ($flagCookie || $flagSession)) {
                         </select>
                         <label class="input-group-text bg-warning border-warning d-none d-sm-none d-md-block" for="inputGroupSelect01">Max Price</label>
                         <select class="col-6 form-select border-warning" id="inputGroupSelect01" name="selectPrice">
-                            <option selected>Choose one...</option>
+                            <option value="> 0" selected>Choose one...</option>
                             <option value="< 100">&lt; 100€</option>
                             <option value="< 200">&lt; 200€</option>
                             <option value="< 500">&lt; 500€</option>
@@ -398,7 +421,6 @@ if ($productQuantity > 0 && ($flagCookie || $flagSession)) {
                         <?php
                             }
                     }
-                    
                     ?>
                 </div>
             </div>
@@ -460,9 +482,7 @@ if ($productQuantity > 0 && ($flagCookie || $flagSession)) {
                             }
                         
                     } else if (isset($_POST["searchInp"])) {
-                        if (empty($nameS)) {
-                            echo "<p>No data found, please search again</p>";
-                        }
+                        
                         for ($i = 0; $i < count($nameS); $i++) {
                             ?>
                                 <div class="modal fade" id="staticBackdrop<?php echo $idS[$i];?>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
