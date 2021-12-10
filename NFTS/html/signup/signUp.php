@@ -53,7 +53,7 @@ try {
             $result->bindValue(":postal", $postalcode);
             $result->execute();
             
-            header("location:../index/index.php");    
+            header("location:../../../index.php");
         }
     }
 } catch (Exception $e) {

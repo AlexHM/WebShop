@@ -225,7 +225,7 @@ if ($productQuantity > 0 && ($flagCookie || $flagSession)) {
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="index.php">
                 ENFFY
                 <img src="/docs/5.1/assets/brand/bootstrap-logo.svg" alt="" width="30" height="24">
             </a>
@@ -239,7 +239,7 @@ if ($productQuantity > 0 && ($flagCookie || $flagSession)) {
                             if ($flagCookie) {
                                 echo "<a class='nav-link' href='#'>" . $_COOKIE["cok_user"] . "</a>";
                             } else {
-                                echo "<a class='nav-link' href='../login/login.html'>Login</a>";
+                                echo "<a class='nav-link' href='NFTS/html/login/login.html'>Login</a>";
                             }
                         }
                         ?>
@@ -247,7 +247,7 @@ if ($productQuantity > 0 && ($flagCookie || $flagSession)) {
                     <li class="nav-item">
                         <?php
                             if ($flagCookie==false && $flagSession==false) {
-                                echo " <a class='nav-link' href='../signup/signUp.html'>Sign up</a>";
+                                echo " <a class='nav-link' href='NFTS/html/signup/signup.html'>Sign up</a>";
                             }
                         ?>
                     
@@ -257,14 +257,14 @@ if ($productQuantity > 0 && ($flagCookie || $flagSession)) {
                     <?php
                     if ($flagSession || $flagCookie) {
                         echo " <li class='nav-item'>
-                            <a class='nav-link' href='../../cookies/destroySession.php'>Sign out</a>
+                            <a class='nav-link' href='NFTS/cookies/destroySession.php'>Sign out</a>
                         </li>";
                     }
                     ?>
                 </ul>
                 <ul class="navbar-nav mb-2 mb-lg-0 text-end pe-3">
                     <li class="nav-item">
-                        <a class="nav-link position-relative" href="../buy/buy.php">
+                        <a class="nav-link position-relative" href="NFTS/html/buy/buy.php">
                             Shop List
                             <span class="position-absolute top-1 start-100 translate-middle badge rounded-pill bg-warning">
                                 <script>
