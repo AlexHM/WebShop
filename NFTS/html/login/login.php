@@ -22,7 +22,7 @@ try {
                 $_SESSION["ses_user"] = $_POST["email"];
             }
             require("../../connection/syncCard.php");
-            header("location: ../home/home.php");
+            header("location: ../index/index.php");
         } else {
             header("location: ../login/login.html");
         }  

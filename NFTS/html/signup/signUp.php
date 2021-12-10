@@ -2,7 +2,7 @@
 
 require("../../connection/connection.php");
 require("../../connection/searchUser.php");
-require '../../vendor/autoload.php';
+
 
 
 /*
@@ -53,7 +53,7 @@ try {
             $result->bindValue(":postal", $postalcode);
             $result->execute();
             
-            header("location:../home/home.php");    
+            header("location:../index/index.php");    
         }
     }
 } catch (Exception $e) {

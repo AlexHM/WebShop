@@ -212,7 +212,7 @@ if ($productQuantity > 0 && ($flagCookie || $flagSession)) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../stylesheet/home.css">
+    <link rel="stylesheet" href="../../stylesheet/index.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <title>Home</title>
@@ -293,7 +293,7 @@ if ($productQuantity > 0 && ($flagCookie || $flagSession)) {
                         </a>
                     </li>
                 </ul>
-                <form class="d-flex" action="home.php" method="POST">
+                <form class="d-flex" action="index.php" method="POST">
                     <input class="form-control me-2" name="searchInp" type="search" placeholder="Search" aria-label="Search">
                     <button class="btn btn-outline-warning" type="submit">Search</button>
                 </form>
@@ -312,7 +312,7 @@ if ($productQuantity > 0 && ($flagCookie || $flagSession)) {
             <div style="height:15px;"></div>
             <fieldset class="row border-top-1">
                 <div class="col-12 d-flex align-items-center justify-content-around">
-                    <form class="input-group d-flex align-items-center" action="home.php" method="POST">
+                    <form class="input-group d-flex align-items-center" action="index.php" method="POST">
                         <label class="input-group-text bg-warning border-warning d-none d-sm-none d-md-block" for="inputGroupSelect01">Options</label>
                         <select class="col-6 form-select border-warning me-3" id="inputGroupSelect01" name="selectCategory">
                             <option selected>Select category</option>
@@ -466,7 +466,7 @@ if ($productQuantity > 0 && ($flagCookie || $flagSession)) {
                                                 </div>
                                             </div>
                                             <div class="modal-footer d-flex justify-content-center">
-                                            <form action="home.php" method="POST" class="hstack gap-3 d-flex justify-content-center">
+                                            <form action="index.php" method="POST" class="hstack gap-3 d-flex justify-content-center">
                                                 <div class="input-group d-flex justify-content-center">
                                                     <span class="input-group-text" id="basic-addon1">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bag-plus-fill" viewBox="0 0 16 16">
@@ -517,7 +517,7 @@ if ($productQuantity > 0 && ($flagCookie || $flagSession)) {
                                                 </div>
                                             </div>
                                             <div class="modal-footer d-flex justify-content-center">
-                                            <form action="home.php" method="POST" class="hstack gap-3 d-flex justify-content-center">
+                                            <form action="index.php" method="POST" class="hstack gap-3 d-flex justify-content-center">
                                                 <div class="input-group d-flex justify-content-center">
                                                     <span class="input-group-text" id="basic-addon1">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bag-plus-fill" viewBox="0 0 16 16">
@@ -567,7 +567,7 @@ if ($productQuantity > 0 && ($flagCookie || $flagSession)) {
                                             </div>
                                         </div>
                                         <div class="modal-footer d-flex justify-content-center">
-                                            <form action="home.php" method="POST" class="hstack gap-3 d-flex justify-content-center">
+                                            <form action="index.php" method="POST" class="hstack gap-3 d-flex justify-content-center">
                                                 <div class="input-group d-flex justify-content-center">
                                                     <span class="input-group-text" id="basic-addon1">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bag-plus-fill" viewBox="0 0 16 16">
