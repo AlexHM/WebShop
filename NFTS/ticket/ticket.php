@@ -1,3 +1,6 @@
+<?php
+require("../connection/printTicket.php");
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,14 +11,12 @@
 </head>
 <body>
     
-<h1>Item: </h1>
-<h1>descripcion</h1>
-<h1>precioProducto</h1>
 
 
 
 
-<h1>Total</h1>
+
+
 
 </body>
 </html>

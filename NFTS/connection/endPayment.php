@@ -40,4 +40,7 @@ if ($flagPayment) {
     $resultDeleteBoughtProducts->bindValue(":email", $_COOKIE["cok_user_card"]);
     $resultDeleteBoughtProducts->execute();
 
+    ////Descargar la factura
+    
+
 }
