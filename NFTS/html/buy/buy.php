@@ -3,15 +3,11 @@ require("../../connection/cardGuest.php");
 require("../../connection/promoCode.php");
 require("../../cookies/checkSession.php");
 require("../../cookies/checkCookie.php");
+require("../../connection/endPayment.php");
 
 
 
-$errorPayment = "<a href='../login/login.html'>Please, log In before to complete the payment</a>";
-$totalPayment = 0;
-$flagPayment = false;
-if (isset($_COOKIE["cok_user_card"])) {
-    $flagPayment= true;
-}
+
 ?>
 
 <!DOCTYPE html>
@@ -31,7 +27,7 @@ if (isset($_COOKIE["cok_user_card"])) {
         <div class="container-fluid">
             <a class="navbar-brand" href="#">
                 <a class="font-weight-bold text-dark col-md-1" href="../../../index.php">ENFFY</a>
-                <img src="" alt="" width="30" height="24">
+                <img src="../../media/logo.png" alt="logo" width="32" height="32">
             </a>
             <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">

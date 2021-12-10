@@ -15,7 +15,6 @@ if ($flagCookie==false && $flagSession==false) {
             $randomGuest =rand(0,5000);
             setcookie("cok_guest", $randomGuest, time() + 86400, "/");
         }
-
 }
 
 ///////// FILTRO DEL BUSCADOR SUPERIOR
@@ -227,7 +226,7 @@ if ($productQuantity > 0 && ($flagCookie || $flagSession)) {
         <div class="container-fluid">
             <a class="navbar-brand" href="index.php">
                 ENFFY
-                <img src="/docs/5.1/assets/brand/bootstrap-logo.svg" alt="" width="30" height="24">
+                <img src="NFTS/media/logo.png" alt="logo" width="32" height="32">
             </a>
             <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
