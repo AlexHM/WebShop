@@ -226,15 +226,17 @@ if ($productQuantity > 0 && ($flagCookie || $flagSession)) {
 
     <!--Navbar top-->
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">
-                ENFFY
-                <img src="/docs/5.1/assets/brand/bootstrap-logo.svg" alt="" width="30" height="24">
-            </a>
-            <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">ENFFY
+        <img src="/docs/5.1/assets/brand/bootstrap-logo.svg" alt="" width="30" height="24">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item active">
                         <?php
                         if ($flagSession) {
                             echo "<a class='nav-link' href='#'>" . $_SESSION["ses_user"] . "</a>";
@@ -260,7 +262,7 @@ if ($productQuantity > 0 && ($flagCookie || $flagSession)) {
                     }
                     ?>
                 </ul>
-                <ul class="navbar-nav mb-2 mb-lg-0 text-end pe-3">
+        <ul class="navbar-nav mb-2 mb-lg-0 text-end pe-3">
                     <li class="nav-item">
                         <a class="nav-link position-relative" href="../buy/buy.php" >
                             Shop List
@@ -270,13 +272,14 @@ if ($productQuantity > 0 && ($flagCookie || $flagSession)) {
                         </a>
                     </li>
                 </ul>
-                <form class="d-flex" action="home.php" method="POST">
-                    <input class="form-control me-2" name="searchInp" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-warning" type="submit">Search</button>
-                </form>
-            </div>
+        <form class="d-flex">
+            <input class="form-control me-2 border-warning" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-warning" type="submit">Search</button>
+        </form>
         </div>
-    </nav>
+    </div>
+</nav>  
+    
 
     <!--spacing-->
     <div style="height:35px;"></div>
@@ -288,6 +291,7 @@ if ($productQuantity > 0 && ($flagCookie || $flagSession)) {
             <div class="display-4 border-bottom ">Filters</div>
             <div style="height:15px;"></div>
             <fieldset class="row border-top-1">
+<<<<<<< Updated upstream
                 <div class="col-12 d-flex align-items-center justify-content-around">
                     <form class="input-group d-flex align-items-center" action="home.php" method="POST">
                         <label class="input-group-text bg-warning border-warning" for="inputGroupSelect01">Options</label>
@@ -313,6 +317,42 @@ if ($productQuantity > 0 && ($flagCookie || $flagSession)) {
                                 <input type="submit" class="btn btn-warning" value="Apply Filters" name=btnSelect>
                             </div>
                         </div>
+=======
+                <div class="col-12">
+                    <form class="input-group " action="home.php" method="POST">
+                        <div class="input-group mb-3 col-6 col-lg-4 d-flex justify-content-center p-3">
+                            <span class="input-group-text bg-warning border-warning d-none d-sm-none d-md-block" for="inputGroupSelect01">Options</span>
+                            <select class="form-select border-warning me-3" id="inputGroupSelect01" name="selectCategory">
+                                <option selected>Select category</option>
+                                <option value="Meme">Memes</option>
+                                <option value="Art">Art</option>
+                                <option value="Gaming">Gaming</option>
+                            </select>
+                        </div>
+                        <div class="input-group mb-3 col-6 col-lg-4 d-flex justify-content-center p-3">
+                            <span class="input-group-text bg-warning border-warning d-none d-md-none d-md-block" for="inputGroupSelect01">Max Price</span>
+                            <select class="form-select border-warning" id="inputGroupSelect01" name="selectPrice">
+                                <option value="> 0" selected>Choose one...</option>
+                                <option value="< 100">&lt; 100€</option>
+                                <option value="< 200">&lt; 200€</option>
+                                <option value="< 500">&lt; 500€</option>
+                                <option value="< 1000">&lt; 1.000€</option>
+                                <option value="< 5000">&lt; 5.000€</option>
+                                <option value="< 10000">&lt; 10.000€</option>
+                                <option value="> 10000">&gt; 10.000€</option>
+                            </select>
+                        </div>
+                        <div class="col-6 col-sm-6 col-lg-2 p-3">
+                            <div class="input-group d-flex justify-content-center">
+                                <input type="submit" class="btn btn-warning" value="Apply Filters" name=btnSelect>
+                            </div>
+                        </div>
+                        <div class="col-6 col-sm-6 col-lg-2 p-3">
+                            <div class="input-group d-flex justify-content-center">
+                                <input type="submit" class="btn btn-warning" value="Dismiss Filters" name=btnDF>
+                            </div>
+                        </div>
+>>>>>>> Stashed changes
                     </form>
                 </div>
             </fieldset>
