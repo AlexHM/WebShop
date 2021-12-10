@@ -1,10 +1,11 @@
 <?php
-require("../../cookies/checkSession.php");
-require("../../cookies/checkCookie.php");
-require("../../connection/imageProduct.php");
-require("../../connection/querySearch.php");
-require("../../connection/querySearchFilter.php");
-require("../../connection/id.php");
+
+require("NFTS/cookies/checkSession.php");
+require("NFTS/cookies/checkCookie.php");
+require("NFTS/connection/imageProduct.php");
+require("NFTS/connection/querySearch.php");
+require("NFTS/connection/querySearchFilter.php");
+require("NFTS/connection/id.php");
 
 $randomGuest = -1;
 if ($flagCookie==false && $flagSession==false) {
@@ -269,7 +270,7 @@ if ($productQuantity > 0 && ($flagCookie || $flagSession)) {
                                 <script>
                                     function comprobar() {
                                             <?php
-                                            require("../../connection/item_Card.php"); 
+                                            require("NFTS/connection/item_Card.php");
                                             if (isset($countItem)) {
                                                 echo $countItem;
                                             }else{
