@@ -1,6 +1,5 @@
 <?php
-require("../../connection/connection.php");
-
+require("connection.php");
 
 try {
     $productName = "select image from products";
