@@ -13,6 +13,7 @@ try {
     $description = array();
     $idP = array();
     $price = array();
+    $ref = array();
     $count = 0;
 
   
@@ -21,6 +22,7 @@ try {
         $description[$count] = $row['description'];
         $price[$count] = $row['price'];
         $idP[$count] = $row['id'];
+        $ref[$count] = $row['ref'];
         $count = $count + 1;
     }
 

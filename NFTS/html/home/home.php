@@ -34,6 +34,7 @@ try {
     $imageS = array();
     $descriptionS = array();
     $priceS = array();
+    $refS = array();
     $countS = 0;
     $idS = array();
 
@@ -44,6 +45,7 @@ try {
         $descriptionS[$countS] = $row['description'];
         $priceS[$countS] = $row['price'];
         $idS[$countS] = $row['id'];
+        $refS[$countS] = $row['ref'];
         $countS = $countS + 1;
     }
 } catch (\Throwable $th) {
@@ -59,9 +61,12 @@ $priceFilter = "";
 
 if (isset($_POST["selectCategory"])) {
     $categoryFilter = $_POST["selectCategory"];
+   
+
 }
 if (isset($_POST["selectPrice"])) {
     $priceFilter = $_POST["selectPrice"];
+    
 }
 
 try {
@@ -77,6 +82,7 @@ try {
     $descriptionF = array();
     $priceF = array();
     $idF = array();
+    $refF = array();
     $countF = 0;
 
     while ($row = $resultQueryFilter2->fetch(PDO::FETCH_ASSOC)) {
@@ -86,6 +92,7 @@ try {
         $descriptionF[$countF] = $row['description'];
         $priceF[$countF] = $row['price'];
         $idF[$countF] = $row['id'];
+        $refF[$countF] = $row['ref'];
         $countF = $countF + 1;
     }
 } catch (\Throwable $th) {
@@ -181,13 +188,6 @@ if ($productQuantity > 0 && ($flagCookie || $flagSession)) {
                 $resultGuest->execute();
                
             }
-           
-
-            //// PROBLEMA
-            // SI estando sin sesion y sin cookie nos logeamos tenemos que recordar los productos que se hayan añadido.
-            //Posible solucion--> crear en la linea 183 una cookie con un array que almacene el idHidden y quantity.
-            //en el login preguntar si esta cookie existe que solo deberia existir en caso de no estar logeado ni con cookie
-            // y sincronizarla con la cok user de alguna forma.
  
         }else{
             $queryInsertGuest = "insert into bought_products (id_product,quantity,id_guest) values (:idProduct, :quantity, :id_guest)";
@@ -218,7 +218,7 @@ if ($productQuantity > 0 && ($flagCookie || $flagSession)) {
     <title>Home</title>
 </head>
 
-<body>
+<body onload="setTimeout(comprobar(), 1000)">
 
     <!--Navbar top-->
 
@@ -244,7 +244,12 @@ if ($productQuantity > 0 && ($flagCookie || $flagSession)) {
                         ?>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="../signup/signUp.html">Sign up</a>
+                        <?php
+                            if ($flagCookie==false && $flagSession==false) {
+                                echo " <a class='nav-link' href='../signup/signUp.html'>Sign up</a>";
+                            }
+                        ?>
+                    
                     </li>
 
 
@@ -258,10 +263,32 @@ if ($productQuantity > 0 && ($flagCookie || $flagSession)) {
                 </ul>
                 <ul class="navbar-nav mb-2 mb-lg-0 text-end pe-3">
                     <li class="nav-item">
-                        <a class="nav-link position-relative" href="../buy/buy.php" >
+                        <a class="nav-link position-relative" href="../buy/buy.php">
                             Shop List
                             <span class="position-absolute top-1 start-100 translate-middle badge rounded-pill bg-warning">
-                                0
+                                <script>
+                                    function comprobar() {
+                                            <?php
+                                            require("../../connection/item_Card.php"); 
+                                            if (isset($countItem)) {
+                                                echo $countItem;
+                                            }else{
+                                                echo "0";
+                                            }
+                                            ?>
+                                    }
+                                    
+                                </script>
+                        
+                                
+                                <?php
+                                if (isset($countItem)) {
+                                    echo $countItem;
+                                }else{
+                                    echo "0";
+                                }
+                                   
+                                ?>
                             </span>
                         </a>
                     </li>
@@ -295,7 +322,7 @@ if ($productQuantity > 0 && ($flagCookie || $flagSession)) {
                         </select>
                         <label class="input-group-text bg-warning border-warning d-none d-sm-none d-md-block" for="inputGroupSelect01">Max Price</label>
                         <select class="col-6 form-select border-warning" id="inputGroupSelect01" name="selectPrice">
-                            <option selected>Choose one...</option>
+                            <option value="> 0" selected>Choose one...</option>
                             <option value="< 100">&lt; 100€</option>
                             <option value="< 200">&lt; 200€</option>
                             <option value="< 500">&lt; 500€</option>
@@ -363,7 +390,7 @@ if ($productQuantity > 0 && ($flagCookie || $flagSession)) {
                                         <div class="card-footer text-center">
                                             <div class="row pb-1">
                                                 <div class="col-6">
-                                                    <h6 class="text-muted">Ref: 123</h6>
+                                                    <h6 class="text-muted">Ref: <?php echo $refS[$i]?></h6>
                                                 </div>
                                                 <div class="col-6">
                                                     <?php echo "<h6 class='card-text text-end'><i>$priceS[$i]€</i></h6>";?>
@@ -388,7 +415,7 @@ if ($productQuantity > 0 && ($flagCookie || $flagSession)) {
                                         <div class="card-footer text-center" >
                                             <div class="row pb-1">
                                                 <div class="col-6">
-                                                    <h6 class="text-muted">Ref: 123</h6>
+                                                    <h6 class="text-muted">Ref: <?php echo $ref[$i]?></h6>
                                                 </div>
                                                 <div class="col-6">
                                                     <?php echo "<h6 class='card-text text-end'><i>$price[$i]€</i></h6>";?>
@@ -401,7 +428,6 @@ if ($productQuantity > 0 && ($flagCookie || $flagSession)) {
                         <?php
                             }
                     }
-                    
                     ?>
                 </div>
             </div>
@@ -430,7 +456,7 @@ if ($productQuantity > 0 && ($flagCookie || $flagSession)) {
                                                     <div class="col-6">
                                                         <div class="row">
                                                             <h5><?php echo $descriptionF[$i]; ?></h5>
-                                                            <h6 class="text-muted">Ref: 123</h6>
+                                                            <h6 class="text-muted">Ref: <?php echo $refF[$i]?></h6>
                                                         </div>
                                                         <div class="row">
                                                             <p class="fst-italic">Art</p>
@@ -463,9 +489,7 @@ if ($productQuantity > 0 && ($flagCookie || $flagSession)) {
                             }
                         
                     } else if (isset($_POST["searchInp"])) {
-                        if (empty($nameS)) {
-                            echo "<p>No data found, please search again</p>";
-                        }
+                        
                         for ($i = 0; $i < count($nameS); $i++) {
                             ?>
                                 <div class="modal fade" id="staticBackdrop<?php echo $idS[$i];?>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -483,7 +507,7 @@ if ($productQuantity > 0 && ($flagCookie || $flagSession)) {
                                                     <div class="col-6">
                                                         <div class="row">
                                                             <h5><?php echo $descriptionS[$i]; ?></h5>
-                                                            <h6 class="text-muted">Ref: 123</h6>
+                                                            <h6 class="text-muted">Ref: <?php echo $refS[$i]?></h6>
                                                         </div>
                                                         <div class="row">
                                                             <p class="fst-italic">Art</p>
@@ -532,7 +556,7 @@ if ($productQuantity > 0 && ($flagCookie || $flagSession)) {
                                                 <div class="col-6">
                                                     <div class="row">
                                                         <h5><?php echo $description[$i]; ?></h5>
-                                                        <h6 class="text-muted">Ref: 123</h6>
+                                                        <h6 class="text-muted">Ref: <?php echo $ref[$i]?></h6>
                                                     </div>
                                                     <div class="row">
                                                         <p class="fst-italic">Art</p>
