@@ -1,4 +1,4 @@
 <?php
-$db = new PDO("mysql:host=localhost;dbname=webstore2","root","");
+$db = new PDO("mysql:host=localhost;dbname=webstore5","root","");
 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 ?>
