@@ -1,10 +1,14 @@
 <?php
 
+// Llamada a la creacion de las cookies y sesiones pertinentes
 require("NFTS/cookies/checkSession.php");
 require("NFTS/cookies/checkCookie.php");
 require("NFTS/connection/imageProduct.php");
 require("NFTS/connection/querySearch.php");
 require("NFTS/connection/id.php");
+
+// En caso de entrar y no estar logueado se te asignara un numero de invitado para que puedas añadir elementos al carrito de
+// igual manera que un usuario pero a la hora de la compra no podras terminar el pagos
 
 $randomGuest = -1;
 if ($flagCookie==false && $flagSession==false) {
@@ -56,9 +60,11 @@ try {
 <?php
 
 ///////// FILTRO DEL BUSCADOR POR CATEGORIA Y PRECIO
+// Se inicializa el filtro en nulo
 $categoryFilter = "";
 $priceFilter = "";
 
+// Seteamos la variable del filtro en categoria
 if (isset($_POST["selectCategory"])) {
     $categoryFilter = $_POST["selectCategory"];
    
@@ -70,7 +76,7 @@ if (isset($_POST["selectPrice"])) {
 }
 
 try {
-    
+    // Query en sql sobre la base de datos
     $searchQueryFilter2 = "select * from products where category = '$categoryFilter' and price $priceFilter";
     $resultQueryFilter2 = $db->prepare($searchQueryFilter2);
     $resultQueryFilter2->execute();
@@ -103,6 +109,7 @@ try {
 <?php
 //////////// AÑADIR AL CARRITO
 
+// Funcion para añadir al carrito
 $productQuantity= 0;
 $idHidden="";
 if (isset($_POST["quantity"])) {
@@ -112,7 +119,7 @@ if (isset($_POST["idHidden"])) {
    $idHidden =$_POST["idHidden"];
 }
 
-
+//
 if ($productQuantity > 0 && ($flagCookie || $flagSession)) {
 
    $querSearchCard= "select * from bought_products where id_product = $idHidden";
@@ -180,6 +187,7 @@ if ($productQuantity > 0 && ($flagCookie || $flagSession)) {
 
                 
             }else{
+            // Insert de datos en tabla bought_products para el guest y posterior sincronizacion
                 $queryInsertGuest = "update bought_products set quantity= :quantity where id_product = :idProduct and id_guest = :id_guest";
                 $resultGuest = $db->prepare($queryInsertGuest);
                 $resultGuest->bindValue(":idProduct",$idHidden);
@@ -190,6 +198,7 @@ if ($productQuantity > 0 && ($flagCookie || $flagSession)) {
             }
  
         }else{
+        // Insert de datos en tabla bought_products en caso de no tener ningun producto igual
             $queryInsertGuest = "insert into bought_products (id_product,quantity,id_guest) values (:idProduct, :quantity, :id_guest)";
             $resultGuest = $db->prepare($queryInsertGuest);
 
@@ -207,7 +216,7 @@ if ($productQuantity > 0 && ($flagCookie || $flagSession)) {
 
 <!DOCTYPE html>
 <html lang="en">
-
+// Header de la pagina
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -228,6 +237,7 @@ if ($productQuantity > 0 && ($flagCookie || $flagSession)) {
                 ENFFY
                 <img src="NFTS/media/logo.png" alt="" width="32" height="32">
             </a>
+            // Navbar - Nombre del usuario en caso de estar logueado
             <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
@@ -280,7 +290,7 @@ if ($productQuantity > 0 && ($flagCookie || $flagSession)) {
                                     
                                 </script>
                         
-                                
+                                // Numero de elementos añadido al carrito
                                 <?php
                                 if (isset($countItem)) {
                                     echo $countItem;
@@ -305,7 +315,7 @@ if ($productQuantity > 0 && ($flagCookie || $flagSession)) {
     <div style="height:35px;"></div>
 
 
-
+ // Container de filtros y variables
     <div class="container">
         <div class="col-12">
             <div class="display-4 border-bottom ">Filters</div>
@@ -350,6 +360,7 @@ if ($productQuantity > 0 && ($flagCookie || $flagSession)) {
     <div style="height:50px;"></div>
     <div>
         <main class="col-12 ">
+        // Printeo de los productos de manera dinamica sacados de la base de datos sql
             <div id="products" class="container">
                 <div class="display-4 border-bottom ">Products</div>
                 <div style="height:30px;"></div>
@@ -478,6 +489,7 @@ if ($productQuantity > 0 && ($flagCookie || $flagSession)) {
                                                 </div>
                                                 <div class="vr"></div>
                                                 <div class="input-group d-flex justify-content-center">
+                                                // Llama al php para que añada el producto al carrito de la compra
                                                     <button type="submit" class="btn btn-warning">Add to card</button>
                                                 </div>
                                             </form>
@@ -596,6 +608,7 @@ if ($productQuantity > 0 && ($flagCookie || $flagSession)) {
     
 
 </body>
+// Footer
 <footer>
     <div class="container">
         <footer class="py-3 my-2">
