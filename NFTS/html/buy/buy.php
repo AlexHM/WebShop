@@ -5,7 +5,6 @@ require("../../cookies/checkSession.php");
 require("../../cookies/checkCookie.php");
 
 
-
 $errorPayment = "<a href='../login/login.html'>Please, log In before to complete the payment</a>";
 $totalPayment = 0;
 $flagPayment = false;
@@ -30,8 +29,8 @@ if (isset($_COOKIE["cok_user_card"])) {
     <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">
-                <a class="font-weight-bold text-dark col-md-1" href="../home/home.php">ENFFY</a>
-                <img src="" alt="" width="30" height="24">
+                <a class="font-weight-bold text-dark col-md-1" href="..">ENFFY</a>
+                <img src="../../media/logo.png" alt="" width="32" height="32">
             </a>
             <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
@@ -66,11 +65,6 @@ if (isset($_COOKIE["cok_user_card"])) {
                     ?>
                 </ul>
             </div>
-            <div class="row">
-                <div>
-                    <button type="button" class="btn btn-warning">Log Out</button>
-                </div>
-            </div>
         </div>
     </nav>
 
@@ -97,8 +91,8 @@ if (isset($_COOKIE["cok_user_card"])) {
                         ?>
                             <div class="row-fluid border-bottom  pt-3">
                                 <div class="row ">
-                                    <div class="col-6 col-md-4 container-fluid ">
-                                        <img src="<?php echo 'data:image/png; base64,' . base64_encode($imageB[$i]); ?>" class="img-thumbnail" alt="Imagen Producto">
+                                    <div class="col-6 col-md-4 container-fluid h-100">
+                                        <img src="<?php echo 'data:image/png; base64,' . base64_encode($imageB[$i]); ?>" class="img-fluid" alt="Imagen Producto">
                                     </div>
                                     <div class="col-6 col-md-3 container-fluid">
                                         <div class="row">
@@ -168,17 +162,15 @@ if (isset($_COOKIE["cok_user_card"])) {
                                         ?>€</h5>
                                 </div>
                             </div>
-                            <form action="buy.php">
+                            <form action="../../connection/endPayment.php">
                                 <div class="col-12 col-md-3 d-flex justify-content-end offset-md-9">
                                     <button type="submit" class="btn btn-warning">End Payment</button>
                                 </div>
                             </form>
                             <?php
-                            
                             if ($flagPayment==false) {
                                 echo $errorPayment;
                             }
-
                             ?>
                         </div>
                     </div>

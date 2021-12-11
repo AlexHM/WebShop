@@ -6,6 +6,7 @@ require("connection.php");
 $guest = 0;
 $user = "";
 
+//Pintamos el carrito en buy.php siendo o usuario o invitado
 if (isset($_COOKIE["cok_user_card"])) {
     $user = $_COOKIE["cok_user_card"];
 }
@@ -14,8 +15,9 @@ if (isset($_COOKIE["cok_guest"])) {
 }
 
 try {
-
+//
     $selectProductsBuy = "";
+    // bloque invitado
     if (isset($_COOKIE["cok_guest"])) {
         $selectProductsBuy = "select * from bought_products B join products P on B.id_product = P.id where id_guest= :id_guest";
         $resultJoinCard = $db->prepare($selectProductsBuy);
@@ -39,7 +41,7 @@ try {
             $countB = $countB + 1;
         }
     } else {
-
+        // bloque usuario
         $selectProductsBuy2 = "select * from bought_products B join products P on B.id_product = P.id where email_user= :email";
         $resultJoinCard2 = $db->prepare($selectProductsBuy2);
         $resultJoinCard2->bindValue(":email", $user);

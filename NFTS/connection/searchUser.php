@@ -1,6 +1,6 @@
 <?php
-require("../../connection/connection.php");
-
+require("connection.php");
+//En este archivo comprobamos si existe el usuario en la base de datos después de hacer el login, desencriptando la contraseña
 $email= $_POST["email"];
 $pass= $_POST["password"];
 $cryptPass= password_hash($pass,PASSWORD_DEFAULT);

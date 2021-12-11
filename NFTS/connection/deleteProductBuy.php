@@ -1,7 +1,7 @@
 <?php
 require("connection.php");
 
-
+//Eliminamos los productos del carrito 
 $idPHidden = "";
 $guest = 0;
 $user = "";
@@ -18,7 +18,7 @@ if (isset($_COOKIE["cok_guest"])) {
 }
 
 try {
-
+    //Preguntamos si estamos indentificados o no y dependiendo de la respuesta eliminamos sobre usuario o guest
     $deleteproduct = "";
     if (isset($_COOKIE["cok_guest"])) {
         $deleteproduct = "delete from bought_products where id_guest = :id_guest and id_product = :id";
