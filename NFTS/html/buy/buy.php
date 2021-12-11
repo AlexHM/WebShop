@@ -168,7 +168,6 @@ if (isset($_COOKIE["cok_user_card"])) {
                                 </div>
                             </form>
                             <?php
-                            
                             if ($flagPayment==false) {
                                 echo $errorPayment;
                             }

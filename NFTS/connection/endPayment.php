@@ -45,4 +45,6 @@ if ($flagPayment) {
 
     ////Descargar la factura
     require("printTicket.php");
+}else{
+    header("location:../html/buy/buy.php");
 }
