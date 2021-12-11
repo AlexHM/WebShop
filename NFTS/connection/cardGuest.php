@@ -6,6 +6,7 @@ require("connection.php");
 $guest = 0;
 $user = "";
 
+
 if (isset($_COOKIE["cok_user_card"])) {
     $user = $_COOKIE["cok_user_card"];
 }
@@ -14,7 +15,7 @@ if (isset($_COOKIE["cok_guest"])) {
 }
 
 try {
-
+//
     $selectProductsBuy = "";
     if (isset($_COOKIE["cok_guest"])) {
         $selectProductsBuy = "select * from bought_products B join products P on B.id_product = P.id where id_guest= :id_guest";

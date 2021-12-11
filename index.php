@@ -4,7 +4,6 @@ require("NFTS/cookies/checkSession.php");
 require("NFTS/cookies/checkCookie.php");
 require("NFTS/connection/imageProduct.php");
 require("NFTS/connection/querySearch.php");
-require("NFTS/connection/querySearchFilter.php");
 require("NFTS/connection/id.php");
 
 $randomGuest = -1;

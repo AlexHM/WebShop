@@ -29,7 +29,7 @@ if (isset($_COOKIE["cok_user_card"])) {
     <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">
-                <a class="font-weight-bold text-dark col-md-1" href="../../../index.php">ENFFY</a>
+                <a class="font-weight-bold text-dark col-md-1" href="..">ENFFY</a>
                 <img src="../../media/logo.png" alt="" width="32" height="32">
             </a>
             <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
