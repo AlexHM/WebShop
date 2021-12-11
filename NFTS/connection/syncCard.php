@@ -3,7 +3,7 @@ require("connection.php");
 
 $tempCard = 0;
 $emaiUSer = "";
-
+// Sincronizamos el carrito invitado para pasarlo todo a su nuevo usuario creado
 try {
     if (isset($_SESSION["ses_user"])) {
         $emaiUSer = $_SESSION["ses_user"];

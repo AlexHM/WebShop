@@ -1,6 +1,7 @@
 <?php
 require("connection.php");
 
+//Pintamos todas las imágenes de los productos
 try {
     $productName = "select image from products";
     $result = $db->prepare($productName);

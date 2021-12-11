@@ -1,5 +1,6 @@
 <?php
 
+//Comprobamos si es usuario o invitado para mostrar sus productos
 if (isset($_COOKIE["cok_guest"])) {
         $queryItemCard = "Select * from bought_products where id_guest = :id_guest";
         $resultItemCard = $db->prepare($queryItemCard);

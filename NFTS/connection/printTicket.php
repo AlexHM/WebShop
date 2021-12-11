@@ -1,6 +1,6 @@
 <?php
 require('mysql_table.php');
-
+//En este archivo imprimimos la tabla generada en mysql_table.php dandole un formato de tabla
 class PDF extends PDF_MySQL_Table
 {
 function Header()
