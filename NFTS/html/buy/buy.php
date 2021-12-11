@@ -164,7 +164,7 @@ require("../../connection/endPayment.php");
                                         ?>€</h5>
                                 </div>
                             </div>
-                            <form action="buy.php">
+                            <form action="../../connection/printTicket.php">
                                 <div class="col-12 col-md-3 d-flex justify-content-end offset-md-9">
                                     <button type="submit" class="btn btn-warning">End Payment</button>
                                 </div>
