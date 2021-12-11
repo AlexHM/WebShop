@@ -1,5 +1,7 @@
 <?php
+
 require("connection.php");
+
 $errorPayment = "<a href='../login/login.html'>Please, log In before to complete the payment</a>";
 $totalPayment = 0;
 $flagPayment = false;
@@ -43,6 +45,4 @@ if ($flagPayment) {
 
     ////Descargar la factura
     require("printTicket.php");
-
-
 }

@@ -8,6 +8,9 @@ setcookie("cok_user_card", "", time() + -1, "/");
 unset($_COOKIE['cok_user']); 
 setcookie("cok_user", "", time() + -1, "/");
 
+unset($_COOKIE['cok_guest']); 
+setcookie("cok_guest", "", time() + -1, "/");
+
 header("location: ../html/login/login.html");
 
 ?>
