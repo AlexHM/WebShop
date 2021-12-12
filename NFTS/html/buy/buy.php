@@ -73,7 +73,7 @@ if (isset($_COOKIE["cok_user_card"])) {
 
     <!-- MAIN CONTAINER, PRODUCTOS DEL PEDIDO -->
 
-    <div class="container-fluid">
+    <div class="container-fluid p-4">
         <div class="row">
             <!-- ZONA DE PRODUCTOS ESPECIFICOS SELECCIONADOS-->
             <div class="container-fluid col-12">
@@ -91,7 +91,7 @@ if (isset($_COOKIE["cok_user_card"])) {
                         ?>
                             <div class="row-fluid border-bottom  pt-3">
                                 <div class="row ">
-                                    <div class="col-6 col-md-4 container-fluid h-100">
+                                    <div class="col-6 col-md-4 container-fluid" style="max-width: 300px; padding-bottom:20px;">
                                         <img src="<?php echo 'data:image/png; base64,' . base64_encode($imageB[$i]); ?>" class="img-fluid" alt="Imagen Producto">
                                     </div>
                                     <div class="col-6 col-md-3 container-fluid">
