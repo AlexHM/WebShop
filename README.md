@@ -47,7 +47,7 @@ The application has some navigation screens, which include:
 
 #### Final page where you can delete the products previously added and finalize the purchase by generating a purchase ticket
 
-#### Authors
+## Authors
 
 DPTO Frontend
 - [Ángel Blanco](https://github.com/AngelBlanco97)
