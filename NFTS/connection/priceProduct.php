@@ -1,7 +1,7 @@
 <?php
-require("../../connection/connection.php");
+require("connection.php");
 
-
+//Obtenemos el precio de los productos de la base de datos para pintarlo en index.php
 try {
    $productPrice = "select price from products";
    $result = $db->prepare($productPrice);

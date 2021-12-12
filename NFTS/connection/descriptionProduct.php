@@ -1,7 +1,7 @@
 <?php
-require("../../connection/connection.php");
+require("connection.php");
 
-
+//Pintamos en index.php todas las descripcioens
 try {
    $productDescription = "select description from products";
    $result = $db->prepare($productDescription);

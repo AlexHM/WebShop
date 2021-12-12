@@ -3,7 +3,7 @@ require("connection.php");
 require("id.php");
 
 
-
+//Obtenemos todos los campos de la tabla productos para pintarlos en index.php
 try {
     $searchQuery = "select * from products";
     $resultQuery = $db->prepare($searchQuery);
@@ -13,6 +13,7 @@ try {
     $description = array();
     $idP = array();
     $price = array();
+    $ref = array();
     $count = 0;
 
   
@@ -21,6 +22,7 @@ try {
         $description[$count] = $row['description'];
         $price[$count] = $row['price'];
         $idP[$count] = $row['id'];
+        $ref[$count] = $row['ref'];
         $count = $count + 1;
     }
 
