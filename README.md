@@ -1,5 +1,4 @@
-
-<p align="center"> ENFFY </p>
+# ENFFY
 ## Index
 
 * Dependencies
