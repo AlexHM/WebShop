@@ -3,7 +3,7 @@ require("connection.php");
 require("id.php");
 
 
-
+//Obtenemos todos los campos de la tabla productos para pintarlos en index.php
 try {
     $searchQuery = "select * from products";
     $resultQuery = $db->prepare($searchQuery);

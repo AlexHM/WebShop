@@ -1,7 +1,7 @@
 <?php
 require("connection.php");
 
-
+//Recuperamos el id para poder pintar todos los campos
 try {
    $productDescription = "select id from products";
    $result = $db->prepare($productDescription);

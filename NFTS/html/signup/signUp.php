@@ -2,6 +2,7 @@
 
 require("../../connection/connection.php");
 require("../../connection/searchUser.php");
+require("../../cookies/destroySession.php");
 
 
 
@@ -52,7 +53,10 @@ try {
             $result->bindValue(":address", $adress);
             $result->bindValue(":postal", $postalcode);
             $result->execute();
-            
+
+            session_start();
+            $_SESSION["ses_user"] = $email2;
+            setcookie("cok_user_card", $email2, time() + (1800 * 30), "/"); 
             header("location:../../../index.php");
         }
     }

@@ -1,6 +1,6 @@
 <?php
 require('mysql_table.php');
-
+//En este archivo imprimimos la tabla generada en mysql_table.php dandole un formato de tabla
 class PDF extends PDF_MySQL_Table
 {
 function Header()
@@ -62,6 +62,7 @@ $pdf->Line(10, 45, 200, 45);
 $pdf->SetY(41);
 $pdf->Ln(20);
 $pdf->Table($link,'select * from user_products order by price');
-
+$pdf->Ln(10);
+$pdf->Table($link,"select sum(price) as Total from user_products where email_user = '". $_COOKIE['cok_user_card']."'");
 $pdf->Output();
 ?>

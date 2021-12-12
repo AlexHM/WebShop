@@ -5,7 +5,7 @@ require("../../connection/searchUser.php");
 
 
 
-
+// Una vez se ha comprobado que existe ese usuario verificamos la contraseña encriptada y generamos la sesion y cookies
 try {
     if ($result->rowCount() > 0) {
         
