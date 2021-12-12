@@ -1,12 +1,10 @@
 <?php
-require("../../connection/connection.php");
+require("connection.php");
 
-
+//Obtenemos el nombre de la base de datos para pintarlo en index.php
 try {
    $productName = "select name from products";
    $result = $db->prepare($productName);
-   // $name2 = htmlentities(addslashes(1));
-   // $result->bindValue(":id", $name2);
    $result->execute();
 
    $names = array();
